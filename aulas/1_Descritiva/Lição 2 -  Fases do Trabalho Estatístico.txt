@@ -1,0 +1,164 @@
+# Lição 2: Fases do Trabalho Estatístico
+
+A estatística, como método de análise, envolve uma série de etapas fundamentais para garantir uma abordagem sistemática e rigorosa. As principais fases do método estatístico são:
+
+- **Definição do problema**
+- **Planejamento do trabalho**
+- **Coleta de dados**
+- **Apuração dos dados**
+- **Apresentação dos dados**
+- **Análise e interpretação dos dados**
+
+## 1.1 Definição do Problema
+
+A primeira etapa de um trabalho estatístico envolve a formulação clara e precisa do problema a ser investigado. Para uma definição eficaz, é fundamental considerar os seguintes pontos:
+
+- **Explicitar de forma completa o objeto de estudo**: definir claramente o escopo da investigação.
+- **Revisar a literatura**: identificar estudos anteriores relevantes, entendendo o estado da arte sobre o tema.
+- **Definir hipóteses**: formular hipóteses que orientarão a resolução do problema.
+- **Identificar as variáveis**: selecionar as variáveis a serem analisadas, destacando aquelas de maior relevância para a pesquisa.
+
+## 1.2 Planejamento do Trabalho
+
+Nesta fase, define-se toda a estrutura necessária para conduzir o estudo. É essencial determinar se o estudo será conduzido por meio de:
+
+- **Levantamento censitário**: investigação de todos os elementos do universo. Esse método é adequado quando a população é relativamente pequena e os custos e o tempo de coleta são manejáveis.
+- **Amostragem**: exame de uma parte representativa da população. Este método é preferível quando a população é grande, tornando o levantamento censitário inviável devido ao tempo e recursos necessários.
+
+O planejamento deve abranger:
+
+- **Elaboração de um cronograma**: definição dos prazos para cada etapa do estudo.
+- **Definição da equipe técnica e de apoio**: alocação dos recursos humanos necessários.
+- **Descrição da metodologia de amostragem**: caso aplicável, especificar o método de seleção da amostra.
+- **Desenvolvimento do instrumento de coleta de dados**: como questionários ou roteiros de entrevistas.
+- **Treinamento da equipe de coleta**: garantir a padronização e a qualidade dos dados coletados.
+- **Processos de coleta, digitação e crítica dos dados**: supervisão para assegurar a precisão e consistência.
+- **Tabulação, análise e interpretação dos dados**: organização dos dados coletados e preparação para análise.
+- **Elaboração do relatório final**: síntese dos resultados e conclusões.
+- **Orçamento e alocação de recursos**: planejamento dos custos envolvidos, incluindo financiamento e recursos materiais.
+
+## 1.3 Coleta de Dados
+
+A coleta de dados é a etapa que envolve a obtenção das informações necessárias sobre o fenômeno investigado. Para assegurar a qualidade e a representatividade dos dados, as seguintes etapas devem ser seguidas:
+
+- **Elaboração do instrumento de pesquisa**: construção de um questionário ou outro meio de coleta de informações.
+- **Teste do instrumento**: validação do instrumento para garantir sua eficácia e clareza.
+-- **Seleção e treinamento dos pesquisadores de campo**: preparação adequada para a padronização da coleta.
+- **Coleta de dados propriamente dita**: condução da pesquisa em campo.
+- **Crítica das informações obtidas**: verificação da qualidade e validação dos dados coletados.
+
+## 1.4 Apuração dos Dados
+
+Após a coleta, os dados devem ser organizados e preparados para análise. A apuração dos dados inclui:
+
+- **Classificação**: identificação de todas as respostas possíveis para cada variável.
+- **Codificação**: atribuição de códigos, geralmente numéricos, para facilitar a análise.
+- **Tabulação**: organização dos dados em tabelas, onde as variáveis são dispostas nas colunas e os resultados observados nas linhas. Esta etapa pode ser realizada manualmente ou utilizando software estatístico.
+
+## 1.5 Apresentação dos Dados
+
+A apresentação dos dados visa resumir as informações de forma clara e eficaz, frequentemente utilizando:
+
+- **Tabelas**: para sintetizar grandes volumes de dados de maneira organizada.
+- **Gráficos**: para facilitar a visualização e interpretação dos resultados.
+
+## 1.6 Análise e Interpretação dos Dados
+
+A análise estatística dos dados busca interpretar os resultados obtidos e entender o que eles significam em relação ao problema investigado. As principais etapas da análise incluem:
+
+- **Medidas de tendência central**: identificação do comportamento típico do grupo por meio da média, mediana e moda.
+- **Medidas de variabilidade**: análise da dispersão dos dados, utilizando amplitude, desvio padrão, variância, entre outras.
+- **Distribuições de probabilidade**: análise da distribuição dos dados, como a normal ou binomial, para entender padrões e inferir resultados.
+- **Relação entre variáveis**: utilização de técnicas estatísticas para identificar correlações, com a ressalva de que correlação não implica causalidade.
+- **Comparação entre grupos**: avaliação das diferenças entre dois ou mais grupos por meio de testes estatísticos.
+
+---
+
+# 2. Tipos de Variáveis
+
+A característica de interesse em uma pesquisa é chamada de **variável**. As variáveis podem ser classificadas em dois tipos principais: **qualitativas** e **quantitativas**.
+
+## 2.1. Variáveis Qualitativas
+
+São aquelas cujos resultados são expressos em termos de qualidade ou atributo. Exemplos incluem:
+
+- **Setor de atividade econômica**
+- **Estado civil**
+- **Porte da empresa**
+
+### 2.1.1 Variável Qualitativa Nominal
+
+Não apresentam uma ordem natural nos resultados. Exemplos:
+
+- **Setor de atividade econômica** (industrial, comercial, serviços, etc.)
+- **Estado civil** (solteiro, casado, viúvo, etc.)
+
+### 2.1.2 Variável Qualitativa Ordinal
+
+Apresentam uma ordem natural entre os resultados. Exemplos:
+
+- **Porte da empresa** (micro, pequena, média, grande)
+- **Classe social** (alta, média, baixa)
+- **Grau de escolaridade** (1º grau, 2º grau, 3º grau)
+
+## 2.2. Variáveis Quantitativas
+
+São aquelas em que os resultados são numéricos, decorrentes de processos de mensuração ou contagem. Exemplos:
+
+- **Número de empregados**
+- **Salário mensal**
+- **Faturamento anual**
+- **Idade**
+- **Tamanho da família**
+
+### 2.2.1 Variável Quantitativa Discreta
+
+Os resultados formam um conjunto finito ou enumerável de valores, normalmente obtidos por contagem. Exemplos:
+
+- **Número de empregados** (0, 1, 2, ...)
+- **Tamanho da família** (1, 2, 3, ...)
+
+### 2.2.2 Variável Quantitativa Contínua
+
+Os resultados possíveis formam intervalos ou uniões de intervalos de números reais, normalmente decorrentes de medições. Exemplos:
+
+- **Salário mensal**
+- **Faturamento anual**
+- **Altura**
+- **Peso**
+
+**Resumo das Técnicas**
+
+A escolha da técnica apropriada para resumir os dados de uma pesquisa depende do tipo de variável em questão. Por exemplo, variáveis qualitativas podem ser resumidas por meio de tabelas de frequência ou gráficos de setores, enquanto variáveis quantitativas são frequentemente descritas por medidas de tendência central (como a média) e de dispersão (como o desvio padrão).
+
+---
+
+# 3. Parâmetro e Estatística
+
+Os conceitos de **parâmetro** e **estatística** estão diretamente ligados aos conceitos de **população** e **amostra**. Para ilustrar esses conceitos, considere o seguinte exemplo:
+
+## 3.1. Exemplo
+
+Em uma pesquisa realizada por uma agência de consultoria, foram entrevistadas 1015 pessoas selecionadas aleatoriamente. Dessas, **269 (ou seja, 26,5%) possuíam computador**. Como esse valor foi obtido a partir de uma amostra, trata-se de uma **estatística**.
+
+Por outro lado, considere uma pesquisa realizada com todos os funcionários de uma empresa em Salvador, que mostrou que **84% dos funcionários possuem computador**. Neste caso, o valor é um **parâmetro**, pois se refere a toda a população de funcionários da empresa.
+
+## 3.2. Definições
+
+- **Parâmetro**: medida numérica que descreve uma característica de uma população.
+- **Estatística**: medida numérica que descreve uma característica de uma amostra.
+
+**Notação Comum para Parâmetros e Estatísticas**
+
+| **Característica**      | **Parâmetro (θ)** | **Estatística (T)** |
+| ----------------------- | ----------------- | ------------------- |
+| **Proporção**           | p                 | π̂                  |
+| **Média**               | μ                 | X̄ ou μ̂            |
+| **Variância**           | σ²                | S²                  |
+| **Desvio Padrão**       | σ                 | S                   |
+| **Mediana**             | Md                | md                  |
+| **Número de elementos** | N                 | n                   |
+
+**Planejamento da Pesquisa**
+
+Ao traduzir os objetivos da pesquisa em características mensuráveis, antes de definir o tamanho da amostra e criar os instrumentos de pesquisa (como questionários), é crucial deixar claro quais características populacionais (**parâmetros**) deverão ser estimadas a partir da amostra.

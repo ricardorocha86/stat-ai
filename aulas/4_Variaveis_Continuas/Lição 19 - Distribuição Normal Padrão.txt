@@ -1,0 +1,133 @@
+# Lição 19 - Utilização da Distribuição Normal pela Tabela da Normal Padrão
+
+---
+
+## Introdução
+
+A distribuição normal é amplamente utilizada em estatística para descrever variáveis contínuas. Muitas vezes, para calcular probabilidades associadas a uma distribuição normal, utilizamos tabelas que fornecem valores da distribuição **normal padrão** $N(0,1)$. Essas tabelas geralmente apresentam a probabilidade acumulada entre 0 e um determinado valor $z$, isto é, $P(0 < Z < z)$.
+
+Nesta aula, aprenderemos como transformar uma distribuição normal qualquer $N(\mu, \sigma)$ para a normal padrão $N(0,1)$, como usar a tabela $P(0 < Z < z)$ e como aplicar propriedades de simetria para resolver problemas. Faremos isso a partir de exemplos práticos.
+
+---
+
+### Link para a Tabela da Distribuição Normal 
+
+https://professorguru.com.br/wa_files/tabelas-normal-padrao-de-0-a-z.pdf
+
+---
+
+
+## Resultado: Transformação para a Normal Padrão
+
+Se $X\sim N(\mu, \sigma^2)$, então 
+
+$$
+\frac{X - \mu}{\sigma} = Z \sim N(0,1).
+$$
+ 
+
+## Exemplo Prático
+
+Considere a altura dos alunos de uma escola, que segue uma distribuição normal com:
+- **Média** ($\mu$) = 160 cm;
+- **Desvio padrão** ($\sigma$) = 10 cm.
+
+### Perguntas:
+
+1. Qual a probabilidade de um aluno ter menos de 1,5m ?
+2. Qual a probabilidade de um aluno **não** ter entre 1,4m e 1,7m ?
+
+
+---
+
+
+1. Substituímos os valores na fórmula de transformação:
+   $$
+   P(X<150) = P ( \frac{X - 160}{10} < \frac{150 - 160}{10} ) = P(Z<-1)
+   $$
+   Isso significa que estamos procurando a probabilidade $P(Z < -1)$.
+
+2. Usamos as propriedades de simetria da tabela:
+   - A tabela fornece $P(0 < Z < z)$.
+   - Como a normal é simétrica, temos:
+     $$
+     P(Z < -1) = P(Z > 1)
+     $$
+
+3. Agora note que:
+   $$
+   P(Z > 1) = P(Z>0) - P(0 < Z < 1) 
+   $$
+
+3. Por fim, utilizando a tabela, vemos que o valor de $P(0 < Z < 1) = 0.1587$, e portanto
+   $$
+   P(X<150) = P(Z > 1) = 0.5 - 0.3413 = 0.1587
+   $$
+
+
+---
+
+### Cálculo para $P(\text{não estar entre 1,40m e 1,70m})$
+
+Queremos calcular a probabilidade de um aluno não ter uma altura entre 140 cm e 170 cm. Isso corresponde a:
+$$
+P(X < 140 \; \text{ou} \; X > 170) = P(X < 140) + P(X > 170)
+$$
+
+1. Para $P(X < 140)$:
+   - Transformamos para a normal padrão:
+     $$
+     Z = \frac{140 - 160}{10} = -2
+     $$
+   - Usando a simetria e a tabela, para $Z = 2$:
+     $$
+     P(0 < Z < 2) = 0.4772
+     $$
+   - Assim:
+     $$
+     P(Z < -2) = 0.5 - 0.4772 = 0.0228
+     $$
+
+2. Para $P(X > 170)$:
+   - Transformamos para a normal padrão:
+     $$
+     Z = \frac{170 - 160}{10} = 1
+     $$
+   - Para $Z = 1$, da tabela:
+     $$
+     P(0 < Z < 1) = 0.3413
+     $$
+   - Assim:
+     $$
+     P(Z > 1) = 0.5 - 0.3413 = 0.1587
+     $$
+
+3. Logo, a probabilidade desejada é dada por:
+   $$
+   P(Z < -2) + P(Z > 1) = 0.0228 + 0.1587 = 0.1815
+   $$
+
+---
+
+## Resumo
+
+1. **Transformação para a Normal Padrão**:
+   - Sempre use $Z = \frac{X - \mu}{\sigma}$ para converter variáveis $N(\mu, \sigma)$ para $N(0, 1)$.
+
+2. **Simetria da Distribuição**:
+   - A curva normal é simétrica em relação à média ($z = 0$):
+     - $P(Z < -z) = P(Z > z)$.
+   - Probabilidades acima de $z$ podem ser obtidas por $P(Z > z) = 0.5 - P(0 < Z < z)$.
+
+  
+
+## Conclusão
+
+- A tabela $P(0 < Z < z)$ é uma ferramenta essencial para encontrar probabilidades associadas à distribuição normal padrão.
+- O processo inclui:
+  1. Transformar variáveis $N(\mu, \sigma)$ para $N(0, 1)$ com $Z = \frac{X - \mu}{\sigma}$;
+  2. Aplicar propriedades de simetria e complementação para intervalos não diretamente disponíveis na tabela.
+
+
+Pratique bastante e bons estudos!
+

@@ -1,0 +1,145 @@
+# Lição 13 - Média de Variáveis Aleatórias
+
+## Introdução
+
+Nesta aula, exploraremos o conceito de **média de variáveis aleatórias** aplicado a cenários práticos. Vamos analisar o exemplo de um jogo de caça-níquel com três rodas, cada uma com cinco posições possíveis, para calcular o valor esperado de lucro. Além disso, investigaremos um jogo de dados em que se paga para jogar, mas se ganha caso a soma dos dois lançamentos seja $ 3, 6 $ ou $ 9 $. A partir desses exemplos, abordaremos a importância de interpretar corretamente o valor esperado, além de considerações sobre gestão de patrimônio e risco de ruína.
+
+---
+
+## 1. Conceitos Fundamentais
+
+### 1.1. Variáveis Aleatórias (VA)
+
+Uma variável aleatória (VA) é uma função que associa um valor numérico a cada resultado possível de um experimento aleatório. 
+
+**Exemplo:**  
+No jogo de caça-níquel, a VA pode representar o **lucro** do jogador em uma rodada.
+
+### 1.2. Valor Esperado (Média)
+
+O valor esperado de uma variável aleatória $ X $, denotado por $ E(X) $, é a média ponderada dos resultados possíveis, calculada como:
+$$
+E(X) = \sum_{i} x_i \cdot P(X = x_i)
+$$
+onde:
+- $ x_i $: resultado possível,
+- $ P(X = x_i) $: probabilidade da variável aleatória X assumir o valor $ x_i $.
+
+---
+
+## 2. O Jogo de Caça-Níquel
+
+### 2.1. Regras do Jogo
+
+- O jogo possui **3 rodas**, cada uma com **5 posições**: 
+  - **[Laranja, Morango, Banana, Cocô, Diamante]**
+- Resultados e prêmios:
+  - **3 Diamantes**: ganho de 500x a aposta.
+  - **3 Cocôs**: ganho de 5x a aposta.
+  - **3 frutas iguais**: ganho de 10x a aposta.
+  - **Qualquer outro resultado**: nenhuma recompensa.
+
+A variável aleatória $ X $ representa o lucro do jogador em uma rodada, definida como o prêmio menos a aposta.
+
+### 2.2. Probabilidades dos Resultados
+
+1. Cada roda é independente.
+2. Probabilidade de cada símbolo em uma roda: $ \frac{1}{5} $.
+3. Probabilidades dos eventos:
+   - **3 Diamantes**:  
+     $ P(\text{Diamante}) = \left(\frac{1}{5}\right)^3 = \frac{1}{125} $.
+   - **3 Cocôs**:  
+     $ P(\text{Cocô}) = \left(\frac{1}{5}\right)^3 = \frac{1}{125} $.
+   - **3 frutas iguais (Laranja, Morango ou Banana):**
+     - Para uma fruta: $ \left(\frac{1}{5}\right)^3 = \frac{1}{125} $.
+     - Para 3 frutas: $ 3 \times \frac{1}{125} = \frac{3}{125} $.
+   - **Outro resultado:**  
+     $ P(\text{Outro resultado}) = 1 - P(\text{3 Diamantes} \cup \text{3 Cocôs} \cup \text{3 frutas iguais}) $:
+     $$
+     P(\text{Outro resultado}) = 1 - \left(\frac{1}{125} + \frac{1}{125} + \frac{3}{125}\right) = \frac{120}{125}.
+     $$
+
+### 2.3. Valor Esperado do Lucro
+
+Para calcular o valor esperado do **lucro**, considere que a aposta é de 1 unidade monetária. Assim:
+- Lucro para cada evento:
+  - **3 Diamantes**: $ +499 $ (500 menos 1 de aposta).
+  - **3 Cocôs**: $ +4 $ (5 menos 1 de aposta).
+  - **3 frutas iguais**: $ +9 $ (10 menos 1 de aposta).
+  - **Outro resultado**: $ -1 $ (perda da aposta).
+
+Substituímos na fórmula:
+$$
+E(X) = (499 \cdot \frac{1}{125}) + (4 \cdot \frac{1}{125}) + (9 \cdot \frac{3}{125}) + (-1 \cdot \frac{120}{125})
+$$
+$$
+E(X) = \frac{499}{125} + \frac{4}{125} + \frac{27}{125} - \frac{120}{125}
+$$
+$$
+E(X) = \frac{499 + 4 + 27 - 120}{125} = \frac{410}{125} = 3,28.
+$$
+
+**Interpretação:** O valor esperado de lucro por rodada é **3,28 unidades monetárias**.
+
+---
+
+## 3. O Jogo dos Dados
+
+### 3.1. Regras do Jogo
+
+- Dois dados de 6 faces são lançados.
+- O jogador paga **8 unidades monetárias** para jogar.
+- O jogador ganha se a soma dos dois lançamentos for $ 3, 6 $ ou $ 9 $, recebendo **20 unidades monetárias**.
+- Lucro do jogador:
+  - **Vitória**: $ +12 $ (20 ganhos menos 8 pagos).
+  - **Derrota**: $ -8 $ (perda da aposta).
+
+A variável aleatória $ X $ representa o lucro do jogador em uma rodada.
+
+### 3.2. Determinação das Probabilidades
+
+1. **Soma dos dois dados:**
+   - Total de combinações possíveis: $ 6 \times 6 = 36 $.
+2. **Combinações que geram vitória:**
+   - Soma $ 3 $: $ (1, 2), (2, 1) $ → $ 2 $ combinações.
+   - Soma $ 6 $: $ (1, 5), (2, 4), (3, 3), (4, 2), (5, 1) $ → $ 5 $ combinações.
+   - Soma $ 9 $: $ (3, 6), (4, 5), (5, 4), (6, 3) $ → $ 4 $ combinações.
+   - Total de combinações que geram vitória: $ 2 + 5 + 4 = 11 $.
+3. **Probabilidade de vitória:**  
+   $$ 
+   P(\text{Vitória}) = \frac{11}{36}, \quad P(\text{Derrota}) = 1 - \frac{11}{36} = \frac{25}{36}.
+   $$
+
+### 3.3. Valor Esperado do Lucro
+
+O lucro do jogador por rodada é representado pela VA $ X $, com:
+- $ X = +12 $ (vitória) com $ P = \frac{11}{36} $,
+- $ X = -8 $ (derrota) com $ P = \frac{25}{36} $.
+
+Substituímos na fórmula do valor esperado:
+$$
+E(X) = (+12 \cdot \frac{11}{36}) + (-8 \cdot \frac{25}{36})
+$$
+$$
+E(X) = \frac{132}{36} - \frac{200}{36}
+$$
+$$
+E(X) = \frac{-68}{36} = -\frac{17}{9} \approx -1,89.
+$$
+
+**Interpretação:** O valor esperado do lucro por rodada é **-1,89 unidades monetárias**, indicando que, em média, o jogador perde dinheiro a cada partida.
+
+---
+
+## 4. Conclusão e Reflexão
+
+Nesta aula:
+1. Definimos variáveis aleatórias e valor esperado.
+2. Aplicamos os conceitos ao jogo de caça-níquel, obtendo um valor esperado de lucro positivo ($ 3,28 $).
+3. Analisamos o jogo de dados, considerando o custo de entrada, e demonstramos um valor esperado de perda ($ -1,89 $).
+
+### Aplicação Prática
+
+- Use o valor esperado para avaliar a viabilidade de jogos e investimentos.
+- Em jogos com valor esperado negativo, as perdas são certas no longo prazo.
+- Considere a volatilidade e a gestão de patrimônio para evitar ruína financeira.

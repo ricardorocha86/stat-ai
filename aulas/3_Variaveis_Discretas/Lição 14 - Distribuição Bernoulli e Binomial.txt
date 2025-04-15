@@ -1,0 +1,138 @@
+# Lição 14 - Distribuição Bernoulli e Binomial
+
+## Introdução
+
+A distribuição binomial é um dos conceitos fundamentais em probabilidade e estatística. Ela é amplamente utilizada para modelar situações em que há apenas dois resultados possíveis (sucesso ou fracasso) em uma série de ensaios independentes. Antes de explorar a distribuição binomial, é importante entender o conceito de ensaio de Bernoulli, que serve como a base para esse modelo.
+
+## Ensaio de Bernoulli
+
+Um ensaio de Bernoulli é um experimento probabilístico que possui exatamente dois resultados possíveis, comumente denominados **sucesso** e **fracasso**. A probabilidade de sucesso é representada por $ p $, enquanto a probabilidade de fracasso é $ 1 - p $. 
+
+### Características principais:
+1. **Dois resultados possíveis:** Sucesso ($ p $) ou fracasso ($ 1 - p $).
+2. **Exemplo:** Jogar uma moeda é um ensaio de Bernoulli, onde $ p = 0,5 $ para "cara".
+
+## Distribuição Binomial: Múltiplos Ensaios de Bernoulli
+
+A distribuição binomial descreve o número de sucessos em $ n $ ensaios de Bernoulli independentes, todos com a mesma probabilidade de sucesso $ p $. Cada ensaio é idêntico e independente.
+
+### Definição Formal:
+A variável aleatória $ X $, que representa o número de sucessos em $ n $ ensaios, segue uma distribuição binomial com os parâmetros $ n $ (número de ensaios) e $ p $ (probabilidade de sucesso em cada ensaio). Escrevemos isso como:
+$$ X \sim \text{Binomial}(n, p) $$
+
+### Fórmula:
+A probabilidade de obter exatamente $ k $ sucessos em $ n $ ensaios é dada por:
+
+$$
+ P(X = k) = \binom{n}{k} p^k (1 - p)^{n-k} 
+$$
+
+Onde:
+- $k = 0, 1, 2, ... , n$
+- $ \binom{n}{k} = \frac{n!}{k!(n-k)!} $ é o número de combinações possíveis de $ n $ itens tomados $ k $ de cada vez.
+- $ p^k $ é a probabilidade de sucesso elevada ao número de sucessos.
+- $ (1 - p)^{n-k} $ é a probabilidade de fracasso elevada ao número de fracassos.
+
+
+## Exemplo: Um Aluno Chutando uma Prova
+
+### Cenário:
+Um aluno vai realizar uma prova com 10 questões, cada uma com 5 alternativas. O aluno não sabe nada e decide chutar todas as questões. Assim:
+- Número de ensaios ($ n $): 10.
+- Probabilidade de sucesso em cada questão ($ p $): $ \frac{1}{5} = 0,2 $.
+- Probabilidade de fracasso ($ 1 - p $): $ 0,8 $.
+
+Vamos calcular:
+1. A probabilidade de acertar exatamente 5 questões ($ P(X = 5) $).
+2. A probabilidade de acertar menos de 3 questões ($ P(X < 3) $).
+3. A probabilidade de acertar mais do que 4 questões ($ P(X > 4) $).
+
+### Cálculos:
+
+#### 1. Probabilidade de acertar exatamente 5 questões ($ P(X = 5) $):
+Usamos a fórmula da binomial:
+$$ 
+P(X = 5) = \binom{10}{5} (0,2)^5 (0,8)^5 
+$$
+$$ 
+\binom{10}{5} = \frac{10!}{5! \cdot 5!} = 252 
+$$
+$$ 
+P(X = 5) = 252 \cdot (0,2)^5 \cdot (0,8)^5 
+$$
+$$ 
+P(X = 5) \approx 252 \cdot 0,00032 \cdot 0,032768 
+$$
+$$ 
+P(X = 5) \approx 0,00264 
+$$
+
+#### 2. Probabilidade de acertar menos de 3 questões ($ P(X < 3) $):
+Aqui somamos as probabilidades de $ X = 0, 1, $ e $ 2 $:
+$$ 
+P(X < 3) = P(X = 0) + P(X = 1) + P(X = 2) 
+$$
+
+- Para $ X = 0 $:
+$$ 
+P(X = 0) = \binom{10}{0} (0,2)^0 (0,8)^{10} 
+$$
+$$ 
+P(X = 0) = 1 \cdot 1 \cdot (0,8)^{10} 
+$$
+$$ 
+P(X = 0) \approx 0,1074 
+$$
+
+- Para $ X = 1 $:
+$$ 
+P(X = 1) = \binom{10}{1} (0,2)^1 (0,8)^9 
+$$
+$$ 
+P(X = 1) = 10 \cdot 0,2 \cdot (0,8)^9 
+$$
+$$ 
+P(X = 1) \approx 0,2684 
+$$
+
+- Para $ X = 2 $:
+$$ 
+P(X = 2) = \binom{10}{2} (0,2)^2 (0,8)^8 
+$$
+$$ P(X = 2) = 45 \cdot 0,04 \cdot (0,8)^8 
+$$
+$$ P(X = 2) \approx 0,3020 
+$$
+
+Somando:
+$$ P(X < 3) = 0,1074 + 0,2684 + 0,3020 
+$$
+$$ P(X < 3) \approx 0,6778 
+$$
+
+#### 3. Probabilidade de acertar mais do que 4 questões ($ P(X > 4) $):
+Podemos usar a complementaridade:
+$$ 
+P(X > 4) = 1 - P(X \leq 4) 
+$$
+
+Primeiro, calculamos $ P(X \leq 4) $:
+$$ 
+P(X \leq 4) = P(X = 0) + P(X = 1) + P(X = 2) + P(X = 3) + P(X = 4) 
+$$
+
+Os valores para $ X = 3 $ e $ X = 4 $ são calculados de forma similar aos anteriores. Somamos essas probabilidades e subtraímos de 1.
+
+Resultado final:
+$$ 
+P(X > 4) \approx 1 - 0,9672 
+$$
+$$ 
+P(X > 4) \approx 0,0328 
+$$
+
+## Conclusão
+
+Nesta aula, exploramos a distribuição binomial a partir dos ensaios de Bernoulli. Entendemos sua fórmula e aplicamos o conceito a um exemplo prático de um aluno chutando uma prova. Os cálculos mostraram como a probabilidade pode ser usada para prever resultados em situações reais.
+
+A distribuição binomial é essencial em diversas áreas, como estatística, ciência de dados e pesquisas. Entender esse conceito fornece uma base sólida para explorar distribuições mais complexas no futuro.

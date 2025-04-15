@@ -1,0 +1,95 @@
+
+**Aula: Visualização de Dados**
+
+### Importância da Visualização de Dados
+
+A visualização de dados é uma ferramenta fundamental no mundo atual, pois transforma informações complexas em representações visuais acessíveis. Gráficos, diagramas e tabelas ajudam não apenas a compreender grandes volumes de dados, mas também a encontrar padrões, identificar tendências e tomar decisões embasadas. A forma como apresentamos os dados pode determinar o quão eficaz é a nossa comunicação, especialmente em um contexto empresarial ou acadêmico, onde o tempo e a clareza são essenciais.
+
+### Manipulação e Mau Uso de Visualizações
+
+Porém, é preciso lembrar que visualizações de dados também podem ser usadas para enganar. Muitas vezes, gráficos são manipulados para distorcer informações ou induzir conclusões erradas, seja pela escala inadequada, pelo uso seletivo de dados ou pela omissão de detalhes cruciais. Esses truques visuais podem influenciar opiniões de forma intencional, e é fundamental desenvolver um olhar crítico para avaliar a qualidade e a precisão de qualquer visualização apresentada.
+
+### O Principal Objetivo de uma Visualização
+
+O principal objetivo de uma visualização de dados é transmitir informação clara e eficazmente. Ou seja, uma boa visualização deve ser intuitiva, permitindo que o público entenda rapidamente as relações e os insights contidos nos dados. Uma representação bem-feita é aquela que simplifica a análise, ajuda a contar uma história e facilita a tomada de decisões.
+
+### Histogramas
+
+Um dos gráficos mais usados para representar distribuições de variáveis é o histograma. Histogramas são usados para visualizar a distribuição de variáveis quantitativas (ou seja, variáveis numéricas). Eles dividem o conjunto de dados em intervalos, chamados de faixas, e mostram a frequência de observações dentro de cada intervalo. Esse tipo de gráfico é ideal para visualizar a densidade de uma variável, destacando, por exemplo, onde os valores estão mais concentrados.
+
+#### Construção de um Histograma
+
+1. **Determine os intervalos**: Divida os dados em faixas. Os intervalos devem ter tamanhos iguais e iniciar no valor mínimo dos dados e terminar no valor máximo dos dados.
+2. **Conte a frequência**: Para cada intervalo, conte quantas observações se encaixam naquela faixa.
+3. **Construa o gráfico**: No eixo horizontal (x), coloque os intervalos. No eixo vertical (y), coloque a frequência de cada intervalo. Cada barra do histograma representará a quantidade de observações em cada faixa.
+4. **Interprete o histograma**: Observe as alturas das barras para entender onde estão as concentrações de dados.
+
+
+
+### Passo a Passo para Construir um Histograma
+
+#### Passo 1: Coletar os Dados
+
+- **Obtenha a amostra que você deseja representar graficamente**. No nosso exemplo, temos os valores: `[5, 8, 12, 11, 7, 15, 13, 12, 14, 18, 30]`.
+
+#### Passo 2: Definir os Intervalos (faixas)
+
+- **Escolha em quantos intervalos (faixas) dividir os dados**. Aqui, dividimos em **5 faixas** que cobrem todo o intervalo dos valores.
+- Os intervalos podem ser definidos como **fechados à esquerda e abertos à direita**, por exemplo, `[5, 10)` inclui o valor 5, mas não inclui o valor 10.
+
+#### Passo 3: Contar as Frequências dos faixas
+
+- **Conte quantos valores caem em cada faixa**. Isso nos permite saber quantas vezes os valores aparecem em cada intervalo.
+- A tabela abaixo mostra como os dados foram distribuídos:
+
+| Intervalo (Faixa) | Frequência (número de valores) |
+| --------------- | ------------------------------ |
+| [5, 10)         | 3                              |
+| [10, 15)        | 5                              |
+| [15, 20)        | 2                              |
+| [20, 25)        | 0                              |
+| [25, 30]        | 1                              |
+
+- No último intervalo `[25, 30]`, o intervalo é fechado para incluir o valor máximo (30).
+
+#### Passo 4: Construir o Gráfico
+
+- **Desenhe as barras** para representar as frequências, onde a altura de cada barra indica quantos valores estão na faixa correspondente.
+
+
+
+### Interpretação do Histograma
+
+- **Barras mais altas** indicam intervalos onde há maior concentração de valores.
+- O histograma ajuda a visualizar **a distribuição dos dados** e a entender como os valores se espalham ao longo da amostra.
+- Com ele, podemos identificar **padrões** e **tendências**, como onde os valores estão mais concentrados ou se existem faixas que não têm valores.
+
+![Histograma](aulas/histograma.png)  
+
+
+
+
+### Box Plot
+
+Outro gráfico muito útil para análise de dados é o box plot, também conhecido como diagrama de caixas. O box plot é usado para visualizar a distribuição de uma variável e entender suas medidas de tendência central e de dispersão. Ele é especialmente útil para detectar outliers e compreender a variabilidade dos dados. Um box plot mostra o intervalo interquartil (ou seja, os 50% centrais dos dados), a mediana, e os extremos dos dados, permitindo uma visualização clara da simetria ou assimetria da distribuição.
+
+#### Construção de um Box Plot
+
+1. **Organize os dados**: Coloque os dados em ordem crescente, do menor para o maior valor.
+2. **Calcule a mediana**: Encontre a mediana dos dados, que é o valor que divide o conjunto de dados em duas metades iguais.
+3. **Determine o primeiro e o terceiro quartis (Q1 e Q3)**: O primeiro quartil (Q1) é o valor que separa os 25% menores dos dados, enquanto o terceiro quartil (Q3) separa os 75% menores dos 25% maiores.
+4. **Calcule o Desvio Interquartil (DIQ)**: Subtraia Q1 de Q3 para encontrar o desvio interquartil, que representa a dispersão dos 50% centrais dos dados.
+5. **Identifique os valores extremos**: Os limites que separam os outliers são calculados como LI* = Q1 - 1,5 * DIQ e e LS* = Q3 + 1,5 * DIQ. Valores que acima dos LS* e abaixo de LI* são considerados outliers.
+6. **Construa o gráfico**: Desenhe uma caixa que comece em Q1 e termine em Q3, com uma linha interna para representar a mediana. Trace linhas dos extremos da caixa até os menores e maiores valores que não sejam outliers. Marque os outliers como pontos individuais.
+7. **Interprete o box plot**: Observe a posição das medidas para entender a distribuição dos dados. Verifique se há simetria, se os dados estão concentrados em alguma faixa ou se existem outliers indicando grandes disparidades.
+
+![Histograma](aulas/boxplot.png)  
+
+Muitas vezes, um histograma e um boxplot podem ser vizualizados em um mesmo eixo, de modo a evidenciar o quanto cada um é relevante ao mostrar as informações dos dados.
+
+![Histograma e Boxplot](aulas/histbox.png)  
+
+### Conclusão
+
+A visualização de dados não se trata apenas de escolher um gráfico, mas de escolher a melhor forma de contar uma história com seus dados. Tanto histogramas quanto box plots são ferramentas valiosas para ajudar a compreender diferentes aspectos da distribuição de uma variável e, quando bem usados, podem gerar insights poderosos.
+

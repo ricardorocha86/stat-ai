@@ -1,0 +1,120 @@
+# **Percentis, Quantis, Separatrizes**
+
+## 1. Introdução
+
+Os **percentis** são medidas estatísticas que dividem um conjunto de dados em 100 partes iguais. Eles permitem analisar a posição relativa de um valor dentro de uma distribuição de dados. Percentis são amplamente utilizados em áreas como educação, saúde e economia para comparar um valor específico com o restante do grupo.
+
+## 2. Conceito de Percentis
+
+Um percentil indica a **posição** de um valor dentro de um conjunto de dados ordenado. O -ésimo percentil $p$ é o valor abaixo do qual $p\%$ dos dados estão situados. Por exemplo:
+- O **75º percentil** significa que 75% dos dados estão abaixo daquele valor.
+
+## 3. Cálculo dos Percentis
+
+### Fórmula para a Posição:
+
+Para encontrar a posição $i$ do percentil $p$, usamos a fórmula:
+
+$$
+i = \left( \frac{p}{100} \right) \times (N - 1) + 1
+$$
+
+Onde:
+- $p$ é o percentil desejado (ex: 5, 50, 90).
+- $N$ é o número total de observações no conjunto de dados.
+
+### Interpolação:
+
+Se a posição não for um número inteiro, fazemos uma **interpolação linear** entre os valores adjacentes. A fórmula para interpolação é:
+
+$$
+\text{percentil} = x_i + (\text {parte decimal de $i$}) \times (x_{i+1} - x_i)
+$$
+
+Onde:
+- $x_i$ é o valor na posição inteira anterior.
+- $x_{i+1}$ é o valor na posição inteira seguinte.
+- Posição decimal é a parte fracionária da posição.
+
+## 4. Exemplo Prático
+
+Considere o seguinte conjunto de dados ordenado:
+
+$$
+3, 7, 12, 15, 18, 22, 27, 31, 35, 40, 45, 50, 55
+$$
+
+Vamos calcular os percentis de 5%, 18%, 35%, e 90%.
+
+### 4.1. Cálculo do 5º Percentil:
+
+1. **Posição**:
+   $$
+   \text{pos} = \left( \frac{5}{100} \right) \times (13 - 1) + 1 = 1.6
+   $$
+
+2. **Interpolação**:
+   - Valores entre o 1º (3) e o 2º (7):
+   $$
+   P_{5} = 3 + (0.6 \times (7 - 3)) = 3 + 2.4 = 5.4
+   $$
+   O **5º percentil** é **5.4**.
+
+### 4.2. Cálculo do 18º Percentil:
+
+1. **Posição**:
+   $$
+   \text{pos} = \left( \frac{18}{100} \right) \times (13 - 1) + 1 = 3.16
+   $$
+
+2. **Interpolação**:
+   - Valores entre o 3º (12) e o 4º (15):
+   $$
+   P_{18} = 12 + (0.16 \times (15 - 12)) = 12 + 0.48 = 12.48
+   $$
+   O **18º percentil** é **12.48**.
+
+### 4.3. Cálculo do 35º Percentil:
+
+1. **Posição**:
+   $$
+   \text{pos} = \left( \frac{35}{100} \right) \times (13 - 1) + 1 = 5.2
+   $$
+
+2. **Interpolação**:
+   - Valores entre o 5º (18) e o 6º (22):
+   $$
+   P_{35} = 18 + (0.2 \times (22 - 18)) = 18 + 0.8 = 18.8
+   $$
+   O **35º percentil** é **18.8**.
+
+### 4.4. Cálculo do 90º Percentil:
+
+1. **Posição**:
+   $$
+   \text{pos} = \left( \frac{90}{100} \right) \times (13 - 1) + 1 = 11.8
+   $$
+
+2. **Interpolação**:
+   - Valores entre o 11º (45) e o 12º (50):
+   $$
+   P_{90} = 45 + (0.8 \times (50 - 45)) = 45 + 4 = 49
+   $$
+   O **90º percentil** é **49**.
+
+## 5. Interpretação dos Percentis
+
+Os percentis fornecem informações úteis sobre a **distribuição** dos dados. Por exemplo:
+- O 90º percentil significa que **90% dos valores** estão abaixo de 49.
+- O 5º percentil significa que **5% dos valores** estão abaixo de 5.4, mostrando como o valor se compara em relação ao conjunto de dados.
+
+## 6. Aplicações Práticas dos Percentis
+
+Os percentis são úteis em muitas áreas:
+- **Educação**: Usados em testes padronizados para comparar o desempenho de estudantes.
+- **Saúde**: Percentis de crescimento (altura e peso) são usados para acompanhar o desenvolvimento infantil.
+- **Economia**: A análise de percentis ajuda a identificar a distribuição de renda e detectar desigualdades.
+
+## 7. Conclusão
+
+O uso de percentis é uma ferramenta poderosa para analisar a posição relativa de valores dentro de um conjunto de dados. Eles permitem a comparação de um valor com o restante do grupo e ajudam a identificar padrões e anomalias em distribuições. A fórmula simples, juntamente com a interpolação quando necessária, fornece uma maneira eficiente de calcular e interpretar essas medidas.

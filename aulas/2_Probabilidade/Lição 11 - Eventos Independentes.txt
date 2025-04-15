@@ -1,0 +1,201 @@
+# Lição 11: Eventos Independentes
+
+
+Dois eventos, A e B, são independentes se:
+
+$$
+P(A \cap B) = P(A)P(B)
+$$
+
+Equivalentemente, podemos verificar a independência usando a probabilidade condicional:
+
+$$
+P(A|B) = P(A) \quad \text{ou} \quad P(B|A) = P(B)
+$$
+---
+### Problema
+
+Duas consultorias, $A$ e $B$, são contratadas para resolver um problema. A probabilidade de sucesso de cada consultoria é:
+
+- Consultoria $A$: $P(A) = \frac{2}{3}$,
+- Consultoria $B$: $P(B) = \frac{3}{4}$.
+
+As consultorias trabalham **de forma independente**. Deseja-se calcular a probabilidade de que o problema seja resolvido, ou seja, que pelo menos uma delas tenha sucesso.
+
+---
+
+### Resolução
+
+A probabilidade de pelo menos uma das consultorias resolver o problema é:
+$$
+P(\text{resolver}) = P(A \cup B).
+$$
+
+Pela fórmula da união de probabilidades:
+$$
+P(A \cup B) = P(A) + P(B) - P(A \cap B).
+$$
+
+Como $A$ e $B$ são eventos independentes:
+$$
+P(A \cap B) = P(A) \cdot P(B).
+$$
+
+---
+
+### Substituímos os valores:
+
+1. $P(A) = \frac{2}{3}$,
+2. $P(B) = \frac{3}{4}$,
+3. $P(A \cap B) = \frac{2}{3} \cdot \frac{3}{4} = \frac{6}{12} = \frac{1}{2}$.
+
+Substituímos na fórmula da união:
+$$
+P(A \cup B) = \frac{2}{3} + \frac{3}{4} - \frac{1}{2}.
+$$
+
+Calculamos o valor:
+1. Colocamos tudo sobre o mesmo denominador ($12$):
+   $$
+   P(A \cup B) = \frac{8}{12} + \frac{9}{12} - \frac{6}{12}.
+   $$
+2. Somamos e subtraímos:
+   $$
+   P(A \cup B) = \frac{8 + 9 - 6}{12} = \frac{11}{12}.
+   $$ 
+
+A probabilidade de que o problema seja resolvido é:
+$$
+P(\text{resolver}) = \frac{11}{12}.
+$$
+
+---
+
+### Exercicio
+
+---
+
+
+![Gráficos de dispersão e suas correlações](aulas/circuitos.jpg) 
+
+- $ C_i $ é o evento "O componente $ C_i $ funciona", com probabilidade $ P(C_i) = 0,8 $.
+
+- Os eventos $ C_1, C_2, C_3, C_4 $ são independentes.
+
+Calcule em todos os casos qual a probabilidade da energia passar de $A$ para $B$.
+
+---
+
+### 1. Circuito 1: Capacitores em Paralelo
+
+No circuito paralelo, basta **pelo menos um** dos componentes $ C_1 $ ou $ C_2 $ funcionar para que a corrente passe.
+
+**Probabilidade desejada:**
+$$
+P(\text{Corrente passa}) = P(C_1 \cup C_2)
+$$
+Usamos a fórmula da união para eventos independentes:
+$$
+P(C_1 \cup C_2) = P(C_1) + P(C_2) - P(C_1 \cap C_2)
+$$
+Como $ C_1 $ e $ C_2 $ são independentes:
+$$
+P(C_1 \cap C_2) = P(C_1) \cdot P(C_2)
+$$
+Substituindo os valores:
+$$
+P(C_1 \cup C_2) = 0,8 + 0,8 - (0,8 \cdot 0,8)
+$$
+$$
+P(C_1 \cup C_2) = 1,6 - 0,64 = 0,96
+$$
+
+**Resposta para o Circuito 1:**
+$$
+P(\text{Corrente passa}) = 0,96
+$$
+
+---
+
+### 2. Circuito 2: Capacitores em Série
+
+No circuito série, **todos os componentes** $ C_1 $ e $ C_2 $ precisam funcionar para que a corrente passe.
+
+**Probabilidade desejada:**
+$$
+P(\text{Corrente passa}) = P(C_1 \cap C_2)
+$$
+Como os eventos são independentes:
+$$
+P(C_1 \cap C_2) = P(C_1) \cdot P(C_2)
+$$
+Substituindo os valores:
+$$
+P(C_1 \cap C_2) = 0,8 \cdot 0,8 = 0,64
+$$
+
+**Resposta para o Circuito 2:**
+$$
+P(\text{Corrente passa}) = 0,64
+$$
+
+---
+
+### 3. Circuito 3: Misto (Série e Paralelo)
+
+No terceiro circuito:
+- $ C_1 $ e $ C_2 $ estão em **série**: a corrente passa pelo caminho superior se **ambos** funcionarem.
+- $ C_3 $ e $ C_4 $ estão em **série**: a corrente passa pelo caminho inferior se **ambos** funcionarem.
+- Os dois caminhos (superior e inferior) estão em **paralelo**: basta que **pelo menos um dos caminhos** funcione.
+
+---
+
+**Etapa 1: Probabilidade de cada caminho funcionar**
+
+1. **Caminho superior (C_1 e C_2 em série):**
+$$
+P(\text{Superior funciona}) = P(C_1 \cap C_2) = 0,8 \cdot 0,8 = 0,64
+$$
+
+2. **Caminho inferior (C_3 e C_4 em série):**
+$$
+P(\text{Inferior funciona}) = P(C_3 \cap C_4) = 0,8 \cdot 0,8 = 0,64
+$$
+
+---
+
+**Etapa 2: Probabilidade de pelo menos um caminho funcionar**
+
+Os dois caminhos (superior e inferior) estão em paralelo, então usamos a fórmula da união:
+$$
+P(\text{Pelo menos um caminho funciona}) = P(S \cup I)
+$$
+Onde:
+- $ S $ = Caminho superior funciona
+- $ I $ = Caminho inferior funciona
+
+Como os eventos são independentes:
+$$
+P(S \cup I) = P(S) + P(I) - P(S \cap I)
+$$
+Sabemos que:
+$$
+P(S) = 0,64, \quad P(I) = 0,64, \quad P(S \cap I) = P(S) \cdot P(I) = 0,64 \cdot 0,64 = 0,4096
+$$
+Substituindo:
+$$
+P(S \cup I) = 0,64 + 0,64 - 0,4096
+$$
+$$
+P(S \cup I) = 1,28 - 0,4096 = 0,8704
+$$
+
+---
+
+### Respostas Finais
+
+1. **Circuito 1 (paralelo):** $ P(\text{Corrente passa}) = 0,96 $
+2. **Circuito 2 (série):** $ P(\text{Corrente passa}) = 0,64 $
+3. **Circuito 3 (misto):** $ P(\text{Corrente passa}) = 0,8704 $
+
+ 

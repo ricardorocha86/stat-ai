@@ -1,0 +1,245 @@
+# Lição 10: Probabilidade Condicional
+
+A probabilidade condicional é um conceito essencial em probabilidade que nos permite calcular a probabilidade de um evento, considerando que outro evento já ocorreu. Este conceito é amplamente aplicado em áreas como estatística, análise de dados e tomadas de decisão, sendo fundamental para compreender relações entre eventos dependentes.
+
+---
+
+## Definição de Probabilidade Condicional
+
+A probabilidade condicional de um evento $A$, dado que o evento $B$ ocorreu, é definida pela fórmula:
+
+$$
+P(A | B) = \frac{P(A \cap B)}{P(B)}
+$$
+
+Onde:
+
+- $P(A | B)$ representa a probabilidade de $A$ ocorrer, dado que $B$ já ocorreu.
+- $P(A \cap B)$ é a probabilidade conjunta de $A$ e $B$ ocorrerem.
+- $P(B)$ é a probabilidade de $B$ ocorrer.
+
+**Nota Importante:** Para que essa fórmula seja válida, é necessário que $P(B) > 0$, ou seja, o evento $B$ deve ser possível.
+
+---
+
+## Exemplo 1: Máquinas Novas e Antigas
+
+Uma empresa possui máquinas novas e antigas, que podem ser elétricas ou manuais. A tabela abaixo resume as quantidades:
+
+|             | Elétricas | Manuais 
+| ----------- | --------- | ------- 
+| **Novas**   | 10        | 30     
+| **Antigas** | 20        | 40      
+
+Desejamos calcular a probabilidade de uma máquina ser manual ($M$), dado que ela é antiga ($A$):
+
+- $A$: "Máquina é antiga".
+- $M$: "Máquina é manual".
+
+$$
+P(M | A) = \frac{P(M \cap A)}{P(A)} = \frac{40/100}{60/100} = \frac{40}{60} = \frac{2}{3} = 66,6\%.
+$$
+
+**Interpretação:** Se sabemos que a máquina é antiga, a probabilidade de ela ser manual é de 66,6%.
+
+---
+
+## Exemplo 2: Baralho
+
+Imagine um baralho comum de 52 cartas. Desejamos calcular a probabilidade de a segunda carta ser de ouros ($C_2$), dado que a primeira carta é de ouros ($C_1$).
+
+- $C_1$: "Primeira carta é de ouros".
+- $C_2$: "Segunda carta é de ouros".
+ 
+A probabilidade é:
+$$
+P(C_2) = P(C_2 \mid C_1)P(C_1) + P(C_2 \mid C_1^c)P(C_1^c)
+$$
+
+$$
+P(C_1) = \frac{13}{52} = \frac{1}{4}
+$$
+
+$$
+P(C_1^c) = \frac{39}{52} = \frac{3}{4}
+$$
+
+$$
+P(C_2 \mid C_1) = \frac{12}{51}
+$$
+
+$$ 
+P(C_2 \mid C_1^c) = \frac{13}{51}
+$$
+
+Substituímos os valores:
+$$
+P(C_2) = \left(\frac{12}{51}\right)\left(\frac{1}{4}\right) + \left(\frac{13}{51}\right)\left(\frac{3}{4}\right)
+$$
+
+Resolvendo:
+$$
+P(C_2) = \frac{12}{204} + \frac{39}{204} = \frac{51}{204} = \frac{1}{4}
+$$
+
+---
+
+## Deduzindo o Teorema de Bayes
+
+A partir da definição de probabilidade condicional, podemos reescrever $P(A \cap B)$ de duas formas:
+
+$$
+P(A \cap B) = P(A | B) \cdot P(B) = P(B | A) \cdot P(A).
+$$
+
+Reorganizando a equação, temos:
+
+$$
+P(A | B) = \frac{P(B | A) \cdot P(A)}{P(B)}.
+$$
+
+Essa é a fórmula do **Teorema de Bayes**, que nos permite atualizar a probabilidade de um evento com base em novas informações.
+
+---
+
+## Exemplo 3: Fábricas
+
+Um produto pode vir de duas fábricas, $A$ e $B$. A fábrica $A$ supre duas vezes mais produtos do que $B$. Sabemos que:
+
+- $4\%$ dos produtos da fábrica $A$ são defeituosos.
+- $2\%$ dos produtos da fábrica $B$ são defeituosos.
+
+### Resolução Completa:
+
+#### (a) Qual a probabilidade de um produto ser defeituoso ($D$)?
+
+Sabemos que:
+
+$$
+P(D) = P(D \cap F_A) + P(D \cap F_B)
+$$
+
+Substituímos as probabilidades condicionais de $D$ dado $F_A$ e $F_B$:
+
+$$
+P(D) = P(D | F_A) \cdot P(F_A) + P(D | F_B) \cdot P(F_B)
+$$
+
+Agora, substituímos os valores fornecidos no enunciado:
+- $P(D | F_A) = 0,04$
+- $P(F_A) = \frac{2}{3}$ (pois $A$ supre 2 vezes mais que $B$)
+- $P(D | F_B) = 0,02$
+- $P(F_B) = \frac{1}{3}$
+
+$$
+P(D) = (0,04 \cdot \frac{2}{3}) + (0,02 \cdot \frac{1}{3})
+$$
+
+Calculando os termos:
+
+$$
+P(D) = \frac{0,08}{3} + \frac{0,02}{3} = \frac{0,10}{3} \approx 0,0333 = 3,33\%.
+$$
+
+**Resposta:** A probabilidade de um produto ser defeituoso é $3,33\%$.
+
+#### (b) Qual a probabilidade de o produto vir da fábrica $B$, dado que é defeituoso ($P(F_B | D)$)?
+
+Para resolver, usamos o **Teorema de Bayes**:
+
+$$
+P(F_B | D) = \frac{P(D | F_B) \cdot P(F_B)}{P(D)}
+$$
+
+Substituímos os valores conhecidos:
+- $P(D | F_B) = 0,02$
+- $P(F_B) = \frac{1}{3}$
+- $P(D) = 0,0333$ (calculado no item anterior)
+
+$$
+P(F_B | D) = \frac{0,02 \cdot \frac{1}{3}}{0,0333}
+$$
+
+Calculando o numerador e o denominador:
+
+$$
+P(F_B | D) = \frac{0,0067}{0,0333} \approx 0,20 = 20\%.
+$$
+
+**Resposta:** A probabilidade de o produto vir da fábrica $B$, dado que ele é defeituoso, é $20\%$.
+
+---
+ 
+
+ 
+
+**Problema:**
+Três fábricas A, B e C suprem 50%, 30% e 20% de uma demanda de peças, respectivamente. A probabilidade de uma peça ser defeituosa varia conforme a fábrica:
+- Fábrica A: 3% das peças são defeituosas.
+- Fábrica B: 2% das peças são defeituosas.
+- Fábrica C: 1% das peças são defeituosas.
+
+**Questões:**
+(a) Qual é a probabilidade de uma peça ser defeituosa?
+
+(b) Dado que uma peça é defeituosa, qual é a probabilidade de que ela tenha sido fabricada pela Fábrica A?
+
+**Resolução:**
+### (a) Cálculo da probabilidade de uma peça ser defeituosa.
+
+Usamos a regra da probabilidade total, que diz:
+
+$$
+P(D) = P(D|A)P(A) + P(D|B)P(B) + P(D|C)P(C)
+$$
+
+1. Identifique as probabilidades:
+   - $P(D|A) = 0,03$, $P(D|B) = 0,02$, $P(D|C) = 0,01$
+   - $P(A) = 0,5$, $P(B) = 0,3$, $P(C) = 0,2$
+
+2. Multiplique cada probabilidade condicional pelo peso de cada fábrica:
+   $$
+   P(D|A)P(A) = 0,03 	imes 0,5 = 0,015
+   $$
+   $$
+   P(D|B)P(B) = 0,02 	imes 0,3 = 0,006
+   $$
+   $$
+   P(D|C)P(C) = 0,01 	imes 0,2 = 0,002
+   $$
+
+3. Some os resultados:
+   $$
+   P(D) = 0,015 + 0,006 + 0,002 = 0,023
+   $$
+
+Portanto, a probabilidade de uma peça ser defeituosa é **2,3%**.
+
+### (b) Cálculo da probabilidade de ser da Fábrica A, dado que a peça é defeituosa.
+
+Usamos o Teorema de Bayes:
+
+$$
+P(A|D) = \frac{P(D|A)P(A)}{P(D)}
+$$
+
+1. Substitua os valores conhecidos:
+   - $P(D|A) = 0,03$, $P(A) = 0,5$, $P(D) = 0,023$
+
+$$
+P(A|D) = \frac{0,03 	imes 0,5}{0,023}
+$$
+
+2. Calcule o numerador:
+   $$
+   0,03 	imes 0,5 = 0,015
+   $$
+
+3. Divida pelo denominador:
+   $$
+   P(A|D) = \frac{0,015}{0,023} \approx 0,652
+   $$
+
+Portanto, dado que uma peça é defeituosa, a probabilidade de que ela tenha sido fabricada pela Fábrica A é de **65,2%**.
+
+---

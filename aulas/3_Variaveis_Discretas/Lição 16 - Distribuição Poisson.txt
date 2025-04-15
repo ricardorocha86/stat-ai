@@ -1,0 +1,108 @@
+# Lição 16 - Distribuição de Poisson
+
+## Introdução
+
+A distribuição de Poisson é uma das distribuições de probabilidade mais importantes na estatística e na probabilidade, sendo amplamente utilizada para modelar eventos raros ou que ocorrem em intervalos de tempo ou espaço específicos. Exemplos incluem a contagem de chamadas recebidas por um call center em uma hora ou o número de acidentes de trânsito em um cruzamento por semana.
+
+Compreender essa distribuição é essencial para análises em áreas como controle de qualidade, análise de risco, estudos de saúde pública e diversas outras aplicações práticas.
+
+---
+
+## Definição
+
+A **distribuição de Poisson** descreve a probabilidade de um número fixo de eventos ocorrer em um intervalo fixo de tempo ou espaço, assumindo que:
+
+1. Os eventos ocorrem de forma independente.
+2. A taxa média de ocorrência de eventos (denotada por $ \lambda $) é constante.
+
+A fórmula da função de probabilidade de Poisson é dada por:
+
+$$
+P(X = k) = \frac{\lambda^k e^{-\lambda}}{k!}, k = 0, 1, 2, ...
+$$
+
+Onde:
+- $ X $: variável aleatória representando o número de eventos;
+- $ k $: número de eventos (valor específico de $ X $);
+- $ \lambda $: taxa média de eventos no intervalo;
+- $ e $: constante de Euler ($\approx 2.718$).
+
+---
+
+## Característica da Média Igual à Variância
+
+Uma propriedade fundamental da distribuição de Poisson é que sua **média** ($ \mu $) e sua **variância** ($ \sigma^2 $) são iguais e ambas são representadas pelo parâmetro $ \lambda $. Ou seja:
+
+$$
+\mu = \sigma^2 = \lambda
+$$
+
+Essa característica simplifica muito o uso da distribuição de Poisson, permitindo uma interpretação direta da dispersão em relação à taxa média de ocorrência de eventos.
+
+---
+
+## Exemplo 1: Cálculo Simples de Probabilidade
+
+**Problema**: 
+Em um hospital, a taxa média de emergências graves em uma hora é de 3 ($ \lambda = 3 $). Qual é a probabilidade de ocorrerem exatamente 2 emergências graves em uma hora?
+
+**Solução**:
+Usamos a fórmula da distribuição de Poisson:
+
+$$
+P(X = k) = \frac{\lambda^k e^{-\lambda}}{k!}
+$$
+
+Substituímos os valores:
+- $ \lambda = 3 $
+- $ k = 2 $
+
+$$
+P(X = 2) = \frac{3^2 e^{-3}}{2!}
+$$
+
+Calculando passo a passo:
+1. $ 3^2 = 9 $;
+2. $ e^{-3} \approx 0.0498 $;
+3. $ 2! = 2 $;
+4. $ P(X = 2) = \frac{9 \cdot 0.0498}{2} \approx \frac{0.4482}{2} \approx 0.2241 $.
+
+**Resposta**: A probabilidade de ocorrerem exatamente 2 emergências graves em uma hora é de aproximadamente **22,41%**.
+
+---
+
+## Exemplo 2: Exemplo Complementar
+
+**Problema**:
+Uma empresa de tecnologia recebe, em média, 5 pedidos de suporte técnico por dia ($ \lambda = 5 $). Qual é a probabilidade de receberem pelo menos 1 pedido em um dia?
+
+**Solução**:
+Primeiro, calculamos a probabilidade de **não receber nenhum pedido** ($ X = 0 $):
+
+$$
+P(X = 0) = \frac{\lambda^0 e^{-\lambda}}{0!}
+$$
+
+Substituindo os valores:
+- $ \lambda = 5 $
+- $ 0! = 1 $
+- $ \lambda^0 = 1 $
+
+$$
+P(X = 0) = \frac{1 \cdot e^{-5}}{1} = e^{-5} \approx 0.0067
+$$
+
+Agora, usamos o complemento da probabilidade para encontrar $ P(X \geq 1) $:
+
+$$
+P(X \geq 1) = 1 - P(X = 0)
+$$
+
+Substituímos $ P(X = 0) $:
+
+$$
+P(X \geq 1) = 1 - 0.0067 = 0.9933
+$$
+
+**Resposta**: A probabilidade de receber pelo menos 1 pedido em um dia é de aproximadamente **99,33%**.
+

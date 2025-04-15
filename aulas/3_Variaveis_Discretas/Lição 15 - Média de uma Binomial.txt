@@ -1,0 +1,136 @@
+# Lição 15 - Média de uma Distribuição Binomial
+
+## Introdução
+
+Nesta aula, exploraremos como determinar a **média** de uma variável aleatória com distribuição binomial. A média é uma medida central que indica o valor esperado de sucessos em $ n $ ensaios. Para entender esse conceito, começaremos revisando a média de um ensaio de Bernoulli e depois generalizaremos para a distribuição binomial.
+
+## 1. Média de um Ensaio de Bernoulli
+
+Em um ensaio de Bernoulli, temos dois resultados possíveis: **sucesso** (com probabilidade $ p $) e **fracasso** (com probabilidade $ 1-p $). A variável aleatória $ X $, que assume o valor 1 para sucesso e 0 para fracasso, tem a seguinte média (ou valor esperado):
+
+$$
+E[X] = 1 \cdot p + 0 \cdot (1-p) = p
+$$
+
+Ou seja, a média de um ensaio de Bernoulli é igual à probabilidade de sucesso.
+
+### Intuição:
+Se repetirmos o mesmo ensaio de Bernoulli muitas vezes, a proporção de sucessos tende a $ p $.
+
+## 2. Média de uma Distribuição Binomial
+
+A distribuição binomial pode ser interpretada como a soma de $ n $ ensaios de Bernoulli independentes com a mesma probabilidade de sucesso $ p $. Se $ X_1, X_2, \dots, X_n $ representam os resultados desses ensaios, a variável $ X $, que segue uma distribuição binomial, é dada por:
+
+$$
+X = X_1 + X_2 + \dots + X_n
+$$
+
+### Propriedade da Soma de Esperanças
+A esperança de uma soma de variáveis aleatórias independentes é igual à soma das esperanças individuais. Assim, temos:
+
+$$
+E[X] = E[X_1] + E[X_2] + \dots + E[X_n]
+$$
+
+Como $ E[X_i] = p $ para cada ensaio, obtemos:
+
+$$
+E[X] = n \cdot p
+$$
+
+### Fórmula da Média de uma Binomial:
+A média de uma variável aleatória binomial $ X \sim \text{Binomial}(n, p) $ é:
+$$
+\mu = E[X] = n \cdot p
+$$
+
+## 3. Exemplos Práticos
+
+### 3.1. O Aluno Chutando a Prova
+Vamos relembrar o exemplo anterior:
+- $ n = 10 $ (10 questões).
+- $ p = 0,2 $ (probabilidade de acertar cada questão).
+
+A média do número de acertos é:
+$$
+E[X] = n \cdot p = 10 \cdot 0,2 = 2
+$$
+
+**Interpretação:** Se o aluno chutasse muitas provas de 10 questões, ele acertaria, em média, 2 questões por prova.
+
+---
+
+### 3.2. Exemplo: Tratamento Medicinal
+
+Um medicamento tem eficácia em 70% dos casos ($ p = 0,7 $). Aplicado a um grupo de 8 pessoas ($ n = 8 $), queremos determinar:
+
+1. A probabilidade de o medicamento fazer efeito em 7 ou mais pessoas.
+2. O número médio de pessoas no grupo em que o medicamento faz efeito.
+3. A probabilidade de fazer efeito em menos pessoas que a média.
+
+#### Passo 1: Probabilidade de 7 ou mais pessoas terem efeito
+Queremos $ P(X \geq 7) = P(X = 7) + P(X = 8) $, onde $ X \sim \text{Binomial}(8, 0,7) $.
+
+- Para $ P(X = 7) $:
+$$
+P(X = 7) = \binom{8}{7} (0,7)^7 (0,3)^1
+$$
+$$
+P(X = 7) = 8 \cdot (0,7)^7 \cdot (0,3)
+$$
+$$
+P(X = 7) \approx 8 \cdot 0,059719 \cdot 0,3 \approx 0,1433
+$$
+
+- Para $ P(X = 8) $:
+$$
+P(X = 8) = \binom{8}{8} (0,7)^8 (0,3)^0
+$$
+$$
+P(X = 8) = 1 \cdot (0,7)^8 \cdot 1
+$$
+$$
+P(X = 8) \approx 0,057648
+$$
+
+Somando:
+$$
+P(X \geq 7) = P(X = 7) + P(X = 8) \approx 0,1433 + 0,0576 = 0,2009
+$$
+
+**Resposta:** A probabilidade de o medicamento fazer efeito em 7 ou mais pessoas é aproximadamente **20,09%**.
+
+---
+
+#### Passo 2: Quantidade média de pessoas que o medicamento tem efeito
+A média é dada por:
+$$
+E[X] = n \cdot p = 8 \cdot 0,7 = 5,6
+$$
+
+**Interpretação:** Em média, o medicamento faz efeito em **5,6 pessoas** por grupo de 8.
+
+---
+
+#### Passo 3: Probabilidade de fazer efeito em menos pessoas que a média
+Queremos $ P(X < 5,6) $. Como $ X $ é discreta, isso significa $ P(X \leq 5) $. Calculamos:
+$$
+P(X \leq 5) = P(X = 0) + P(X = 1) + \dots + P(X = 5)
+$$
+
+De forma prática, isso pode ser calculado utilizando uma tabela ou ferramenta computacional para a distribuição binomial $ \text{Binomial}(8, 0,7) $.
+
+Usando aproximações computacionais:
+$$
+P(X \leq 5) \approx 0,5667
+$$
+
+**Resposta:** A probabilidade de o medicamento fazer efeito em menos pessoas que a média é aproximadamente **56,67%**.
+
+---
+
+## Conclusão
+
+Nesta aula, aprendemos que a média de uma distribuição binomial é uma extensão natural da média de um ensaio de Bernoulli. Exploramos sua fórmula ($ E[X] = n \cdot p $) e aplicamos o conceito a dois exemplos práticos. A média é uma ferramenta essencial para entender a centralidade de uma variável aleatória e para prever comportamentos em situações reais.
+
+No próximo passo, podemos explorar outras medidas importantes, como a variância e o desvio padrão de uma binomial.

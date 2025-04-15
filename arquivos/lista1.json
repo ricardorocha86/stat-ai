@@ -1,0 +1,90 @@
+{
+    "exercicios": [
+      {
+        "numero": 1,
+        "titulo": "População e Amostra",
+        "conteudo": "Para cada um dos itens a seguir, indique a população em estudo e a amostra escolhida.\n\n- a. Para determinar o gasto médio das famílias em férias na cidade de Salvador, foram selecionadas 62 famílias que estavam chegando ao aeroporto de Salvador e foi perguntado quanto pretendiam gastar.\n- b. Pretende-se fazer um estudo sobre o número de membros do agregado familiar, numa cidade. Para isso efetuou-se um inquérito ao qual responderam 50 famílias.\n- c. A fim de determinar os salários anuais de administradores recém-formados na cidade de Salvador foram considerados 150 jovens administradores e seus salários anuais foram contabilizados."
+      },
+      {
+        "numero": 2,
+        "titulo": "Técnica de Amostragem",
+        "conteudo": "Você está realizando um estudo para determinar a opinião dos estudantes em sua universidade sobre auditorias de contas públicas em seu Estado. Identifique a técnica de amostragem que você usaria se selecionasse as amostras listadas.\n\n- a. Você seleciona uma classe aleatoriamente e questiona cada aluno da classe.\n- b. Você divide a população de estudantes com relação às graduações, seleciona aleatoriamente e questiona alguns de cada curso de graduação.\n- c. Você designa um número para cada aluno e gera aleatoriamente. Então, você questiona cada estudante cujo número é selecionado aleatoriamente.\n- d. Você seleciona estudantes que estão em sua aula de estatística.\n- e. Você designa um número para cada estudante e, depois de escolher um número inicial, questiona cada 25º aluno."
+      },
+      {
+        "numero": 3,
+        "titulo": "Classificação de Variáveis",
+        "conteudo": "Classifique cada uma das variáveis abaixo em qualitativa (nominal/ordinal) ou quantitativa (discreta/contínua).\n\n- a. Número de matrícula da UFBA.\n- b. Intenção de voto de um eleitor à presidência da República (possíveis respostas são os nomes dos candidatos, além de “indeciso”).\n- c. Consumo de combustível de diferentes modelos de automóveis em km/l.\n- d. Número de filhos por família em diferentes países.\n- e. Renda, em reais, dos funcionários de uma empresa.\n- f. Número de disciplinas cursadas por alunos de graduação em Administração.\n- g. Classificação da redação dos candidatos de um concurso público em “excelente”, “ótima”, “boa”, “regular” e “insuficiente”.\n- h. Aprovação na disciplina Estatística I-A, tendo como opções de resposta “sim” ou “não”.\n- i. Nível de instrução dos funcionários de uma empresa, medido pelo número de anos completos na escola (excluindo repetências).\n- j. Velocidade de automóveis em uma rodovia federal, sendo a velocidade declarada como “legal” ou “em excesso”."
+      },
+      {
+        "numero": 4,
+        "titulo": "Renda: Discreta ou Contínua",
+        "conteudo": "Em pesquisas, a renda pode ser questionada de duas formas:\n\n- **Formato 1:** \"Qual é a sua renda (em reais)?\"\n- **Formato 2:** \"Coloque um X no círculo correspondente ao seu nível de renda\", apresentando várias faixas de renda para escolha.\n\na. No primeiro formato, explique por que a renda pode ser considerada tanto discreta quanto contínua.\n\nb. Qual destes dois formatos você preferiria utilizar se estivesse definindo uma pesquisa? Por quê?\n\nc. Qual destes dois formatos traria, provavelmente, uma melhor taxa de resposta? Por quê?"
+      },
+      {
+        "numero": 5,
+        "titulo": "Distribuição de Frequências",
+        "conteudo": "Complete a seguinte tabela de distribuição de frequências:\n\n**Quociente de inteligência de alunos de determinada escola. Bahia. 2018.**\n\n```\nQI         fi   Fi   fi (%)\n68 – 80    25   25   5,0\n80 – A     137  D    27,4\n92 – 104   238  400  47,6\n104 – 116  B    482  16,4\n116 – 128  18   500  3,6\nTOTAL      500  ..   C\n```\n\n*Fonte: Secretaria da Escola*\n\nResponda:\n\na. “A análise do QI dos alunos da escola estudada mostrou que _________ escolares apresentaram um QI entre 92 e 104; ______ % apresentaram um QI inferior a 104; e ________% apresentaram um QI entre 116 e 128.”\n\nb. Que gráfico você sugeriria para a apresentação dos dados desta tabela? Por quê? Faça um esboço do gráfico sugerido."
+      },
+      {
+        "numero": 6,
+        "titulo": "Dados do Pessoal Administrativo",
+        "conteudo": "De acordo com informações do IBGE, em 31.12.1999, o pessoal administrativo ocupado em estabelecimento público, segundo o tipo de ocupação, era:\n\n- Administração: 41.371\n- Serviço de Pessoal: 6.067\n- Contabilidade: 2.989\n- Estatística: 5.481\n- Limpeza e Conservação: 26.520\n- Almoxarifado: 3.970\n- Serviços Gerais: 46.073\n- Outros: 15.689\n\nNos estabelecimentos de rede particular, as quantidades eram:\n\n- Administração: 45.932\n- Serviço de Pessoal: 4.555\n- Contabilidade: 6.627\n- Estatística: 3.112\n- Limpeza e Conservação: 42.155\n- Almoxarifado: 4.019\n- Serviços Gerais: 59.038\n- Outros: 17.302\n\na. Use uma planilha (EXCEL, Google Planilhas etc.) para construir uma tabela com os dados acima.\n\nb. Caso deseje construir um gráfico com estes dados, qual(is) dos tipos estudados seriam adequados?"
+      },
+      {
+        "numero": 7,
+        "titulo": "Notas de Alunos",
+        "conteudo": "Por engano, um professor omitiu uma nota no conjunto de notas de 10 alunos. As nove notas são:\n\n`{48, 71, 79, 95, 45, 57, 75, 83, 97}`\n\nsendo que a média das 10 notas é 72.\n\na. Qual o valor da nota omitida?\n\nb. Qual a nota correspondente a 25% destes alunos?\n\nc. Sabendo que 30% dos alunos com as maiores notas receberão um ponto extra, qual a nota mínima para receber esta pontuação?"
+      },
+      {
+        "numero": 8,
+        "titulo": "Auditoria de Balanços Contábeis",
+        "conteudo": "Uma firma de contabilidade pública registrou o tempo necessário para realizar a auditoria de 50 balanços contábeis.\n\nCalcule as medidas de posição e de dispersão para o tempo de auditoria e escreva um breve resumo com suas conclusões.\n\n**Tabela: Tempo necessário para a auditoria de balanços contábeis**\n\n```\nTempo de Auditoria (min.)   Nº de Balanços (fi)\n10 – 20                      3\n20 – 30                      5\n30 – 40                      10\n40 – 50                      12\n50 – 60                      20\nTotal                        50\n```"
+      },
+      {
+        "numero": 9,
+        "titulo": "Salários dos Operários",
+        "conteudo": "Uma amostra de 20 operários de uma companhia apresentou os seguintes salários (em reais), arredondados para o valor mais próximo e apresentados em rol:\n\n`140, 140, 140, 140, 140, 140, 140, 140, 165, 165, 165, 165, 180, 180, 180, 200, 200, 230, 230, 230`\n\nCalcule:\n\na. A média\nb. A mediana\nc. A moda\n d. O desvio padrão\n e. O coeficiente de variação\n\nAnalise essas medidas e faça uma breve conclusão sobre o salário dos operários da companhia."
+      },
+      {
+        "numero": 10,
+        "titulo": "Peso dos Alunos",
+        "conteudo": "O peso dos alunos do primeiro ano de uma escola foi coletado e exibido em um histograma (o menor peso encontrado foi 41,5 kg).\n\na. Qual o peso médio encontrado na amostra?\n\nb. Em quantos por cento dos alunos encontrou-se um peso igual ou maior a 73,5 kg?"
+      },
+      {
+        "numero": 11,
+        "titulo": "Pedidos de Frango e Bife",
+        "conteudo": "Em uma amostra aleatória de 16 dias, um restaurante registrou os números de pedidos de frango e bife:\n\n- **Frango:** 46, 55, 43, 48, 54, 65, 36, 40, 51, 53, 64, 32, 41, 46, 53, 47\n- **Bife:** 39, 41, 25, 30, 46, 36, 37, 23, 30, 33, 50, 44, 41, 28, 35, 37\n\nElabore histogramas, boxplots e tire conclusões a partir dos gráficos."
+      },
+      {
+        "numero": 12,
+        "titulo": "Distribuição de Idades dos Funcionários",
+        "conteudo": "Com base na figura que mostra a distribuição de idades dos funcionários de três empresas similares (A, B e C), responda:\n\na. Qual o tipo de gráfico que está sendo apresentado?\n\nb. Você tem alguma crítica à construção deste gráfico? Qual(is)?\n\nc. É possível construir um histograma com os resultados citados? Por quê?\n\nd. Em qual das empresas há o funcionário mais jovem? E o mais velho?\n\ne. Em qual das empresas a mediana das idades é maior?\n\nf. Qual empresa apresenta a menor amplitude interquartílica?\n\ng. Descreva, quanto à simetria, a forma das distribuições para cada empresa."
+      },
+      {
+        "numero": 13,
+        "titulo": "Tempo de Percurso – Transporte Público vs. Automóvel",
+        "conteudo": "Os trabalhadores podem escolher entre transporte público ou automóvel para chegar ao trabalho. Os tempos (em minutos) registrados foram:\n\n- **Transporte Público:** 25, 28, 29, 29, 32, 32, 33, 34, 37, 41\n- **Automóvel:** 29, 30, 31, 31, 32, 32, 33, 33, 34, 35\n\na. Calcule a média e o desvio padrão do tempo de percurso para cada meio de transporte. Com base apenas nestas informações, qual meio você considera preferível? Explique.\n\nb. Faça uma análise do boxplot (figura) dos tempos de percurso para cada meio e verifique se a análise confirma sua conclusão do item (a). Explique brevemente as principais características observadas."
+      },
+      {
+        "numero": 14,
+        "titulo": "Boxplot das Idades em Boates",
+        "conteudo": "Considere os dados referentes às idades dos frequentadores de duas boates mais frequentadas da cidade:\n\n| Boate | Mínimo | Quartil 1 | Mediana | Quartil 3 | Máximo |\n|-------|--------|-----------|---------|-----------|--------|\n| A     | 18     | 21        | 35      | 45        | 65     |\n| B     | 18     | 30        | 35      | 40        | 54     |\n\nConstrua o boxplot da variável “idade” e tire suas conclusões sobre os dois conjuntos de dados."
+      },
+      {
+        "numero": 15,
+        "titulo": "Teste Automobilístico – Quilometragem e Consumo de Gasolina",
+        "conteudo": "Em um teste automobilístico, 13 automóveis foram avaliados em um percurso de 482,80 km, considerando condições de condução na cidade e na rodovia. Os dados analisados referem-se à quilometragem (em galões, sendo 1 galão = 3,78 litros).\n\na. Utilize a média, a mediana e algumas separatrizes para comentar a diferença de desempenho entre condução na cidade e na rodovia.\n\nb. Qual é o primeiro quartil? Interprete seu valor.\n\nc. A partir do boxplot da quilometragem, é possível identificar valores discrepantes? Especifique os limites para detecção destes valores, justificando sua resposta; se houver discrepantes, quais são?\n\nd. Avalie a assimetria das distribuições com base nos boxplots. Justifique sua resposta."
+      },
+      {
+        "numero": 16,
+        "titulo": "Relação entre Receita e Porte da Empresa",
+        "conteudo": "Foi observada uma amostra de 20 empresas quanto ao número de empregados e à receita anual. Com um coeficiente de correlação de Pearson de aproximadamente 0,82 e analisando o diagrama de dispersão, qual conclusão pode ser tirada sobre a relação entre a receita e o porte da empresa?"
+      },
+      {
+        "numero": 17,
+        "titulo": "Renda Familiar e Gasto com Alimentação",
+        "conteudo": "Os dados a seguir correspondem à **renda familiar (X)** e ao **gasto com alimentação (Y)** (em unidades monetárias) para uma amostra de 25 famílias:\n\n| Renda Familiar (X) | Gasto com Alimentação (Y) |\n|--------------------|---------------------------|\n| 3                  | 1,5                       |\n| 5                  | 2,0                       |\n| 10                 | 6,0                       |\n| 10                 | 7,0                       |\n| 20                 | 10,0                      |\n| 20                 | 12,0                      |\n| 20                 | 15,0                      |\n| 30                 | 8,0                       |\n| 40                 | 10,0                      |\n| 50                 | 20,0                      |\n| 60                 | 20,0                      |\n| 70                 | 25,0                      |\n| 70                 | 30,0                      |\n| 80                 | 25,0                      |\n| 100                | 40,0                      |\n| 100                | 35,0                      |\n| 100                | 40,0                      |\n| 120                | 30,0                      |\n| 120                | 40,0                      |\n| 140                | 40,0                      |\n| 150                | 50,0                      |\n| 180                | 40,0                      |\n| 180                | 50,0                      |\n| 200                | 60,0                      |\n| 200                | 50,0                      |\n\na. Com o auxílio do Excel, Google Planilhas ou R, construa o diagrama de dispersão da variável gasto com alimentação (Y) em função da renda familiar (X) e calcule o coeficiente de correlação de Pearson.\n\nb. Quais conclusões você tira sobre a relação entre a renda familiar e os gastos com alimentação?"
+      }
+    ]
+  }
+  

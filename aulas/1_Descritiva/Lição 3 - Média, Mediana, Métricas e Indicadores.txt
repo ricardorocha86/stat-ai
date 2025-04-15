@@ -1,0 +1,63 @@
+# Estatística - Média, Mediana, Métricas e Indicadores
+
+Nesta aula, vamos analisar as medidas de tendência central, como média e mediana, e entender como essas métricas são aplicadas na prática para a análise de dados. Além disso, discutiremos de forma mais rigorosa as métricas e indicadores fundamentais que contribuem para a avaliação do desempenho em diferentes contextos, destacando sua importância na tomada de decisão e na formulação de estratégias quantitativas em ambientes empresariais e acadêmicos.
+
+Métricas e indicadores desempenham um papel essencial na compreensão aprofundada dos dados, fornecendo uma visão detalhada sobre o comportamento das variáveis e facilitando a identificação de padrões, tendências e anomalias.
+
+---
+
+## 1. Média e Mediana
+
+### Média
+
+A **média aritmética** é uma medida de tendência central que visa representar o valor típico de um conjunto de dados, sendo obtida pela soma de todos os valores dividida pelo número total de observações. A média é frequentemente utilizada como uma ferramenta de síntese, permitindo uma compreensão agregada do comportamento dos dados.
+
+- **Exemplo**: Para calcular a média de vendas diárias de uma empresa, basta somar o total de vendas do mês e dividir pelo número de dias no mês. Esse cálculo fornece um valor médio de vendas por dia, que é fundamental para uma análise preliminar do desempenho organizacional em um período específico.
+
+Embora a média aritmética seja amplamente empregada, especialmente em situações onde a distribuição dos dados é aproximadamente simétrica, é crucial ter em mente que sua sensibilidade a valores extremos (outliers) pode distorcer a interpretação dos dados. Em conjuntos de dados com valores muito discrepantes, a média pode não ser uma representação precisa do valor típico. Portanto, em conjuntos de dados que apresentem variabilidade significativa, o uso exclusivo da média pode levar a inferências inadequadas.
+
+### Mediana
+
+A **mediana** é definida como o valor central de um conjunto de dados ordenados de forma crescente ou decrescente. Essa medida é particularmente útil quando há valores extremos que podem enviesar a média, proporcionando uma alternativa robusta para representar o comportamento central dos dados em distribuições assimétricas.
+
+- **Exemplo**: Considere uma lista de salários em uma empresa que inclui tanto estagiários quanto executivos de alto escalão. A mediana dos salários separa os 50% que ganham menos dos 50% que ganham mais, fornecendo uma medida mais estável da distribuição salarial em comparação à média, especialmente em um contexto de disparidade significativa de remunerações.
+
+A mediana é amplamente utilizada em análises de renda, avaliação de preços de imóveis e em situações nas quais os dados possuem uma grande dispersão. Por exemplo, na avaliação de preços de imóveis em uma região, a mediana é utilizada para identificar o valor central das propriedades, evitando que valores extremamente altos ou baixos distorçam a percepção do mercado imobiliário. Diferentemente da média, a mediana é resistente a outliers, sendo, portanto, uma medida preferencial em análises que envolvem distribuições assimétricas.
+
+### Comparação entre Média e Mediana
+
+- **Média**: Altamente sensível a valores extremos. É mais apropriada quando os dados apresentam uma distribuição simétrica e homogênea, sem muitos valores discrepantes que possam influenciar o resultado de maneira desproporcional.
+- **Mediana**: Resistente a outliers, representando de forma mais precisa o valor central em distribuições assimétricas. A mediana é ideal para situações em que os dados possuem grande variabilidade ou quando se busca uma medida de posição que não seja influenciada por valores extremos.
+
+## 2. Métricas e Indicadores
+
+### Definição
+
+As **métricas** são quantificações numéricas que descrevem o desempenho ou as características de um processo, sistema ou organização. Já os **indicadores** são métricas que foram analisadas e contextualizadas de acordo com objetivos específicos, permitindo que sejam utilizados para avaliar a eficácia das ações implementadas. Elas fornecem uma base objetiva para monitoramento e controle, auxiliando na identificação de padrões e anomalias. Já os **indicadores** são métricas interpretadas no contexto de objetivos específicos, permitindo avaliar a eficácia das ações implementadas e orientar a tomada de decisões estratégicas.
+
+Métricas e indicadores são fundamentais na gestão de processos, pois fornecem uma estrutura quantificável que facilita a avaliação da performance. Sem essas ferramentas, torna-se inviável mensurar o impacto das ações e determinar se as estratégias adotadas estão sendo efetivas. Assim, os indicadores servem como balizadores para ajustes e melhorias contínuas, promovendo uma abordagem orientada a dados.
+
+### Exemplos
+
+- **Métrica**: Número total de vendas realizadas em um mês. Esta métrica fornece uma visão quantitativa do volume de operações, sendo útil para compreender a dimensão da atividade comercial em um determinado período.
+- **Indicador**: Crescimento percentual das vendas de um mês para o outro. Este indicador não apenas quantifica o desempenho, mas também contextualiza o progresso da empresa em termos de expansão ou retração, sendo crucial para uma avaliação dinâmica da performance empresarial.
+
+### Aplicação
+
+Métricas e indicadores são amplamente aplicados em diferentes áreas organizacionais, como:
+
+- **Vendas**: Monitorar o desempenho mensal, identificando padrões sazonais, picos e quedas, e compreendendo quais produtos ou serviços têm melhor desempenho em determinados períodos.
+- **Marketing**: Avaliar o retorno sobre o investimento (ROI) de campanhas publicitárias, mensurando a eficácia dos esforços de marketing e otimizando a alocação de recursos com base em resultados tangíveis.
+- **Gestão de Projetos**: Acompanhar a alocação e utilização dos recursos, medindo a eficiência do uso de tempo, orçamento e outros insumos, e comparando o progresso real com o cronograma planejado para identificar desvios e oportunidades de melhoria.
+- **Recursos Humanos**: Monitorar a taxa de rotatividade de funcionários, o nível de engajamento da equipe e outras métricas relacionadas ao capital humano, facilitando a identificação de áreas que requerem intervenções para melhorar o ambiente de trabalho e a retenção de talentos.
+
+### Exemplos de Métricas e Indicadores
+
+| **Categoria**      | **Métrica**                          | **Indicador**                                       |
+| ------------------ | ------------------------------------ | --------------------------------------------------- |
+| Vendas             | Número total de vendas mensais       | Crescimento percentual das vendas mês a mês         |
+| Marketing          | Número de leads gerados              | Retorno sobre investimento (ROI) das campanhas      |
+| Recursos Humanos   | Taxa de rotatividade de funcionários | Nível de satisfação e engajamento dos colaboradores |
+| Gestão de Projetos | Percentual de tarefas concluídas     | Desvio em relação ao cronograma planejado           |
+
+-

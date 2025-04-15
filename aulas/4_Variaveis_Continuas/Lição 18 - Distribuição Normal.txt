@@ -1,0 +1,75 @@
+# Lição - Introdução à Distribuição Normal
+
+## Introdução
+
+A distribuição normal, também conhecida como curva de Gauss, é uma das distribuições de probabilidade mais importantes na estatística e em várias áreas do conhecimento. Ela é chamada de "normal" porque descreve muitos fenômenos naturais e sociais, como altura, peso, notas escolares, entre outros, que tendem a se distribuir de maneira semelhante a uma forma de sino.
+
+Nesta aula, exploraremos os conceitos fundamentais da distribuição normal, sua motivação, e como ela se relaciona com variáveis aleatórias. Além disso, discutiremos a interpretação do gráfico da distribuição normal e sua importância para a análise de dados.
+
+
+---
+
+##  Função Densidade de Probabilidade
+
+A forma exata da curva normal é descrita pela **função densidade de probabilidade (FDP):**
+
+$$
+f(x) = \frac{1}{\sigma \sqrt{2\pi}} e^{-\frac{(x - \mu)^2}{2\sigma^2}}, x \in \R
+$$
+
+### Componentes da fórmula:
+
+1. **$\mu$ (média):** Localiza o centro da distribuição.
+2. **$\sigma$ (desvio padrão):** Controla a largura da curva.
+3. **$e$:** Base do logaritmo natural, usada para modelar a forma exponencial.
+4. **$\pi$:** Uma constante matemática relacionada a círculos.
+
+Essa função define a probabilidade de encontrar um valor específico em um intervalo contínuo.
+
+![Curvas da Distribuição Normal](aulas/normal2.png)---
+
+
+## Características da Distribuição Normal
+
+1. **Forma Simétrica:**
+   - A curva da distribuição normal é simétrica em torno do seu valor médio ($\mu$), conhecido como **média populacional**.
+   
+2. **Pico no Centro:**
+   - O valor médio ($\mu$) é também o ponto mais alto da curva, onde a maior parte dos dados está concentrada.
+
+3. **Caudas Extensas:**
+   - Os valores se afastam da média em ambas as direções, mas as probabilidades diminuem rapidamente à medida que nos afastamos.
+
+4. **Definida por Dois Parâmetros:**
+   - $\mu$ (média): determina a posição do centro da curva.
+   - $\sigma$ (desvio padrão): define a dispersão dos dados ao redor da média.
+
+---
+
+##  Gráfico da Distribuição Normal
+
+### Interpretando o Gráfico
+
+O gráfico da distribuição normal tem o formato de um sino, com as seguintes características principais:
+
+1. **Simetria:**
+   - Dividida ao meio pela média ($\mu$).
+
+2. **Região Central:**
+   - Cerca de **68% dos valores** estão dentro de 1 desvio padrão ($\mu \pm \sigma$).
+   - **95% dos valores** estão dentro de 2 desvios padrão ($\mu \pm 2\sigma$).
+   - **99,7% dos valores** estão dentro de 3 desvios padrão ($\mu \pm 3\sigma$).
+
+
+![Distribuição Normal](aulas/normal1.png)
+
+ 
+ 
+
+---
+
+## Conclusão
+
+A distribuição normal é uma ferramenta poderosa para modelar variáveis contínuas que exibem um padrão simétrico e previsível. Entender suas propriedades fundamentais e como representá-la graficamente é essencial para a análise de dados em diversas áreas, como estatística, ciência de dados e engenharia.
+
+Na próxima aula, exploraremos como calcular probabilidades associadas à distribuição normal e aplicá-las em problemas práticos. Até lá, pratique esboçar gráficos com diferentes valores de $\mu$ e $\sigma$ para se familiarizar com suas características visuais.

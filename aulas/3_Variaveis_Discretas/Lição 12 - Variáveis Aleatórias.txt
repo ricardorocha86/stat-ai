@@ -1,0 +1,123 @@
+# Aula: Variáveis Aleatórias
+
+## 1. O que é uma Variável Aleatória (VA)?
+
+Uma **variável aleatória (VA)** é uma função que associa a cada possível resultado de um experimento aleatório um número real. Em outras palavras, ela transforma os possíveis eventos de um experimento em números, permitindo que possamos analisá-los matematicamente.
+
+### Tipos de Variáveis Aleatórias
+
+- **Discreta**: Assume valores isolados (como números inteiros). Exemplo: o número de caras em dois lançamentos de uma moeda.
+- **Contínua**: Pode assumir qualquer valor dentro de um intervalo. Exemplo: o tempo que um cliente espera em uma fila.
+
+---
+
+## 2. Exemplo 1: Duas Moedas e o Número de Caras
+
+Considere o seguinte experimento: lançamos duas moedas e registramos o número de caras obtido.
+
+- **Espaço amostral**:  
+  $S = \{CC, CK, KC, KK\}$  
+  Onde:
+
+  - $C$: Cara
+  - $K$: Coroa
+
+- **Definição da VA**:  
+  Seja $X$ o número de caras obtidas. Então:  
+  $$
+  X(CC) = 2,\ X(CK) = 1,\ X(KC) = 1,\ X(KK) = 0
+  $$
+
+- **Distribuição de Probabilidade**:  
+  O valor de $X$ pode ser $0, 1,$ ou $2$. A probabilidade correspondente a cada valor é:  
+  $$
+  P(X = 0) = \frac{1}{4}, \quad P(X = 1) = \frac{2}{4}, \quad P(X = 2) = \frac{1}{4}.
+  $$
+
+---
+
+## 3. Exemplo 2: Jogo com Dois Dados
+
+**Descrição do Jogo**:  
+Um jogador paga $8$ para participar de um jogo onde lança dois dados e soma os números obtidos. O jogador ganha $20$ caso a soma dos números seja $3$, $6$, ou $9$. Caso contrário, perde o valor pago.
+
+### 3.1. Determinação das Variáveis Aleatórias
+
+- **Definição da VA $L$ (Lucro do Jogador)**:  
+  Seja $L$ o lucro do jogador (valor recebido menos o custo do jogo).  
+
+  - Se a soma dos dados for $3$, $6$, ou $9$:  
+    $$
+    L = 20 - 8 = 12.
+    $$
+
+  - Caso contrário:  
+    $$
+    L = 0 - 8 = -8.
+    $$
+
+- **Distribuição de Probabilidade**:  
+  Determinamos as probabilidades de $L$ com base nas somas dos dois dados:
+
+  - Soma $3$: $(1, 2)$, $(2, 1)$ $\Rightarrow P(\text{soma} = 3) = \frac{2}{36}$  
+  - Soma $6$: $(1, 5)$, $(2, 4)$, $(3, 3)$, $(4, 2)$, $(5, 1)$ $\Rightarrow P(\text{soma} = 6) = \frac{5}{36}$  
+  - Soma $9$: $(3, 6)$, $(4, 5)$, $(5, 4)$, $(6, 3)$ $\Rightarrow P(\text{soma} = 9) = \frac{4}{36}$  
+  - Total: $P(\text{soma} = 3, 6, \text{ou } 9) = \frac{11}{36}$  
+
+Portanto:  
+
+A tabela a seguir resume os valores que a VA $L$ (lucro do jogador) assume e as respectivas probabilidades, aproximadas em porcentagem:
+
+| l | P(L=l) |
+|--------------|-------------------|
+| 12           | 30,56%           |
+| -8           | 69,44%           |
+
+---
+
+## 4. Compensa Jogar o Jogo?
+
+Para determinar se compensa jogar, precisamos calcular a **média da variável aleatória**.
+
+### O que é a Média de uma Variável Aleatória?
+
+A **média** (ou esperança matemática) de uma variável aleatória é um valor que indica o comportamento médio do experimento aleatório no longo prazo. Para uma variável aleatória discreta, é definida como:  
+$$
+E(X) = \sum_{i\in I} x_i \cdot P(X = x_i),
+$$  
+onde $x_i$ representa os valores possíveis que a variável aleatória assume e $P(X = x_i)$, suas probabilidades.  
+
+#### Interpretação:  
+
+- A média não é, necessariamente, um valor que a VA assume em experimentos individuais.  
+- Em um grande número de repetições, a média das observações tende a se aproximar de $E(X)$.
+
+### Cálculo no Jogo
+
+- Possíveis valores de $L$: $12$ e $-8$.  
+- Probabilidades: $P(L = 12) = \frac{11}{36}$, $P(L = -8) = \frac{25}{36}$.  
+
+Substituindo na fórmula:  
+$$
+E(L) = (12 \cdot \frac{11}{36}) + (-8 \cdot \frac{25}{36}) 
+$$  
+$$
+E(L) = \frac{132}{36} - \frac{200}{36} = \frac{-68}{36} = -1,89.
+$$
+
+O valor esperado é $-1,89$. Isso indica que, em média, o jogador perde $1,89$ por jogo. Logo, **não compensa jogar**.
+
+---
+
+## 5. Interpretação da Média
+
+A **média** de uma variável aleatória é uma medida de tendência central que nos ajuda a entender o comportamento esperado de um experimento aleatório.
+
+No caso do jogo:
+
+- A média negativa ($E(L) < 0$) mostra que o jogador tem uma desvantagem ao participar.  
+- Isso significa que, ao repetir o jogo muitas vezes, o jogador perderia cerca de $1,89$ por rodada, em média.  
+
+Em geral, a média é útil para analisar cenários em que as decisões dependem de probabilidades e ganhos esperados, como em jogos de azar, investimentos e estratégias de risco.
+
+---

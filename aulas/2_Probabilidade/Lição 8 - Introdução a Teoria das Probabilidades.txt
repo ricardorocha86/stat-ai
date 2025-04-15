@@ -1,0 +1,84 @@
+# Lição 8 - Teoria das Probabilidades
+
+Modelos matemáticos consistem em uma simplificação da realidade e são uma idealização das características do fenômeno observado. Eles podem ser:
+1. **Determinísticos**: Quando, dadas as condições de experimentação, pode-se determinar ou predizer o resultado final do experimento.
+2. **Não-determinísticos** (ou probabilísticos ou estocásticos): Quando não é possível predizer, com certeza, o resultado antes da realização do experimento.
+
+**Exemplos**:
+- Um médico investigando o efeito de uma droga administrada em pacientes.
+- A análise dos preços mensais de três bens de consumo.
+- A soma dos pontos de dois dados.
+
+De forma geral, a Teoria das Probabilidades visa definir um modelo matemático probabilístico que seja conveniente à descrição e interpretação de fenômenos aleatórios.
+
+---
+
+### 4.2 Conceitos Básicos
+
+Serão apresentados alguns conceitos básicos necessários para um bom entendimento das definições de probabilidade.
+
+#### 4.2.1 Experimento Aleatório ($E$)
+
+É aquele onde o processo de experimentação está sujeito a influências de fatores casuais e conduz a resultados incertos.
+
+**Características do experimento aleatório**:
+1. Cada experimento pode ser repetido um grande número de vezes sob as mesmas condições iniciais.
+2. Em cada repetição do experimento, não podemos afirmar que resultado particular ocorrerá, porém podemos descrever o conjunto de todos os resultados possíveis do experimento — as possibilidades de resultado.
+3. Quando o experimento é repetido um grande número de vezes, surgirá uma regularidade nos resultados. Esta regularidade, chamada de regularidade estatística, é que torna possível construir um modelo matemático preciso com o qual se analisará o experimento.
+
+---
+
+#### 4.2.2 Espaço Amostral ($\Omega$)
+
+É o conjunto de todos os resultados possíveis de um experimento aleatório.
+
+**Exemplos**:
+1. Jogar uma moeda e observar a face superior.  
+   $\Omega_1 = \{Cara, Coroa\}$
+2. Lançar um dado e observar o lado voltado para cima.  
+   $\Omega_2 = \{1, 2, 3, 4, 5, 6\}$
+3. Retirar ao acaso uma carta de um baralho completo de 52 cartas.  
+   $\Omega_3 = \{A♠, 2♠, ..., K♠, A♦, ..., K♦, A♥, ..., K♥, A♣, ..., K♣\}$
+4. Determinação da vida útil de um componente eletrônico.  
+   $\Omega_4 = \{t \in \mathbb{R} \mid t \geq 0\}$
+5. Consumo de energia elétrica de uma residência em um dia (em KWh).  
+   $\Omega_5 = \{x \in \mathbb{R} \mid x \geq 0\}$
+
+**Observações**:
+- O espaço amostral pode ser **finito** ou **infinito**. No nosso curso trabalharemos apenas com espaços amostrais finitos.
+- O espaço amostral pode ser representado por:
+  - Um número.
+  - Grupo de números.
+  - Atributos.
+  - Grupo de atributos.
+  - Combinações de aspectos quantitativos e qualitativos.
+
+---
+
+#### 4.2.3 Evento ($A, B, C, ...$)
+
+É qualquer subconjunto do espaço amostral.
+
+**Exemplo**: Seja o experimento aleatório anterior:  
+- $E$: Lançar um dado e observar o lado voltado para cima.  
+- $\Omega = \{1, 2, 3, 4, 5, 6\}$
+
+Sejam os seguintes eventos:
+1. $A$: Sair o número 3.  
+   $A = \{3\}$ (evento simples ou elementar).
+2. $B$: Sair o número 10.  
+   $B = \emptyset$ (evento impossível).
+3. $C$: Sair um número menor ou igual a 6.  
+   $C = \Omega$ (evento certo).
+4. $A^c$: Não sair o número 3.  
+   $A^c = \{1, 2, 4, 5, 6\}$ (evento complementar de $A$).
+
+**Definição**: Dois eventos são chamados **mutuamente exclusivos** (ou excludentes) se não ocorrem simultaneamente, ou seja, a interseção entre eles é o conjunto vazio ($A \cap B = \emptyset$).
+
+**Exemplo**:
+- Seja $F$: Sair um número par $\{2, 4, 6\}$.  
+- Seja $G$: Sair um número ímpar $\{1, 3, 5\}$.  
+- $F$ e $G$ são mutuamente exclusivos, pois $F \cap G = \emptyset$.
+
+Eventos **complementares**:
+- $F$ e $G$ são complementares, pois $F \cup G = \Omega$ e $F \cap G = \emptyset$.

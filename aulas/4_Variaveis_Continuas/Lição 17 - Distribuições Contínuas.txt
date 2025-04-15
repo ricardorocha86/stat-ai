@@ -1,0 +1,85 @@
+# Lição 17 - Distribuições Contínuas
+
+## Introdução
+
+Nesta aula, exploraremos as **distribuições contínuas**, um conceito fundamental em probabilidade e estatística. Elas são amplamente utilizadas para modelar fenômenos no mundo real, como tempos de espera, medições físicas e desempenho em testes. Entenderemos suas principais características, como elas diferem das distribuições discretas e como calcular probabilidades em distribuições contínuas. 
+
+## Diferença entre Distribuições Discretas e Contínuas
+
+As distribuições de probabilidade podem ser classificadas em dois tipos principais:
+
+1. **Distribuições Discretas:**
+   - Associadas a variáveis que assumem valores específicos e isolados, como números inteiros.
+   - Exemplo: O número de clientes em uma loja por hora pode ser 0, 1, 2, etc., mas nunca 2,5.
+
+2. **Distribuições Contínuas:**
+   - Relacionadas a variáveis que podem assumir qualquer valor dentro de um intervalo contínuo.
+   - Exemplo: A altura de uma pessoa pode ser 1,65 m, 1,657 m ou qualquer valor entre dois limites.
+
+### Diferença Principal:
+Em uma **distribuição discreta**, a probabilidade é atribuída a pontos específicos, enquanto em uma **distribuição contínua**, as probabilidades são associadas a intervalos e correspondem à área sob a curva da função de densidade de probabilidade (fdp).
+
+---
+
+## Variável Aleatória Contínua
+
+Uma **variável aleatória contínua** é aquela que pode assumir qualquer valor em um intervalo contínuo. Sua probabilidade é descrita por uma **função de densidade de probabilidade (fdp)**, $ f(x) $, que possui duas propriedades fundamentais:
+
+1. $f(x) \geq 0 $ sempre, a fdp nunca é negativa.
+2. A área total sob a curva $ f(x) $ é igual a 1.
+
+A área sob a curva $ f(x) $ em um intervalo específico representa a probabilidade da variável aleatória assumir um valor dentro desse intervalo.
+
+---
+
+## Como Calcular Probabilidades
+
+Em distribuições contínuas, a probabilidade de uma variável assumir exatamente um valor é $ P(X = a) = 0 $. Portanto, calculamos a probabilidade entre dois valores $ a $ e $ b $ como a área sob a curva $ f(x) $ entre $ a $ e $ b $:
+
+$$ 
+P(a \leq X \leq b) = \text{Área determinada entre $a$ e $b$} 
+$$
+
+A interpretação geométrica disso é que a área da curva entre $ a $ e $ b $ fornece a probabilidade desejada.
+
+---
+
+## Exemplo 1: Notas de Alunos em um Exame
+
+Imagine que as notas de uma turma de estudantes variam entre 0 e 10 e seguem uma distribuição contínua com uma fdp $ f(x) $. A função de densidade é plana, indicando que todos os valores têm a mesma probabilidade de ocorrer no intervalo [0, 10].
+
+A fdp pode ser representada por:
+$$ 
+f(x) = \begin{cases} 
+\frac{1}{10}, & \text{se } 0 \leq x \leq 10 \\ 
+0, & \text{caso contrário.}
+\end{cases} 
+$$
+
+### Probabilidade entre 4 e 8:
+Para calcular a probabilidade de um aluno tirar uma nota entre 4 e 8:
+
+$$ 
+P(4 \leq X \leq 8) = \frac{1}{10} \cdot (8 - 4) = \frac{4}{10} = 0,4 
+$$
+
+Assim, a probabilidade de um aluno tirar entre 4 e 8 é 40%.
+
+---
+
+## Exemplo 2: Distribuição Exponencial
+
+A **distribuição exponencial** é usada para modelar o tempo entre eventos que ocorrem de forma independente, como o tempo de espera por um ônibus.
+
+A fdp da distribuição exponencial é dada por:
+$$ f(x) = \lambda e^{-\lambda x}, \quad x \geq 0 $$
+onde $ \lambda > 0 $ é a taxa de ocorrência.
+
+
+
+---
+
+## Conclusão
+
+Nesta aula, vimos as principais características das distribuições contínuas, como elas se diferenciam das discretas e como calcular probabilidades com base na área sob a curva da fdp. No próximo encontro, exploraremos outras distribuições contínuas importantes, como a distribuição normal.
+

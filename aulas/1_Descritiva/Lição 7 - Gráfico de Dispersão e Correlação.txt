@@ -1,0 +1,159 @@
+**Gráficos de Dispersão e Correlação Linear**
+
+### 1. Gráficos de Dispersão
+
+Os gráficos de dispersão são ferramentas visuais que nos ajudam a identificar padrões de relação entre duas variáveis. Cada ponto no gráfico representa um par de valores (X, Y), e juntos esses pontos nos permitem visualizar se há alguma tendência ou relação clara entre as variáveis.
+
+- **Exemplo**: Imagine que estamos analisando dados de temperatura e vendas de sorvetes em diferentes dias. Colocamos a temperatura no eixo X e o número de sorvetes vendidos no eixo Y.
+- Observando os pontos no gráfico, podemos identificar se as vendas aumentam conforme a temperatura sobe.
+
+Os gráficos de dispersão são o primeiro passo para investigar a existência de uma relação entre duas variáveis.
+
+### 2. Associações Lineares e Não Lineares
+
+- Uma **associação linear** ocorre quando os pontos de dados seguem aproximadamente uma linha reta. Essa linha pode ser crescente (correlação positiva) ou decrescente (correlação negativa).
+
+- Uma **associação não linear** ocorre quando os pontos de dados seguem uma curva, indicando um padrão mais complexo do que uma linha reta.
+
+- **Sem associação**: Quando os pontos estão espalhados aleatoriamente e não seguem nenhum padrão claro, não há associação entre as variáveis.
+
+### 3. Correlação Linear
+
+A **correlação** é uma medida estatística que indica a força e a direção da relação linear entre duas variáveis. Para calcular a correlação, utilizamos a fórmula do coeficiente de correlação de Pearson:
+
+$$
+\text{corr}(X, Y) = \frac{1}{n} \sum_{i=1}^{n} \left( \frac{X_i - \bar{X}}{\text{DP}(X)} \right) \left( \frac{Y_i - \bar{Y}}{\text{DP}(Y)} \right)
+
+$$
+
+A **correlação linear** mede o grau de relação entre duas variáveis que podem ser descritas por uma linha reta. O coeficiente de correlação é comumente chamado de **coeficiente de Pearson**, e varia de -1 a 1:
+
+- **+1**: Correlação linear positiva perfeita (quanto mais uma variável aumenta, mais a outra aumenta).
+- **0**: Nenhuma correlação linear.
+- **-1**: Correlação linear negativa perfeita (quanto mais uma variável aumenta, mais a outra diminui).
+
+A correlação não implica causalidade, ou seja, apenas porque duas variáveis estão correlacionadas não significa que uma causa a outra. Veja o site [Correlações Espúrias](https://www.tylervigen.com/spurious-correlations).
+
+Na figura abaixo, veja diversos casos de dados diferentes e suas respectivas correlações.
+
+
+![Gráficos de dispersão e suas correlações](aulas/dispersoes.png)  
+
+
+
+### 4. Exemplo Prático: Temperatura e Vendas de Sorvetes
+
+Vamos agora aplicar esses conceitos a um exemplo prático. Imagine que coletamos os seguintes dados de temperatura (em graus Celsius) e vendas de sorvetes em um quiosque:
+
+| T  | S |
+|----|---|
+| 28 | 5 |
+| 29 | 6 |
+| 30 | 8 |
+| 31 | 7 |
+| 32 | 9 |
+
+Podemos representar esses dados em um gráfico de dispersão e observar uma tendência positiva: conforme a temperatura aumenta, as vendas de sorvetes também aumentam. Este é um exemplo de **associação linear positiva**.
+
+Para auxiliar no cálculo da correlação, vamos criar uma tabela com as colunas adicionais que nos ajudarão a aplicar a fórmula do coeficiente de correlação de Pearson.
+
+| T  | S | T - Média(T) | (T - Média(T))² | S - Média(S) | (S - Média(S))² |
+|----|---|--------------|-----------------|--------------|-----------------|
+| 28 | 5 | -2.0        | 4.0             | -2.0         | 4.0             |
+| 29 | 6 | -1.0        | 1.0             | -1.0         | 1.0             |
+| 30 | 8 | 0.0         | 0.0             | 1.0          | 1.0             |
+| 31 | 7 | 1.0         | 1.0             | 0.0          | 0.0             |
+| 32 | 9 | 2.0         | 4.0             | 2.0          | 4.0             |
+
+### Cálculo da Variância Amostral
+
+Para calcular a variância amostral, usamos a fórmula:
+
+$$
+\text{VAR}(X) = \frac{\sum (X_i - \bar{X})^2}{n - 1}
+$$
+
+Aplicando essa fórmula para $T$ e $S$:
+
+1. **Para $T$:**
+
+   $$
+   \text{VAR}(T) = \frac{\sum (T_i - \bar{T})^2}{n - 1} = \frac{10.0}{4} = 2.5
+   $$
+
+2. **Para $S$:**
+
+   $$
+   \text{VAR}(S) = \frac{\sum (S_i - \bar{S})^2}{n - 1} = \frac{10.0}{4} = 2.5
+   $$
+
+Portanto, a variância amostral de $T$ e $S$ é $2.5$. Iguais por coincidencia, poderia ser diferentes. E portanto o $DP(X)$ e $DP(Y) = 1,6$, aproximadamente (raiz quadrada da variância).
+
+Agora, podemos continuar completando a tabela para auxiliar no calculo da correlação. Veja:
+
+| T  | S | T - Média(T) | S - Média(S) | (T - Média(T)) / DP(T) | (S - Média(S)) / DP(S) | Produto |
+|----|---|--------------|--------------|-----------------------------------|-----------------------------------|---------|
+| 28 | 5 | -2.0         | -2.0         | -1.3                              | -1.3                              | 1.6     |
+| 29 | 6 | -1.0         | -1.0         | -0.6                              | -0.6                              | 0.4     |
+| 30 | 8 | 0.0          | 1.0          | 0.0                               | 0.6                               | 0.0     |
+| 31 | 7 | 1.0          | 0.0          | 0.6                               | 0.0                               | 0.0     |
+| 32 | 9 | 2.0          | 2.0          | 1.3                               | 1.3                               | 1.6     |
+
+
+### Cálculo Final da Correlação
+
+Para calcular a correlação entre as variáveis $T$ e $S$, usamos a fórmula da correlação de Pearson, que é definida como:
+
+$$
+\text{corr}(T, S) = \frac{\sum \left( \frac{T - \text{Média}(T)}{\text{DP}(T)} \right) \cdot \left( \frac{S - \text{Média}(S)}{\text{DP}(S)} \right)}{n}
+$$
+
+Neste caso, somamos os valores na coluna **Produto** e dividimos por $n$, onde $n$ é o número de observações.
+
+1. Soma dos produtos normalizados:
+   $$
+   1.6 + 0.4 + 0.0 + 0.0 + 1.6 = 3.6
+   $$
+
+2. Divisão pelo número de observações ($n = 5$):
+   $$
+   \text{corr}(T, S) = \frac{3.6}{5} = 0.72
+   $$
+
+Portanto, a correlação entre $T$ e $S$ é **0.72**, indicando uma forte correlação positiva entre as duas variáveis.
+
+### Exemplo: Dados de Notas e Faltas
+
+Veja a construição da tabela auxiliar para o calculo da correlação. O calculo do desvio padrão foi omitido. Calcule como exercício. 
+
+
+| F  | N | F - Média(F) | N - Média(N) | (F - Média(F)) / DP(F) | (N - Média(N)) / DP(N) | Produto |
+|----|---|--------------|--------------|---------------------------------------------|---------------------------------------------|---------|
+| 5.0 | 5.0 | -0.3 | -0.1 | -0.1 | -0.0 | 0.0 |
+| 3.0 | 4.0 | -2.3 | -1.1 | -0.7 | -0.5 | 0.3 |
+| 10.0 | 2.0 | 4.7 | -3.1 | 1.4 | -1.3 | -1.8 |
+| 7.0 | 6.0 | 1.7 | 0.9 | 0.5 | 0.4 | 0.2 |
+| 4.0 | 7.0 | -1.3 | 1.9 | -0.4 | 0.8 | -0.3 |
+| 8.0 | 3.0 | 2.7 | -2.1 | 0.8 | -0.9 | -0.7 |
+| 0.0 | 9.0 | -5.3 | 3.9 | -1.6 | 1.6 | -2.6 |
+ 
+
+Neste caso, somamos os valores na coluna **Produto** e dividimos por $n$, onde $n$ é o número de observações.
+
+1. Soma dos produtos normalizados:
+   $$
+   \sum \text{Produto} = -4.9
+   $$
+
+2. Divisão pelo número de observações ($n = 7$):
+   $$
+   \text{Correlação}(F, N) = \frac{-4.9}{7} = -0.69
+   $$
+
+Portanto, a correlação entre $F$ e $N$ é **-0.69**, indicando uma correlação negativa moderada entre as duas variáveis.
+
+
+![Gráfico de Dispersão entre notas e faltas.](aulas/correnf.png)  
+
+
+

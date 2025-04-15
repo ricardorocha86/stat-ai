@@ -1,0 +1,152 @@
+# Lição 9 - Definições e Propriedades da Probabilidade
+
+Nesta aula, exploraremos as principais definições de probabilidade (clássica, frequentista e axiomática), seus prós e contras, além de suas propriedades fundamentais. Para consolidar o aprendizado, resolveremos exercícios com soluções detalhadas.
+
+---
+
+## 1. Definições de Probabilidade
+
+### 1.1 Definição Clássica de Probabilidade
+
+A definição clássica de probabilidade é baseada em situações em que todos os resultados no espaço amostral $\Omega$ são **igualmente prováveis**. A probabilidade de um evento $A$ é:
+$$
+P(A) = \frac{\text{Número de resultados favoráveis a } A}{\text{Número total de resultados em } \Omega} = \frac{\# A}{\#\Omega}
+$$
+
+#### **Prós**:
+1. Simples e intuitiva.
+2. Aplicável em muitos casos de jogos, como lançamentos de moedas, dados e cartas.
+
+#### **Contras**:
+1. Restrita a espaços amostrais com resultados igualmente prováveis.
+2. Não se aplica bem em situações do mundo real, como eventos meteorológicos.
+
+---
+
+### 1.2 Definição Frequentista de Probabilidade
+
+Nesta abordagem, a probabilidade é interpretada como a **frequência relativa** de um evento em um número muito grande de repetições de um experimento:
+$$
+P(A) = \lim_{n \to \infty} \frac{\text{Número de ocorrências de } A}{\text{Número total de experimentos}}
+$$
+
+#### **Prós**:
+1. Conecta a probabilidade à observação empírica.
+2. Ideal para eventos faceis de se repetir, como experimentos computacionais.
+
+#### **Contras**:
+1. Depende de repetições suficientes para ser confiável.
+2. Ainda que se repita muitas vezes, o resultado será aproximado.
+3. Não se aplica bem a eventos raros, pois necessita de muitas repeticoes para ocorrer
+
+---
+
+### 1.3 Definição Axiomática de Probabilidade
+
+Baseada nos **axiomas de Kolmogorov**, esta definição é uma formalização matemática que generaliza as anteriores:
+1. $0 \leq P(A) \leq 1$, para qualquer evento $A$.
+2. $P(\Omega) = 1$.
+3. Para eventos mutuamente exclusivos ($A \cap B = \emptyset$):
+$$
+P(A \cup B) = P(A) + P(B)
+$$
+
+Abrangente e rigorosa, aplicável a qualquer situação.
+---
+
+## 2. Propriedades de Probabilidade
+
+### 2.1 Probabilidade do Conjunto Vazio
+O conjunto vazio ($\emptyset$) nunca ocorre:
+$$
+P(\emptyset) = 0
+$$
+
+### 2.2 Probabilidade do Complemento de um Evento
+Se $A$ é um evento, seu complemento $A^c$ contém todos os resultados em $\Omega$ que não pertencem a $A$. A relação é:
+$$
+P(A^c) = 1 - P(A)
+$$
+
+**Comentário**: Esta propriedade é extremamente útil, especialmente em situações onde calcular $P(A)$ diretamente é difícil, mas $P(A^c)$ é mais acessível.
+
+### 2.3 Probabilidade da União de Dois Eventos
+Para eventos $A$ e $B$:
+$$
+P(A \cup B) = P(A) + P(B) - P(A \cap B)
+$$
+
+**Comentário**: Esta fórmula evita a contagem dupla de $P(A \cap B)$, sendo essencial em problemas com interseções.
+
+---
+
+## 3. Exercícios Práticos
+
+### Exercício 1: Lançamento de Dois Dados
+Considere o lançamento de dois dados. Seja:
+- $A$: "A soma dos dados é 7."
+- $B$: "Os dados têm faces iguais."
+
+Calcule:
+1. $P(A)$
+2. $P(B)$
+3. $P(A \cap B)$
+4. $P(A \cup B)$
+5. $P(B^c)$
+
+#### Solução:
+1. **Espaço amostral**: $\Omega$ contém $6 \times 6 = 36$ combinações possíveis, como $(1,1), (1,2), \dots, (6,6)$.
+2. Para $A$, as combinações que somam 7 são: $(1,6), (2,5), (3,4), (4,3), (5,2), (6,1)$.  
+   $P(A) = \frac{6}{36} = \frac{1}{6}$.
+3. Para $B$, as combinações com faces iguais são: $(1,1), (2,2), (3,3), (4,4), (5,5), (6,6)$.  
+   $P(B) = \frac{6}{36} = \frac{1}{6}$.
+4. Como $A \cap B = \emptyset$ (nenhuma soma de 7 ocorre com faces iguais), temos:
+   $P(A \cap B) = 0$.
+5. Para $A \cup B$:
+$$
+P(A \cup B) = P(A) + P(B) - P(A \cap B) = \frac{1}{6} + \frac{1}{6} - 0 = \frac{2}{6} = \frac{1}{3}.
+$$
+6. Para $B^c$:
+$$
+P(B^c) = 1 - P(B) = 1 - \frac{1}{6} = \frac{5}{6}.
+$$
+
+---
+
+### Exercício 2: Um Casal com 4 Filhos
+Considere um casal que tem 4 filhos. Suponha que a probabilidade de nascer menino ou menina é igual ($p = 0,5$). Calcule a probabilidade de:
+1. Ter pelo menos 1 menino.
+2. Ter filhos de ambos os sexos.
+3. Ter dois filhos de cada sexo.
+
+#### Solução:
+1. **Espaço amostral**: $\Omega$ contém todas as combinações possíveis de 4 nascimentos:  
+   $\Omega = \{MMMM, MMMF, \dots, FFFF\}$, com $2^4 = 16$ elementos.
+
+2. **Evento $A$: Pelo menos 1 menino**  
+   Complemento $A^c$: "Todos os filhos são meninas" ($FFFF$).  
+   $P(A^c) = \frac{1}{16}$.  
+   Logo:
+$$
+P(A) = 1 - P(A^c) = 1 - \frac{1}{16} = \frac{15}{16}.
+$$
+
+3. **Evento $B$: Filhos de ambos os sexos**  
+   Complemento $B^c$: "Todos os filhos são do mesmo sexo" ($MMMM$ ou $FFFF$).  
+   $P(B^c) = \frac{2}{16} = \frac{1}{8}$.  
+   Logo:
+$$
+P(B) = 1 - P(B^c) = 1 - \frac{1}{8} = \frac{7}{8}.
+$$
+
+4. **Evento $C$: Dois meninos e duas meninas**  
+   Para calcular sem combinatória, listamos os casos possíveis:  
+   $\{MMFF, MFMF, MFMM, FMFM, FMMF, FFMM\}$.  
+   Cada arranjo tem probabilidade de:
+$$
+P(\text{cada configuração}) = (0,5)^4 = \frac{1}{16}.
+$$
+   Como existem 6 arranjos favoráveis, a probabilidade total é:
+$$
+P(C) = 6 \cdot \frac{1}{16} = \frac{6}{16} = \frac{3}{8}.
+$$
