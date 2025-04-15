@@ -1,0 +1,26 @@
+[theme]
+base="light"
+primaryColor="#003485"
+secondaryBackgroundColor="#d2ddff"
+headingFont = "Bonitinha" 
+
+[client]
+toolbarMode = "viewer"
+
+[server]
+runOnSave = true 
+enableStaticServing = true 
+ 
+
+[[theme.fontFaces]]
+family = "Grafiti"
+url = "app/static/minhafonte.woff"
+weight = 400
+style = "normal"
+
+[[theme.fontFaces]]
+family = "Bonitinha"
+url = "app/static/HussarBoldWeb-bf92.woff"
+weight = 400
+style = "normal"
+ 
