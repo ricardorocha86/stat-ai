@@ -222,13 +222,39 @@ if prompt:
                 )
 
                 # Extract annotations from the response
-                annotations = response.output[1].content[0].annotations
+                annotations = []
+                retrieved_files = set()
+                response_text = ""
+                
+                # Verifica se a resposta tem o formato esperado antes de acessar os índices
+                if response.output and len(response.output) > 1 and response.output[1].content and len(response.output[1].content) > 0:
+                    try:
+                        annotations = response.output[1].content[0].annotations
+                        retrieved_files = set([result.filename for result in annotations])
+                        response_text = response.output[1].content[0].text
+                    except (AttributeError, IndexError, TypeError) as e:
+                        print(f"Erro ao extrair dados da resposta da API: {e}")
+                        print(f"Estrutura da resposta: {response.output}")
+                        # Tenta pegar a resposta principal de outra forma, se possível
+                        if response.output and len(response.output) > 0 and response.output[0].content and len(response.output[0].content) > 0:
+                           try:
+                               response_text = response.output[0].content[0].text
+                               print("Usando texto de response.output[0] como fallback.")
+                           except (AttributeError, IndexError, TypeError):
+                               pass # Mantém response_text vazio se falhar também
+                        if not response_text: # Se ainda não conseguiu texto
+                             response_text = "Desculpe, não consegui processar a resposta corretamente. 🤔"
 
-                # Get top-k retrieved filenames
-                retrieved_files = set([result.filename for result in annotations])
-
-                # Get the main response text
-                response_text = response.output[1].content[0].text
+                elif response.output and len(response.output) > 0 and response.output[0].content and len(response.output[0].content) > 0:
+                     # Caso comum onde a resposta principal está em output[0]
+                     try:
+                         response_text = response.output[0].content[0].text
+                     except (AttributeError, IndexError, TypeError) as e:
+                         print(f"Erro ao extrair dados de response.output[0]: {e}")
+                         response_text = "Desculpe, tive um problema ao processar a resposta. 😕"
+                else:
+                    print(f"Formato inesperado da resposta da API: {response.output}")
+                    response_text = "Não recebi uma resposta válida do assistente. 🤷‍♂️"
 
                 # Build the reference string if any files were retrieved
                 if retrieved_files:
@@ -284,30 +310,30 @@ if prompt:
                     st.session_state.chat_ativo_id = chat_id
                     st.session_state.chat_ativo_nome = novo_titulo
                     
-                    # Registra criação do novo chat
-                    registrar_atividade_academica(
-                        tipo="chatbot",
-                        modulo="Professor AI",
-                        detalhes={
-                            "acao": "novo_chat",
-                            "chat_id": chat_id,
-                            "chat_nome": novo_titulo
-                        }
-                    )
-                else:  # Se é um chat existente
-                    salvar_chat(st.session_state.chat_ativo_nome, st.session_state.mensagens, st.session_state.chat_ativo_id)
+                    # # Registra criação do novo chat
+                    # registrar_atividade_academica(
+                    #     tipo="chatbot",
+                    #     modulo="Professor AI",
+                    #     detalhes={
+                    #         "acao": "novo_chat",
+                    #         "chat_id": chat_id,
+                    #         "chat_nome": novo_titulo
+                    #     }
+                    # )
+               #else:  # Se é um chat existente
+                    #salvar_chat(st.session_state.chat_ativo_nome, st.session_state.mensagens, st.session_state.chat_ativo_id)
                     
                     # Registra atualização do chat
-                    registrar_atividade_academica(
-                        tipo="chatbot",
-                        modulo="Professor AI",
-                        detalhes={
-                            "acao": "atualizacao_chat",
-                            "chat_id": st.session_state.chat_ativo_id,
-                            "chat_nome": st.session_state.chat_ativo_nome,
-                            "num_mensagens": len(st.session_state.mensagens)
-                        }
-                    )
+                    # registrar_atividade_academica(
+                    #     tipo="chatbot",
+                    #     modulo="Professor AI",
+                    #     detalhes={
+                    #         "acao": "atualizacao_chat",
+                    #         "chat_id": st.session_state.chat_ativo_id,
+                    #         "chat_nome": st.session_state.chat_ativo_nome,
+                    #         "num_mensagens": len(st.session_state.mensagens)
+                    #     }
+                    # )
 
                 st.rerun()  # Atualiza a interface após salvar
 

@@ -94,8 +94,7 @@ def gerar_quiz_licao(conteudo_licao: str):
     prompt_quiz = f"""
     Você é um assistente educacional especialista em criar quizzes em formato JSON.
     Baseado no <material de aula> abaixo, crie um quiz contendo EXATAMENTE:
-    - 3 perguntas de múltipla escolha (com 4 alternativas cada).
-    - 2 perguntas do tipo Verdadeiro ou Falso.
+    - 5 perguntas de múltipla escolha (com 4 alternativas cada).
     
     **Formato de Saída OBRIGATÓRIO:** JSON com chaves "perguntas" (lista de dicts com numero, tipo, enunciado, opcoes) e "gabarito" (dict numero:resposta_correta).
     NÃO inclua nenhuma explicação ou texto fora do objeto JSON.
