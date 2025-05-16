@@ -8,7 +8,21 @@ from paginas.funcoes import registrar_atividade_academica, registrar_acao_usuari
 
 st.title("🤖 Corretor AI")
 
+# --- Seleção da Lista de Exercícios ---
+mapa_listas = {
+    "Lista 1": "arquivos/lista1.json",
+    "Lista 2": "arquivos/lista2.json"
+}
+lista_selecionada_nome = st.selectbox(
+    "Escolha a lista de exercícios:", 
+    options=list(mapa_listas.keys()), 
+    key="select_lista_corretor"
+)
+
+caminho_json_exercicios = mapa_listas[lista_selecionada_nome]
+
 # --- Carregar Dados dos Exercícios ---
+@st.cache_data # Adicionar cache para otimizar o carregamento do JSON
 def carregar_exercicios(caminho_json):
     try:
         with open(caminho_json, "r", encoding="utf-8") as file:
@@ -29,31 +43,34 @@ def carregar_exercicios(caminho_json):
         st.error(f"Erro inesperado ao carregar exercícios: {e}")
         return []
 
-caminho_json_exercicios = "arquivos/lista1.json"
 exercicios_data = carregar_exercicios(caminho_json_exercicios)
 
 # --- Conteúdo da Página (Seleção e Exibição) ---
 if not exercicios_data:
-    st.warning("Nenhum exercício carregado. Verifique o arquivo JSON.")
+    st.warning(f"Nenhum exercício carregado para a {lista_selecionada_nome}. Verifique o arquivo JSON correspondente.")
 else:
-    st.markdown("Selecione um exercício da lista abaixo para visualizar seu enunciado e usar a ferramenta de avaliação de resposta.")
-    # Cria uma lista de opções com os títulos dos exercícios
+    st.markdown(f"Selecione um exercício da **{lista_selecionada_nome}** abaixo para visualizar seu enunciado e usar a ferramenta de avaliação de resposta.")
+    
     opcoes = [f"{ex.get('numero', 'N/A')}. {ex.get('titulo', 'Sem Título')}" for ex in exercicios_data]
-    selecionado_label = st.selectbox("Selecione o exercício:", opcoes, key="select_ex")
+    # Chave do selectbox de exercício agora é dinâmica com base na lista selecionada
+    selecionado_label = st.selectbox(
+        "Selecione o exercício:", 
+        opcoes, 
+        key=f"select_ex_{lista_selecionada_nome.replace(' ', '_')}"
+    )
 
-    if selecionado_label:  # Registra quando um exercício é selecionado
+    if selecionado_label:
         registrar_atividade_academica(
-            tipo="exercicio",
-            modulo="Lista 1",
+            tipo="exercicio_corretor_ai", # Modificado para refletir a página
+            modulo=lista_selecionada_nome,
             detalhes={
-                "acao": "visualizacao",
+                "acao": "visualizacao_exercicio",
                 "exercicio": selecionado_label
             }
         )
 
     st.divider()
 
-    # Procura pelo exercício selecionado
     exercicio_selecionado = next((item for item in exercicios_data if f"{item.get('numero', 'N/A')}. {item.get('titulo', 'Sem Título')}" == selecionado_label), None)
 
     if exercicio_selecionado:
@@ -73,9 +90,11 @@ else:
         st.info("Cole sua resposta para o exercício acima e peça uma avaliação direta.")
 
         enunciado_para_avaliacao = conteudo_exercicio if conteudo_exercicio else selecionado_label
-        resposta_aluno = st.text_area("✏️ Sua Resposta:", height=150, key="avaliar_resposta_ex")
+        # Chaves da área de texto e botão agora são dinâmicas
+        key_sufixo = lista_selecionada_nome.replace(' ', '_')
+        resposta_aluno = st.text_area("✏️ Sua Resposta:", height=150, key=f"resposta_ex_{key_sufixo}")
 
-        if st.button("⚖️ Avaliar minha resposta", key="btn_avaliar_ex", type="primary"):
+        if st.button("⚖️ Avaliar minha resposta", key=f"btn_avaliar_ex_{key_sufixo}", type="primary"):
             if not resposta_aluno:
                 st.warning("Por favor, insira a sua resposta.")
             else:
@@ -83,17 +102,19 @@ else:
                     response_content = avaliar_resposta_exercicio(enunciado_para_avaliacao, resposta_aluno)
                     if response_content:
                         with st.chat_message("assistant", avatar='⚖️'):
-                            st.markdown(response_content)
-                            # Registra a avaliação da resposta
+                            # Aplicar substituições para renderização matemática do Streamlit
+                            response_content_render = response_content.replace("\\(", "$").replace("\\)", "$")
+                            response_content_render = response_content_render.replace("\[", "$$").replace("\]", "$$")
+                            st.markdown(response_content_render)
                             registrar_atividade_academica(
-                                tipo="exercicio",
-                                modulo="Lista 1",
+                                tipo="exercicio_corretor_ai", # Modificado
+                                modulo=lista_selecionada_nome,
                                 detalhes={
-                                    "acao": "avaliacao_resposta",
+                                    "acao": "avaliacao_resposta_ia",
                                     "exercicio": selecionado_label,
                                     "tamanho_resposta": len(resposta_aluno)
                                 }
                             )
                     # Erros já são tratados dentro da função avaliar_resposta_exercicio
     else:
-        st.info("Selecione um exercício na lista acima para ver os detalhes.") 
+        st.info(f"Selecione um exercício na lista ({lista_selecionada_nome}) acima para ver os detalhes.") 

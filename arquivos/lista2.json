@@ -1,0 +1,79 @@
+{
+  "exercicios": [
+    {
+      "numero": 1,
+      "titulo": "Espaço Amostral e Eventos",
+      "conteudo": "Descreva o **espaço amostral (Ω)** e os **eventos** associados a cada experimento:\n\n### E1 — Dois dados\n- **Experimento:** lançam‑se dois dados perfeitos e observam‑se os números nas faces voltadas para cima.  \n- **Evento A1:** a soma das faces é **7**.\n\n### E2 — Três lançamentos de moeda\n- **Experimento:** lançar uma moeda três vezes sucessivamente e anotar a sequência de **caras (C)** e **coroas (K)**.  \n  - **A21:** sair **pelo menos duas caras**;  \n  - **A22:** sair **apenas uma coroa**.\n\n### E3 — Moeda + dado\n- **Experimento:** lançar uma moeda e um dado simultaneamente e registrar os resultados.  \n  - **A31:** obter face **ímpar** no dado;  \n  - **A32:** obter **cara** e face **par** no dado;  \n  - **A33:** obter **coroa** e face **> 3** no dado.\n\n### E4 — Peças defeituosas\n- **Experimento:** contar o número de peças defeituosas produzidas em **1 h** numa linha de produção.  \n- **Evento A4:** obter **menos de 3** defeituosas.\n\n### E5 — Três artigos\n- **Experimento:** retirar **3 artigos** da linha e classificar cada um como **bom (B)** ou **defeituoso (D)**.  \n  - **A51:** pelo menos **um** artigo é bom;  \n  - **A52:** pelo menos **dois** artigos são bons;  \n  - **A53:** apenas **um** artigo é ruim."
+    },
+    {
+      "numero": 2,
+      "titulo": "Afirmativas sobre Probabilidade",
+      "conteudo": "Com relação à **Teoria de Probabilidade**, marque **V** (verdadeiro) ou **F** (falso):\n\n1. O espaço amostral de um experimento é o conjunto de resultados possíveis deste experimento.  \n2. O evento é um resultado possível do experimento.  \n3. Se `A` e `B` são eventos mutuamente exclusivos, então eles são independentes.  \n4. A definição clássica de probabilidade pressupõe que todos os resultados de um experimento são **igualmente prováveis**."
+    },
+    {
+      "numero": 3,
+      "titulo": "Operações com Conjuntos de Eventos",
+      "conteudo": "Seja `Ω = {a, b, c, d, e, f, g}`. Considere:\n\n- `A = {a, b, c, d, e}`\n- `B = {a, c, e, g}`\n- `C = {b, e, f, g}`\n\nCalcule:\n\n1. `P(A ∪ C)`  \n2. `P(B ∩ C)`  \n3. `P(Bᶜ ∪ C)`  — onde `Bᶜ` é o complementar de `B`  \n4. `P(C ∩ A)`"
+    },
+    {
+      "numero": 4,
+      "titulo": "Família com 4 Filhos",
+      "conteudo": "Um casal decidiu ter **4 filhos**. Qual a probabilidade de que:\n\na. tenham **pelo menos um menino**?  \nb. tenham filhos de **ambos os sexos**?  \nc. tenham **dois filhos de cada sexo**?"
+    },
+    {
+      "numero": 5,
+      "titulo": "Moeda Viciada",
+      "conteudo": "Uma moeda é **viciada**, de forma que **cara (C)** é **duas vezes** mais provável do que **coroa (K)**.\n\nCalcule:  \n- `P(C)`  \n- `P(K)`"
+    },
+    {
+      "numero": 6,
+      "titulo": "Probabilidades com A e B",
+      "conteudo": "Dados:\n\n- `P(A) = 1/2`  \n- `P(B) = 3/8`  \n- `P(A ∩ B) = 1/8`\n\nCalcule:\n\na. `P(A ∪ B)`  \nb. `P(Aᶜ ∩ Bᶜ)`  \nc. `P(Aᶜ ∪ Bᶜ)`  \nd. `P(Aᶜ ∩ B)`  \ne. `P(A ∩ Bᶜ)`"
+    },
+    {
+      "numero": 7,
+      "titulo": "Uso de Hospital por Segurados",
+      "conteudo": "Uma companhia de seguros analisou **2 000** segurados quanto ao uso de hospital:\n\n| Discriminação           | Homens | Mulheres |\n|-------------------------|:------:|:--------:|\n| Usaram o hospital       |  100   |   150    |\n| Não usaram o hospital   |  900   |   850    |\n\nSelecione um segurado ao acaso. Defina:\n\n- `A` — o segurado **usou** o hospital  \n- `B` — o segurado é **homem**\n\nDetermine:\n\na. `P(A ∪ B)`  \nb. `P(Aᶜ ∪ Bᶜ)`  \nc. `P(Aᶜ ∩ B)`  \n\nAlém disso:\n\nd. `P(B | A)` — ser homem **sabendo** que usou o hospital  \ne. `P(A | B)` — ter usado o hospital **dado** que era homem  \nf. `P(M | Aᶜ)` — ser **mulher** dado que **não** usou o hospital"
+    },
+    {
+      "numero": 8,
+      "titulo": "Reprovação em Matemática e Química",
+      "conteudo": "Em uma certa faculdade:\n\n- 25 % dos estudantes foram **reprovados em Matemática**;  \n- 15 % em **Química**;  \n- 10 % em **ambas** as disciplinas.\n\nSeleciona‑se um estudante ao acaso.\n\na. Se ele foi reprovado em Matemática, qual a probabilidade de ter sido reprovado em Química?  \nb. Se foi reprovado em Química, qual a probabilidade de ter sido reprovado em Matemática?  \nc. Qual a probabilidade de ter sido reprovado em **Matemática _ou_ Química**?"
+    },
+    {
+      "numero": 9,
+      "titulo": "Preferência de Refeição por Gênero",
+      "conteudo": "Um restaurante oferece dois tipos de refeição: **salada completa** ou **prato à base de carne**.\n\n- 20 % dos **homens** preferem salada;  \n- 30 % das **mulheres** escolhem carne;  \n- 75 % dos fregueses são **homens**.\n\nDefina:\n\n- `H` — freguês é **homem**  \n- `M` — freguês é **mulher**  \n- `S` — prefere **salada**  \n- `C` — prefere **carne**\n\nCalcule:\n\na. `P(H)`  \nb. `P(S | H)`  \nc. `P(C | M)`  \nd. `P(S ∩ H)`  \ne. `P(S ∪ H)`  \nf. `P(M | S)`"
+    },
+    {
+      "numero": 10,
+      "titulo": "Eventos Independentes A e B",
+      "conteudo": "Suponha que `A` e `B` sejam **independentes** em um experimento `E`.\n\n- `P(A) = 0,4`\n- `P(A ∪ B) = 0,6`\n\nDetermine `P(B)`."
+    },
+    {
+      "numero": 11,
+      "titulo": "Atrasos e Esquecimentos de Carlos",
+      "conteudo": "- Carlos chega **atrasado** à universidade em 25 % dos dias.  \n- Carlos **esquece** o material da aula em 20 % dos dias.\n\nAdmitindo **independência** entre esses eventos, calcule a probabilidade de:\n\na. Carlos chegar atrasado **2 dias seguidos**;  \nb. chegar **atrasado _e_ sem** o material;  \nc. chegar **na hora _e_ com** o material;  \nd. chegar **na hora _e_ sem** o material."
+    },
+    {
+      "numero": 12,
+      "titulo": "Urnas com Bolas Verdes e Amarelas",
+      "conteudo": "- **Urna 1:** 5 bolas **verdes** e 2 **amarelas**  \n- **Urna 2:** 4 bolas **verdes** e 3 **amarelas**\n\nEscolhe‑se, ao acaso, **uma urna** e, dela, **uma bola**.  \nQual a probabilidade de que a bola seja **amarela**?"
+    },
+    {
+      "numero": 13,
+      "titulo": "Altura dos Estudantes",
+      "conteudo": "Num colégio:\n\n- 4 % dos **homens** e 1 % das **mulheres** têm **> 1,75 m**;  \n- 60 % dos estudantes são **mulheres**.\n\nUm estudante é escolhido aleatoriamente e tem **> 1,75 m**.  \nQual a probabilidade de que seja **homem**?"
+    },
+    {
+      "numero": 14,
+      "titulo": "Lâmpadas de Diferentes Fábricas",
+      "conteudo": "Há **2 000** lâmpadas provenientes de três fábricas:\n\n| Fábrica | Produzidas | Boas |\n|---------|-----------:|-----:|\n| X       |     500    |  400 |\n| Y       |     700    |  600 |\n| Z       |     800    |  500 |\n\nSorteia‑se ao acaso **uma lâmpada**. Determine a probabilidade de:\n\na. ser **boa**;  \nb. **sendo defeituosa**, ter sido fabricada por **X**;  \nc. **sendo boa**, ter sido fabricada por **Z**."
+    },
+    {
+      "numero": 15,
+      "titulo": "Contratos de Empreiteiro",
+      "conteudo": "Um empreiteiro apresentou orçamentos para:\n\n- **Parte elétrica** ⇒ `P(E) = 1/2`  \n- **Parte de encanamento**:\n\n  - Se ganhar elétrica: `P(C | E) = 3/4`  \n  - Se **não** ganhar elétrica: `P(C | Eᶜ) = 1/3`\n\nCalcule a probabilidade de ele:\n\na. ganhar **ambos** os contratos;  \nb. ganhar **apenas um** dos contratos."
+    }
+  ]
+}
