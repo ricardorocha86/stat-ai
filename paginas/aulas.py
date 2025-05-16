@@ -53,9 +53,8 @@ licao_selecionada_nome = ""
 if not modulos:
     st.warning("Nenhum módulo de aula encontrado. Verifique se os subdiretórios foram criados corretamente dentro da pasta 'aulas'.")
 else:
-    # --- Seleção na Sidebar ---
-    with st.sidebar:
-        st.subheader("Navegação das Aulas")
+    # --- Seleção no Corpo Principal (Expansível) ---
+    with st.expander("Navegação das Aulas", expanded=False): # Alterado de st.sidebar para st.expander
         modulo_selecionado_nome_fmt = st.pills(
             'Selecione um Módulo:',
             modulos, 
@@ -163,12 +162,15 @@ if conteudo_licao_selecionada:
             st.session_state.quiz_submetido = False
         if 'respostas_aluno' not in st.session_state:
             st.session_state.respostas_aluno = {}
+        if 'quiz_generation_count' not in st.session_state: # NOVO: Contador para a key do formulário
+            st.session_state.quiz_generation_count = 0
 
         # Botão para gerar um NOVO quiz
         if st.button("❓ Gerar Novo Quiz", key="btn_gerar_quiz", type="secondary"):
             if not conteudo_licao_selecionada or conteudo_licao_selecionada.startswith("Erro:"):
                 st.error("Não é possível gerar quiz sem o conteúdo da lição.")
             else:
+                st.session_state.quiz_generation_count += 1 # NOVO: Incrementar contador
                 st.session_state.quiz_gerado = None # Limpa quiz anterior
                 st.session_state.quiz_respostas_corretas = None
                 st.session_state.quiz_submetido = False
@@ -178,23 +180,30 @@ if conteudo_licao_selecionada:
                     quiz_data = gerar_quiz_licao(conteudo_licao_selecionada)
                     if quiz_data: # Verifica se a função retornou dados válidos
                         st.session_state.quiz_gerado = quiz_data.get("perguntas")
-                        st.session_state.quiz_respostas_corretas = quiz_data.get("gabarito")
-                        st.session_state.quiz_submetido = False
-                        st.session_state.respostas_aluno = {}
+                        
+                        raw_gabarito = quiz_data.get("gabarito")
+                        if raw_gabarito and isinstance(raw_gabarito, dict):
+                            st.session_state.quiz_respostas_corretas = {str(k): v for k, v in raw_gabarito.items()}
+                        else:
+                            st.session_state.quiz_respostas_corretas = None
+                        
                         if st.session_state.quiz_gerado and st.session_state.quiz_respostas_corretas:
                              st.success("Quiz gerado! Responda abaixo.")
                         else:
                              st.error("Falha ao extrair perguntas ou gabarito do quiz gerado.")
                              st.session_state.quiz_gerado = None # Garante reset
-                    # Erros já são tratados e exibidos dentro da função gerar_quiz_licao
-                    else:
+                             st.session_state.quiz_respostas_corretas = None # Garante reset
+                    # Erros de API/JSON decode já são tratados e exibidos dentro da função gerar_quiz_licao
+                    else: # quiz_data é None (falha na geração)
                          st.session_state.quiz_gerado = None # Garante reset em caso de falha
+                         st.session_state.quiz_respostas_corretas = None # Garante reset em caso de falha
 
         # Exibe o formulário do quiz se ele foi gerado e não submetido
         if st.session_state.quiz_gerado and not st.session_state.quiz_submetido:
             st.markdown("--- ")
             st.subheader("Responda o Quiz:")
-            with st.form("quiz_form"): 
+            # NOVO: Usar o contador na key do formulário
+            with st.form(f"quiz_form_{st.session_state.quiz_generation_count}"): 
                 respostas_temp = {} 
                 for pergunta in st.session_state.quiz_gerado:
                     numero_pergunta = pergunta['numero']

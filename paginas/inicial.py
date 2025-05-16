@@ -88,6 +88,20 @@ st.markdown(f"""
 </div>
 """, unsafe_allow_html=True)
 
+# --- Seção de Últimas Atualizações ---
+st.markdown("""
+<div style="background-color: #eef2f7; padding: 1.5rem; border-radius: 10px; margin-bottom: 2rem; border-left: 5px solid #4CAF50;">
+    <h3 style="color: #2c3e50; margin-top: 0;">🚀 Últimas Atualizações no Portal!</h3>
+    <ul style="list-style-type: disc; margin-left: 20px; color: #34495e;">
+        <li><strong>Navegação das Aulas:</strong> A seleção de módulos e lições foi movida para a página principal das aulas, ficando mais acessível dentro de um menu expansível.</li>
+        <li><strong>Quiz das Aulas:</strong> Realizamos correções importantes para garantir que os quizzes funcionem corretamente e sem confusão nas respostas, mesmo ao gerar novos quizzes seguidamente.</li>
+        <li><strong>Corretor AI:</strong> A ferramenta de correção de exercícios (agora chamada "Corretor AI") foi aprimorada! A IA agora oferece um feedback mais amigável, construtivo e focado em ajudar no seu aprendizado.</li>
+        <li><strong>Página de Recursos:</strong> Reorganizamos a página de Recursos! Agora você pode baixar diretamente as Listas de Exercícios 1 e 2 em PDF, além de acessar a Tabela TACO.</li>
+    </ul>
+    <p style="font-size: 0.9em; color: #555; margin-top: 1rem;">Continuamos trabalhando para melhorar sua experiência. Bom estudo!</p>
+</div>
+""", unsafe_allow_html=True)
+
 # Acesso Rápido
 col1, col2, col3 = st.columns(3)
 

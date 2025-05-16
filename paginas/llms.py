@@ -91,16 +91,19 @@ def gerar_quiz_licao(conteudo_licao: str):
     if not client:
         return None
 
+    # Escapa chaves no conteúdo da lição para evitar erros na f-string
+    conteudo_licao_escaped = conteudo_licao.replace('{', '{{').replace('}', '}}')
+
     prompt_quiz = f"""
     Você é um assistente educacional especialista em criar quizzes em formato JSON.
     Baseado no <material de aula> abaixo, crie um quiz contendo EXATAMENTE:
     - 5 perguntas de múltipla escolha (com 4 alternativas cada).
     
-    **Formato de Saída OBRIGATÓRIO:** JSON com chaves "perguntas" (lista de dicts com numero, tipo, enunciado, opcoes) e "gabarito" (dict numero:resposta_correta).
+    **Formato de Saída OBRIGATÓRIO:** JSON com chaves "perguntas" (lista de dicts com "numero" (int ou str), "tipo", "enunciado", "opcoes") e "gabarito" (um dicionário onde cada chave é o NÚMERO DA PERGUNTA COMO STRING e o valor é a alternativa correta como string). Exemplo de gabarito: {{"1": "Opção A", "2": "Opção C"}}.
     NÃO inclua nenhuma explicação ou texto fora do objeto JSON.
 
     <material de aula>
-    {conteudo_licao}
+    {conteudo_licao_escaped}
     </material de aula>
     """ # Instruções detalhadas do JSON omitidas aqui por brevidade (assumindo que o prompt completo está correto)
     
@@ -127,7 +130,7 @@ def gerar_quiz_licao(conteudo_licao: str):
             return None
             
     except Exception as e:
-        st.error(f"Erro ao gerar quiz: {e}")
+        st.error(f"Erro ao gerar quiz: {e}")    
         return None
 
 def gerar_flashcards_licao(conteudo_licao: str):
@@ -184,30 +187,31 @@ def avaliar_resposta_exercicio(enunciado_exercicio: str, resposta_aluno: str):
         return None # Retorna None se cliente falhar
 
     prompt = f"""
-    Você é um assistente de professor especialista em avaliar respostas de alunos para exercícios de estatística de forma DIRETA E OBJETIVA.
+    Você é um **tutor amigável e encorajador**, especialista em ajudar alunos a entenderem estatística. Seu objetivo é fornecer feedback construtivo e motivador.
     
     **Exercício Selecionado:**
     <enunciado do exercício>
     {enunciado_exercicio}
     </enunciado do exercício>
     
-    **Tarefa:** Avalie a <resposta do aluno> fornecida para o <enunciado do exercício>.
+    **Tarefa:** Avalie a <resposta do aluno> fornecida para o <enunciado do exercício> de forma clara e gentil.
     
-    **Instruções para Avaliação (SEJA DIRETO):**
-    1.  **Avaliação Geral:** Comece dizendo CLARAMENTE se a resposta está CORRETA, INCORRETA ou PARCIALMENTE CORRETA.
-    2.  **Se Correta:** Elogie brevemente (ex: "Correto! Ótimo raciocínio."). Não precisa detalhar.
-    3.  **Se Incorreta ou Parcialmente Correta:**
-        a. Indique **diretamente** o(s) principal(is) erro(s) conceitual(is) ou de cálculo.
-        b. **Sugira** de forma concisa o que o aluno deve revisar ou corrigir (ex: "Revise o conceito...", "Verifique a fórmula...").
-        c. **NÃO** forneça a resposta correta completa. **NÃO** use linguagem vaga ou excessivamente encorajadora.
-    4.  Use markdown apenas para formatação básica.
+    **Instruções para Avaliação:**
+    1.  **Avaliação Geral:** Comece indicando se a resposta está no caminho certo, se precisa de alguns ajustes ou se há equívocos importantes. Use uma linguagem positiva e de apoio.
+    2.  **Pontos Positivos:** Se houver acertos parciais ou um bom começo, destaque isso primeiro! (ex: "Você começou muito bem ao identificar...", "Seu raciocínio sobre X está correto!").
+    3.  **Áreas para Melhoria (Se Incorreta ou Parcialmente Correta):**
+        a. Explique o(s) principal(is) erro(s) conceitual(is) ou de cálculo de forma clara e paciente. Evite linguagem que possa desmotivar.
+        b. **Ofereça dicas construtivas** sobre o que o aluno pode revisar ou como pode repensar a questão (ex: "Que tal revisar o conceito de...?", "Uma dica: a fórmula para Y pode ser útil aqui.", "Tente pensar se há outros fatores que influenciam Z.").
+        c. **NÃO** forneça a resposta correta completa, mas você pode guiar o aluno para que ele mesmo a encontre.
+    4.  **Tom:** Mantenha um tom positivo, paciente e encorajador durante toda a avaliação.
+    5.  Use markdown para formatação básica (negrito, itálico) para melhorar a legibilidade.
     
     **Resposta do Aluno:**
     <resposta do aluno>
     {resposta_aluno}
     </resposta do aluno>
     
-    **Sua Avaliação Direta:**
+    **Sua Avaliação Encorajadora:**
     """
     try:
         completion = client.chat.completions.create(

@@ -139,7 +139,7 @@ else:
             "Área do Aluno": [
                 st.Page("paginas/inicial.py", title="Início", icon='🏠', default=True), 
                 st.Page("paginas/aulas.py", title="Aulas", icon='📚'), 
-                st.Page("paginas/exercicios.py", title="Exercícios", icon='✍️'),
+                st.Page("paginas/exercicios.py", title="Corretor AI", icon='✍️'),
                 st.Page("paginas/chatbot.py", title="Professor AI", icon='👨🏽‍🏫'),
                 st.Page("paginas/prova.py", title="Avaliação AI", icon='📝'),
                 st.Page("paginas/forum.py", title="Fórum", icon='💬'),

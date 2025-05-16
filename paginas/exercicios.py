@@ -6,35 +6,7 @@ import os
 from paginas.llms import avaliar_resposta_exercicio
 from paginas.funcoes import registrar_atividade_academica, registrar_acao_usuario
 
-st.title("📋 Exercícios")
-
-# --- Download do PDF --- 
-st.markdown("**Lista Completa (PDF):**")
-caminho_pdf_exercicios = "arquivos/lista1.pdf"
-if os.path.exists(caminho_pdf_exercicios):
-    try:
-        with open(caminho_pdf_exercicios, "rb") as pdf_file:
-            st.download_button(
-                label="📥 Baixar Lista 1 (PDF)",
-                data=pdf_file,
-                file_name="lista1_exercicios.pdf",
-                mime="application/pdf",
-                use_container_width=False,
-                on_click=lambda: registrar_atividade_academica(
-                    tipo="exercicio",
-                    modulo="Lista 1",
-                    detalhes={
-                        "acao": "download_pdf",
-                        "arquivo": "lista1_exercicios.pdf"
-                    }
-                )
-            )
-    except Exception as e:
-        st.error(f"Erro ao ler PDF: {e}")
-else:
-    st.warning(f"Arquivo '{caminho_pdf_exercicios}' não encontrado.")
-
-st.divider() # Adiciona um separador após o botão
+st.title("🤖 Corretor AI")
 
 # --- Carregar Dados dos Exercícios ---
 def carregar_exercicios(caminho_json):
