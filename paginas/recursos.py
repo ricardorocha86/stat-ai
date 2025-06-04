@@ -64,7 +64,7 @@ else:
     st.warning(f"Arquivo da Lista 2 de Exercícios (PDF) não encontrado em '{caminho_pdf_exercicios_2}'.")
 
 
-# Download do PDF da Lista 2
+# Download do PDF da Lista 3
 caminho_pdf_exercicios_3 = "arquivos/lista3_exercicios.pdf"
 if os.path.exists(caminho_pdf_exercicios_3):
     try:
