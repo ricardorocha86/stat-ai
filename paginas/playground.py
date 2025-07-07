@@ -5,14 +5,7 @@ import scipy.stats as stats
 import pandas as pd
 from scipy.stats import norm, t, chi2
 import seaborn as sns
-
-# Configuração da página
-st.set_page_config(
-    page_title="Playground de Inferência Estatística",
-    page_icon="📊",
-    layout="wide",
-    initial_sidebar_state="expanded"
-)
+ 
 
 # Configuração do estilo dos gráficos
 import matplotlib
