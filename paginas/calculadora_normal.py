@@ -7,12 +7,6 @@ from scipy.stats import norm, t, chi2
 import seaborn as sns
 
 # Configuração da página
-st.set_page_config(
-    page_title="Calculadora da Normal",
-    page_icon="📊",
-    layout="wide",
-    initial_sidebar_state="expanded"
-)
 
 # Configuração do estilo dos gráficos
 import matplotlib
