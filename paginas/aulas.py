@@ -53,47 +53,54 @@ licao_selecionada_nome = ""
 if not modulos:
     st.warning("Nenhum módulo de aula encontrado. Verifique se os subdiretórios foram criados corretamente dentro da pasta 'aulas'.")
 else:
-    # --- Seleção no Corpo Principal (Expansível) ---
-    with st.expander("Navegação das Aulas", expanded=False): # Alterado de st.sidebar para st.expander
-        modulo_selecionado_nome_fmt = st.pills(
-            'Selecione um Módulo:',
+    # --- Seleção de Módulo e Lição em Colunas ---
+    col1, col2 = st.columns([1,2])
+
+    with col1:
+        # Usamos st.selectbox para permitir a definição de um índice padrão.
+        # O padrão é o último módulo na lista (o mais recente).
+        modulo_selecionado_nome_fmt = st.selectbox(
+            'Unidade:',
             modulos, 
+            index=len(modulos) - 1, # Define o último módulo como padrão
             format_func=formatar_nome_modulo,
-            key="select_modulo"
+            key="select_modulo_main"
         )
 
-        if modulo_selecionado_nome_fmt:
-            # Constrói o caminho completo para o diretório do módulo selecionado
-            diretorio_modulo_selecionado = os.path.join(diretorio_base_aulas, modulo_selecionado_nome_fmt)
-            licoes_no_modulo = buscar_licoes(diretorio_modulo_selecionado)
+    # Busca as lições baseadas no módulo selecionado
+    diretorio_modulo_selecionado = os.path.join(diretorio_base_aulas, modulo_selecionado_nome_fmt)
+    licoes_no_modulo = buscar_licoes(diretorio_modulo_selecionado)
+    licao_selecionada_nome = "" # Inicializa a variável
 
-            if not licoes_no_modulo:
-                st.warning(f"Nenhuma lição (.txt) encontrada no módulo '{formatar_nome_modulo(modulo_selecionado_nome_fmt)}'.")
-            else:
-                licao_selecionada_nome = st.selectbox(
-                    'Selecione uma Lição:',
-                    licoes_no_modulo,
-                    format_func=formatar_nome_licao, # Usa a função para remover .txt
-                    key="select_licao"
-                )
+    with col2:
+        if not licoes_no_modulo:
+            st.warning("Nenhuma lição encontrada neste módulo.")
+        else:
+            # O seletor de lição é populado com base no módulo escolhido.
+            # O padrão é a primeira lição da lista.
+            licao_selecionada_nome = st.selectbox(
+                'Aula:',
+                licoes_no_modulo,
+                format_func=formatar_nome_licao,
+                key="select_licao_main",
+                index=0 # Define a primeira aula como padrão
+            )
 
-                if licao_selecionada_nome:
-                    caminho_licao = os.path.join(diretorio_modulo_selecionado, licao_selecionada_nome)
-                    conteudo_licao_selecionada = ler_licao(caminho_licao)
-                    # Registra acesso à lição
-                    registrar_atividade_academica(
-                        tipo="aula",
-                        modulo=formatar_nome_modulo(modulo_selecionado_nome_fmt),
-                        detalhes={
-                            "licao": formatar_nome_licao(licao_selecionada_nome),
-                            "acao": "visualizacao"
-                        }
-                    )
+    if licao_selecionada_nome:
+        caminho_licao = os.path.join(diretorio_modulo_selecionado, licao_selecionada_nome)
+        conteudo_licao_selecionada = ler_licao(caminho_licao)
+        # Registra acesso à lição
+        registrar_atividade_academica(
+            tipo="aula",
+            modulo=formatar_nome_modulo(modulo_selecionado_nome_fmt),
+            detalhes={
+                "licao": formatar_nome_licao(licao_selecionada_nome),
+                "acao": "visualizacao"
+            }
+        )
 
 # --- Exibição do Conteúdo da Lição ---
-if conteudo_licao_selecionada:
-    st.header(f"Módulo: {formatar_nome_modulo(modulo_selecionado_nome_fmt)}")
-    st.markdown("--- ") # Separador visual
+if conteudo_licao_selecionada: 
     # Renderiza o conteúdo, passando o diretório base para resolver imagens
     st_markdown_with_images(conteudo_licao_selecionada, diretorio_base_aulas) 
    
