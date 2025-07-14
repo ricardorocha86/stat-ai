@@ -1,0 +1,85 @@
+# Lição 20 - Distribuição da Média Amostral e o Teorema Central do Limite
+
+## Introdução
+
+Nas aulas anteriores, exploramos a distribuição de uma variável aleatória $X$. Agora, vamos dar um passo adiante e analisar o comportamento de uma estatística muito importante: a **média amostral** ($\bar{X}$). Em vez de olharmos para a probabilidade de um único indivíduo ter uma certa característica, vamos estudar a probabilidade da *média de um grupo* ter um certo valor.
+
+Este conceito é a base da inferência estatística, pois nos permite fazer afirmações sobre uma população inteira a partir de uma amostra. A ferramenta que nos permite fazer essa ponte é o **Teorema Central do Limite (TCL)**, um dos resultados mais importantes da estatística.
+
+---
+
+## O que é a Distribuição da Média Amostral?
+
+Imagine que você não mede a altura de apenas um aluno, mas tira várias amostras aleatórias de, digamos, 30 alunos cada. Para cada amostra, você calcula a altura média. Se você fizer isso centenas de vezes, terá uma coleção de médias.
+
+A **distribuição da média amostral** é a distribuição de probabilidade de todas essas médias de amostra possíveis. O Teorema Central do Limite nos diz exatamente como essa distribuição se comporta.
+
+## O Teorema Central do Limite (TCL)
+
+O Teorema Central do Limite (TCL) afirma que, se o tamanho da amostra ($n$) for suficientemente grande (geralmente $n \geq 30$), a distribuição das médias amostrais ($\bar{X}$) será aproximadamente uma **distribuição normal**, não importando qual seja a distribuição da população original.
+
+### Características da Distribuição da Média Amostral:
+
+1.  **Média das Médias:** A média da distribuição das médias amostrais ($\mu_{\bar{X}}$) é igual à média da população ($\mu$).
+    $$\mu_{\bar{X}} = \mu$$
+2.  **Erro Padrão:** O desvio padrão da distribuição das médias amostrais é chamado de **erro padrão da média** ($\sigma_{\bar{X}}$). Ele é calculado dividindo-se o desvio padrão da população ($\sigma$) pela raiz quadrada do tamanho da amostra ($n$).
+    $$\sigma_{\bar{X}} = \frac{\sigma}{\sqrt{n}}$$
+    O erro padrão mede a variabilidade das médias amostrais. Note que, quanto maior o tamanho da amostra ($n$), menor será o erro padrão, o que significa que as médias das amostras estarão mais concentradas em torno da média da população.
+
+---
+
+## Como Calcular Probabilidades
+
+Com o Teorema Central do Limite, sabemos que a média amostral $\bar{X}$ segue uma distribuição Normal com média $\mu_{\bar{X}}$ e desvio padrão $\sigma_{\bar{X}}$.
+
+Portanto, para calcular probabilidades, usamos uma calculadora estatística ou um software, inserindo os seguintes parâmetros:
+* **Distribuição:** Normal
+* **Média:** $\mu_{\bar{X}} = \mu$
+* **Desvio Padrão:** $\sigma_{\bar{X}} = \frac{\sigma}{\sqrt{n}}$
+
+Com esses valores, a calculadora pode encontrar a probabilidade para qualquer intervalo desejado.
+
+---
+
+## Exemplo Prático
+
+Vamos usar o mesmo cenário da altura dos alunos, que segue uma distribuição com:
+* **Média populacional** ($\mu$) = 160 cm
+* **Desvio padrão populacional** ($\sigma$) = 10 cm
+
+**Pergunta:** Se sortearmos uma amostra aleatória de **25 alunos**, qual é a probabilidade de a **altura média** dessa amostra ser maior que 164 cm?
+
+### Resolução:
+
+1.  **Identificar os parâmetros da população e da amostra:**
+    * $\mu = 160$ cm
+    * $\sigma = 10$ cm
+    * $n = 25$
+    * Estamos procurando a probabilidade $P(\bar{X} > 164)$.
+
+2.  **Definir os parâmetros da distribuição da média amostral:**
+    * A média será a mesma da população: $\mu_{\bar{X}} = 160$ cm.
+    * Calculamos o erro padrão:
+        $$\sigma_{\bar{X}} = \frac{\sigma}{\sqrt{n}} = \frac{10}{\sqrt{25}} = \frac{10}{5} = 2 \text{ cm}$$
+
+3.  **Calcular a probabilidade usando uma calculadora:**
+    * Agora, inserimos os parâmetros da distribuição da média amostral na calculadora:
+        * Média = 160
+        * Desvio Padrão = 2
+    * Calculamos a probabilidade para o intervalo $P(\bar{X} > 164)$.
+    * A calculadora fornecerá o resultado:
+        $$P(\bar{X} > 164) \approx 0.0228$$
+
+**Resposta:** A probabilidade de a altura média de uma amostra de 25 alunos ser maior que 164 cm é de **2,28%**.
+
+---
+
+## Conclusão
+
+O Teorema Central do Limite é uma ferramenta extremamente poderosa. Ele nos permite usar a distribuição normal para fazer inferências sobre a média de uma população, mesmo que não saibamos qual é a distribuição original dessa população.
+
+1.  **Distribuição Amostral:** A distribuição da média amostral ($\bar{X}$) tende a ser normal para $n \geq 30$.
+2.  **Parâmetros-Chave:** O passo fundamental é calcular os parâmetros para a distribuição da média amostral: a média $\mu_{\bar{X}} = \mu$ e o erro padrão $\sigma_{\bar{X}} = \sigma / \sqrt{n}$.
+3.  **Aplicações:** O TCL é essencial para os próximos passos em estatística, como o cálculo de intervalos de confiança e a realização de testes de hipóteses.
+
+Na próxima aula, vamos aplicar esses conceitos para construir intervalos de confiança para a média populacional. Bons estudos!

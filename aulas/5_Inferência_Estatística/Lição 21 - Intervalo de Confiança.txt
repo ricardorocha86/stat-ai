@@ -1,0 +1,107 @@
+# Lição 21 - Intervalos de Confiança para a Média
+
+## Introdução
+
+Na última aula, vimos que a média de uma amostra ($\bar{X}$) nos dá uma ideia sobre a média da população ($\mu$). No entanto, se pegarmos outra amostra, o valor de $\bar{X}$ provavelmente será um pouco diferente. Então, em vez de usar apenas um número (uma estimativa pontual), seria mais útil fornecer um **intervalo de valores** que provavelmente contém a verdadeira média da população.
+
+É exatamente isso que um **intervalo de confiança** faz. Ele nos fornece uma faixa de valores plausíveis para um parâmetro populacional (como a média $\mu$) e nos diz o quão "confiantes" estamos de que a verdadeira média esteja dentro dessa faixa.
+
+## Estimação Pontual vs. por Intervalo
+
+Para entender a utilidade de um intervalo de confiança, vamos diferenciar dois tipos de estimativas:
+
+1.  **Estimativa Pontual:**
+    * [cite_start]É um único valor usado para estimar o parâmetro da população[cite: 4].
+    * A melhor estimativa pontual para a média populacional $\mu$ é a média amostral $\bar{X}$.
+    * **Problema:** É muito improvável que a média da nossa amostra seja *exatamente* igual à média da população.
+
+2.  **Estimativa por Intervalo (Intervalo de Confiança):**
+    * Fornece um intervalo (ou faixa) de valores que provavelmente contém o verdadeiro valor do parâmetro da população.
+    * Essa abordagem reconhece a incerteza presente na amostragem.
+
+---
+
+## Calculando um Intervalo de Confiança com Tecnologia
+
+Com as calculadoras estatísticas, o processo de encontrar um intervalo de confiança é direto. A informação que precisamos inserir depende se conhecemos ou não o desvio padrão da **população** ($\sigma$).
+
+1.  **Caso 1: $\sigma$ é Conhecido (Raro)**
+    * Se, por alguma razão (como dados históricos), o desvio padrão da população inteira for conhecido, nós o utilizamos no cálculo.
+
+2.  **Caso 2: $\sigma$ é Desconhecido (Mais Comum)**
+    * Na maioria das vezes, não conhecemos o desvio padrão da população.
+    * Nesse caso, calculamos o **desvio padrão da amostra ($s$)** e o utilizamos como uma estimativa para $\sigma$.
+    * **Regra Prática:** Se a nossa amostra for grande (geralmente **$n > 30$**), a aproximação usando $s$ no lugar de $\sigma$ é considerada muito boa e podemos continuar usando a distribuição Normal.
+
+Para a calculadora, os inputs serão:
+* Média da amostra ($\bar{X}$)
+* Desvio padrão ($\sigma$ se conhecido, ou $s$ se desconhecido e $n>30$)
+* Tamanho da amostra ($n$)
+* Nível de Confiança (ex: 95%, 99%)
+
+---
+
+## Exemplo Prático 1 ($\sigma$ Conhecido)
+
+Vamos continuar com o cenário da altura dos alunos, onde o **desvio padrão populacional** é conhecido: $\sigma = 10$ cm.
+
+**Pergunta:** Uma amostra aleatória de **49 alunos** foi selecionada e a **altura média observada foi de $\bar{X} = 162$ cm**. Construa e interprete um intervalo de confiança de **95%** para a verdadeira altura média de todos os alunos da escola.
+
+### Resolução:
+
+1.  **Identificar os dados do problema:**
+    * Média da amostra ($\bar{X}$): 162 cm
+    * Desvio padrão da população ($\sigma$): 10 cm
+    * Tamanho da amostra ($n$): 49
+    * Nível de Confiança: 95%
+
+2.  **Inserir os dados na calculadora:**
+    * Utilize a função de "Intervalo de Confiança para a Média".
+    * Informe os valores: $\bar{X}=162$, $\sigma=10$, $n=49$, Nível de Confiança=0.95.
+
+3.  **Obter o resultado:**
+    * **Limite Inferior:** 159.20 cm
+    * **Limite Superior:** 164.80 cm
+
+### Interpretação do Resultado
+
+O intervalo de confiança de 95% é **[159.20 cm, 164.80 cm]**. A interpretação correta é: **"Estamos 95% confiantes de que este intervalo contém a verdadeira média de altura ($\mu$) de todos os alunos da escola."**
+
+---
+
+## Exemplo Prático 2 ($\sigma$ Desconhecido, $n > 30$)
+
+**Cenário:** Uma empresa de laticínios quer estimar o volume médio de iogurte em seus potes. O volume ideal é de 150 ml.
+
+**Pergunta:** Uma amostra aleatória de **100 potes** é selecionada da linha de produção. A análise da amostra resulta em um **volume médio de $\bar{X} = 149.5$ ml** e um **desvio padrão amostral de $s = 5$ ml**. Construa um intervalo de confiança de 95% para o verdadeiro volume médio de todos os potes.
+
+### Resolução:
+
+1.  **Identificar os dados do problema:**
+    * Média da amostra ($\bar{X}$): 149.5 ml
+    * Desvio padrão da **amostra** ($s$): 5 ml
+    * Tamanho da amostra ($n$): 100
+    * Nível de Confiança: 95%
+
+2.  **Verificar as condições:**
+    * O desvio padrão da população ($\sigma$) é desconhecido.
+    * Como o tamanho da amostra $n = 100$ é maior que 30, podemos usar o desvio padrão da amostra ($s=5$) como uma boa estimativa para $\sigma$ e aplicar a aproximação pela Normal.
+
+3.  **Inserir os dados na calculadora:**
+    * Acesse a função de intervalo de confiança.
+    * Informe os valores: $\bar{X}=149.5$, $s=5$, $n=100$, Nível de Confiança=0.95.
+
+4.  **Obter o resultado:**
+    * A calculadora fornecerá o seguinte intervalo:
+    * **Limite Inferior:** 148.52 ml
+    * **Limite Superior:** 150.48 ml
+
+### Interpretação do Resultado
+
+O intervalo de confiança de 95% para o volume médio é **[148.52 ml, 150.48 ml]**. A interpretação é: **"Temos 95% de confiança de que o verdadeiro volume médio de todos os potes de iogurte produzidos está entre 148.52 ml e 150.48 ml."** Como o valor ideal de 150 ml está contido neste intervalo, não há evidências estatísticas para afirmar que o processo de envase está fora de controle.
+
+---
+
+## Conclusão
+
+Um intervalo de confiança nos dá uma gama de valores prováveis para a média da população. Vimos que, mesmo sem conhecer o desvio padrão da população (o que é comum), podemos usar o desvio padrão da amostra ($s$) para construir um intervalo confiável, desde que nossa amostra seja suficientemente grande ($n > 30$). O uso de tecnologia facilita o cálculo, permitindo que nosso foco seja a correta coleta de dados e a interpretação do resultado final.

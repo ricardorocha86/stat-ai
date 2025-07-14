@@ -1,0 +1,119 @@
+# Lição 22 - Teste de Hipóteses para Médias
+
+## Introdução
+
+Nas últimas aulas, aprendemos a estimar parâmetros de uma população, como a média, usando intervalos de confiança. Agora, vamos dar o próximo passo na inferência estatística: o **teste de hipóteses**.
+
+Um teste de hipóteses é um procedimento formal para tomar uma decisão sobre uma afirmação (uma "hipótese") a respeito de uma população. Por exemplo, um nutricionista pode afirmar que uma nova dieta reduz o colesterol. Um teste de hipóteses nos permite usar dados de uma amostra para verificar se essa afirmação tem mérito estatístico.
+
+Nesta aula, focaremos na lógica por trás do teste e no uso de calculadoras para obter o **p-valor**, que será nossa principal ferramenta de decisão. Assumiremos sempre que nossas amostras são grandes ($n>30$).
+
+## Os Componentes de um Teste de Hipóteses
+
+Todo teste de hipóteses possui os seguintes elementos:
+
+1.  **Hipótese Nula ($H_0$) e Hipótese Alternativa ($H_1$):**
+    * Essas duas hipóteses são afirmações matemáticas opostas e complementares. A **Hipótese Alternativa ($H_1$)** representa a nova teoria, a suspeita do pesquisador que ele quer provar. A **Hipótese Nula ($H_0$)** representa a negação dessa teoria, o status quo.
+    * Se $H_1$ propõe uma "melhora" (ex: $\mu > 10$), $H_0$ assume que não houve melhora (ex: $\mu \le 10$).
+    * **Importante:** O teste é sempre calculado usando o limite da hipótese nula (o sinal de igualdade, ex: $\mu = 10$).
+
+2.  **Nível de Significância ($\alpha$):** É o nosso critério de "quão forte deve ser a evidência". É a probabilidade máxima que estamos dispostos a aceitar de cometer um erro (rejeitar $H_0$ quando ela é, na verdade, verdadeira). Os valores mais comuns são $\alpha = 0.05$ (5%) e $\alpha = 0.01$ (1%).
+
+3.  **P-valor (p-value):** Esta é a nossa principal métrica, calculada pela calculadora usando os dados da distribuição normal correspondente.
+    * **Definição:** O p-valor é a probabilidade de obter um resultado amostral tão extremo, ou mais extremo, do que o que foi observado, *assumindo que a hipótese nula ($H_0$) seja verdadeira*.
+    * Um p-valor pequeno significa que nosso resultado amostral é muito raro ou "estranho" se a hipótese nula for verdade, o que nos leva a duvidar dela.
+
+### A Regra de Decisão (A Mais Importante)
+
+A decisão de um teste de hipóteses é simples e direta:
+
+> **Se o p-valor < $\alpha$, nós rejeitamos a Hipótese Nula ($H_0$).**
+> **Se o p-valor $\geq \alpha$, nós não rejeitamos a Hipótese Nula ($H_0$).**
+
+---
+
+### Exemplo 1: Teste Unilateral à Direita
+
+**Cenário:** Uma farmacêutica desenvolveu um novo suplemento que alega aumentar os níveis de absorção de ferro no sangue, cuja média populacional sem o suplemento é de 18 mg/dL. Uma amostra de $n=50$ pacientes que tomaram o suplemento apresentou uma média de $\bar{X} = 19.8$ mg/dL com um desvio padrão de $s=4.5$ mg/dL.
+
+**Pergunta:** Com base nesses dados, há evidência, a um nível de significância de 5%, para apoiar que o suplemento é eficaz?
+
+1.  **Formular as Hipóteses:**
+    * $H_0: \mu \le 18$ (O suplemento não aumenta a absorção média).
+    * $H_1: \mu > 18$ (O suplemento aumenta a absorção média).
+
+2.  **Nível de Significância:**
+    * $\alpha = 0.05$.
+
+3.  **Calcular o p-valor:**
+    * Vamos detalhar o raciocínio do cálculo:
+        * **Média sob $H_0$ ($\mu_0$):** 18
+        * **Dados da amostra:** $\bar{X}=19.8$, $s=4.5$, $n=50$
+        * **Tipo de teste:** Unilateral à direita ($H_1: \mu > \mu_0$)
+    * Primeiro, calculamos o **desvio da média amostral em relação à média da hipótese nula**, em unidades de erro padrão:
+        * O erro padrão da média é $DP = \dfrac{s}{\sqrt{n}} = \dfrac{4.5}{\sqrt{50}} \approx 0.636$.
+    * O **p-valor** é a probabilidade, assumindo que $H_0$ é verdadeira, de observarmos uma média amostral ($\bar{X}$) tão distante ou mais distante de $\mu_0$ do que a que observamos, **na direção da hipótese alternativa**. 
+     Ou seja, é a $P(\bar{X} > 19.8)$.
+    * Usando a calculadora, encontramos: **p-valor $\approx 0.0024$**.
+
+4.  **Decisão e Conclusão:**
+    * Como $0.0024 < 0.05$, **rejeitamos a hipótese nula**. Há evidência estatística significativa para concluir que o novo suplemento é eficaz em aumentar o nível médio de absorção de ferro no sangue.
+
+![Teste unilateral à direita](ferro.png)
+
+---
+
+### Exemplo 2: Teste Unilateral à Esquerda
+
+**Cenário:** Um nutricionista cria uma nova dieta para reduzir o nível de colesterol LDL ("colesterol ruim"), cujo nível médio em um grupo de risco é de 140 mg/dL. Após 3 meses, uma amostra de $n=60$ pacientes que seguiram a dieta apresentou um nível de colesterol LDL médio de $\bar{X} = 134$ mg/dL e desvio padrão de $s=12$ mg/dL.
+
+**Pergunta:** É possível afirmar, com um nível de significância de 1%, que a dieta é eficaz na redução do colesterol?
+
+1.  **Formular as Hipóteses:**
+    * $H_0: \mu \ge 140$ (A dieta não reduz o colesterol médio).
+    * $H_1: \mu < 140$ (A dieta reduz o colesterol médio).
+
+2.  **Nível de Significância:**
+    * $\alpha = 0.01$.
+
+3.  **Calcular o p-valor:**
+    * Na calculadora: $\mu_0=140$, $\bar{X}=134$, $s=12$, $n=60$.
+    * Tipo de teste: Unilateral à esquerda ($H_1: \mu < \mu_0$).
+    * A calculadora retorna: **p-valor $\approx 0.00004$**.
+
+4.  **Decisão e Conclusão:**
+    * Como $0.00004 < 0.01$, **rejeitamos a hipótese nula**. Há evidência estatística muito forte para afirmar que a nova dieta é eficaz na redução do nível médio de colesterol LDL.
+
+![Teste unilateral à esquerda](colesterol.png)
+
+---
+
+### Exemplo 3: Teste Bilateral
+
+**Cenário:** Uma farmácia de manipulação prepara cápsulas que devem conter exatamente 50mg de um princípio ativo. Para verificar o controle de qualidade, uma amostra de $n=40$ cápsulas foi selecionada, resultando em um peso médio de $\bar{X}=50.8$mg e desvio padrão de $s=2.5$mg.
+
+**Pergunta:** Ao nível de significância de 1%, há evidência de que a dosagem média está fora do especificado (para mais ou para menos)?
+
+1.  **Formular as Hipóteses:**
+    * $H_0: \mu = 50$ (A dosagem média está correta).
+    * $H_1: \mu \neq 50$ (A dosagem média está incorreta).
+
+2.  **Nível de Significância:**
+    * $\alpha = 0.01$.
+
+3.  **Calcular o p-valor:**
+    * Inputs da calculadora: $\mu_0=50$, $\bar{X}=50.8$, $s=2.5$, $n=40$.
+    * Tipo de teste: Bilateral ($H_1: \mu \neq \mu_0$).
+    * A calculadora retorna: **p-valor $\approx 0.043$**.
+
+4.  **Decisão e Conclusão:**
+    * Como $0.043 > 0.01$, **não rejeitamos a hipótese nula**. Apesar de a média da amostra (50.8mg) ser um pouco maior que o alvo, não há evidência estatística forte o suficiente (ao nível de 1%) para concluir que o processo está fora de controle.
+
+
+![Teste bilateral](dosagem.png)
+
+---
+
+## Conclusão
+
+O teste de hipóteses, especialmente quando usamos o p-valor, é uma ferramenta poderosa para tomar decisões baseadas em dados. A lógica é sempre a mesma: estabelecemos uma hipótese nula, coletamos dados e calculamos a probabilidade (p-valor) de obter tais dados se a nula fosse verdade. Se essa probabilidade for muito baixa (menor que $\alpha$), temos confiança para rejeitar a hipótese nula e aceitar a alternativa.

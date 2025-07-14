@@ -143,8 +143,8 @@ else:
                 st.Page("paginas/chatbot.py", title="Professor AI", icon='👨🏽‍🏫'),
                 st.Page("paginas/prova.py", title="Avaliação AI", icon='📝'),
                 st.Page("paginas/forum.py", title="Fórum", icon='💬'),
-                st.Page("paginas/recursos.py", title="Recursos", icon='📂'),
-                st.Page("paginas/playground.py", title="Playground", icon='🎮'),
+                st.Page("paginas/listas.py", title="Listas de Exercícios", icon='📚'),
+                st.Page("paginas/calculadora_normal.py", title="Calculadora da Normal", icon='🧮'),
                 st.Page("paginas/guided_learning.py", title="Guided Learning Experience", icon='🔮'),
             ],
             "Minha Conta": [ 

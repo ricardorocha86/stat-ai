@@ -1,0 +1,94 @@
+# Lição 23: Teste de Hipóteses para a Diferença de Duas Médias
+
+## Introdução
+
+Em muitas situações práticas em nutrição, farmácia e outras áreas da saúde, o interesse não está em um único grupo, mas na **comparação entre dois grupos independentes**. Queremos saber, por exemplo, se um novo medicamento é mais eficaz que um placebo, ou se uma dieta é superior a outra.
+
+Nesta aula, aprenderemos a realizar um teste de hipóteses para determinar se existe uma diferença estatisticamente significativa entre as médias de duas populações. A boa notícia é que faremos isso usando a mesma lógica da Lição 22, através de uma dedução inteligente que transforma um problema de duas amostras em um problema de uma amostra.
+
+## A Distribuição da Diferença Entre Médias
+
+Vamos começar com o que já sabemos. Considere dois grupos independentes com amostras grandes ($n_1 > 30$ e $n_2 > 30$). Pelo Teorema Central do Limite, a distribuição das médias amostrais de cada grupo é aproximadamente Normal:
+* $\bar{X}_1$ segue uma distribuição Normal com média $\mu_1$ e desvio padrão $\frac{s_1}{\sqrt{n_1}}$. 
+* $\bar{X}_2$ segue uma distribuição Normal com média $\mu_2$ e desvio padrão $\frac{s_2}{\sqrt{n_2}}$. 
+
+Agora, a propriedade fundamental: **a diferença entre duas variáveis aleatórias normais e independentes também é uma variável aleatória Normal**.
+
+Se definirmos uma nova variável, $D = \bar{X}_1 - \bar{X}_2$, a distribuição de $D$ será aproximadamente Normal com os seguintes parâmetros:
+* **Média da Diferença:** $\mu_D = \mu_1 - \mu_2$
+* **Erro Padrão da Diferença:** $s_D = \sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}$
+
+## De Duas Amostras para Uma:
+
+Com o resultado acima, a tarefa de comparar $\mu_1$ e $\mu_2$ se transforma em um teste de hipóteses sobre a média de uma única variável: a diferença $D$.
+
+O teste mais comum é para verificar se há alguma diferença entre os grupos. A hipótese nula, nesse caso, é que não há diferença, ou seja, $\mu_1 = \mu_2$. Veja a equivalência:
+* A hipótese **$H_0: \mu_1 = \mu_2$** é idêntica a **$H_0: \mu_1 - \mu_2 = 0$**, que é o mesmo que **$H_0: \mu_D = 0$**.
+
+Da mesma forma, as hipóteses alternativas se traduzem:
+* Para testar se há **qualquer diferença**: $H_1: \mu_1 \neq \mu_2 \implies H_1: \mu_D \neq 0$ (Teste Bilateral)
+* Para testar se o Grupo 1 tem média **maior**: $H_1: \mu_1 > \mu_2 \implies H_1: \mu_D > 0$ (Teste Unilateral à Direita)
+* Para testar se o Grupo 1 tem média **menor**: $H_1: \mu_1 < \mu_2 \implies H_1: \mu_D < 0$ (Teste Unilateral à Esquerda)
+
+Uma vez que formulamos o problema dessa maneira, aplicamos a mesma lógica do p-valor da Lição 22 para tomar nossa decisão.
+
+---
+
+### Exemplo 1: Diferença Significativa Encontrada (Rejeita-se $H_0$)
+
+**Cenário:** Um estudo em nutrição quer comparar a eficácia de duas dietas populares (Dieta A e Dieta B) na perda de peso. Para isso, dois grupos de voluntários foram acompanhados. O Grupo A ($n_1=50$) perdeu em média $\bar{X}_1=7.8$ kg com desvio padrão $s_1=2.5$ kg. O Grupo B ($n_2=60$) perdeu em média $\bar{X}_2=6.2$ kg com desvio padrão $s_2=2.1$ kg.
+
+**Pergunta:** Há evidência estatística, com um nível de significância de 5%, para afirmar que a Dieta A é mais eficaz que a Dieta B?
+
+1.  **Formular as Hipóteses:**
+    * $H_0: \mu_A - \mu_B  \le  0 $ (A Dieta A não é mais eficaz que a B).
+    * $H_1: \mu_A - \mu_B > 0 $ (A Dieta A é mais eficaz que a B).
+
+2.  **Nível de Significância:**
+    * $\alpha = 0.05$.
+
+3.  **Cálculo do p-valor:**
+    * Primeiro, definimos a distribuição da diferença $D$ sob $H_0$. A média da diferença é $\mu_D=0$. O erro padrão da diferença é:
+      $s_D = \sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}} = \sqrt{\frac{2.5^2}{50} + \frac{2.1^2}{60}} = \sqrt{0.125 + 0.0735} \approx 0.4455$ kg.
+    * A diferença observada na amostra foi de $\bar{D} = 7.8 - 6.2 = 1.6$ kg.
+    * O p-valor é a probabilidade de se observar uma diferença de ao menos 1.6 kg, dada a distribuição Normal com média 0 e desvio padrão 0.4455. Ou seja, calculamos $P(D \ge 1.6)$.
+    * Realizando o teste conforme a lógica da aula 22, encontramos: **p-valor $\approx 0.00016$**.
+
+4.  **Decisão e Conclusão:**
+    * Como $0.00016 < 0.05$, **rejeitamos a hipótese nula**. Há evidência estatística muito forte para concluir que a Dieta A promove uma perda de peso média superior à da Dieta B.
+
+
+![Teste de Médias](exemplo1.png)
+
+
+---
+
+### Exemplo 2: Diferença Não Significativa (Não se Rejeita $H_0$)
+
+**Cenário:** Uma empresa farmacêutica compara o tempo de alívio da dor entre uma nova formulação de analgésico e a formulação padrão. Para o Grupo 1 (nova formulação, $n_1=40$), o tempo médio de alívio foi $\bar{X}_1=15.2$ minutos com $s_1=4.1$ min. Para o Grupo 2 (formulação padrão, $n_2=45$), a média foi $\bar{X}_2=14.1$ minutos com $s_2=3.9$ min.
+
+**Pergunta:** Há evidência de uma diferença significativa no tempo de alívio entre as duas formulações, usando $\alpha=0.05$?
+
+1.  **Formular as Hipóteses:**
+    * $H_0: \mu_1 - \mu_2 = 0$ (Não há diferença na eficácia entre as formulações).
+    * $H_1: \mu_1 - \mu_2 \neq 0$ (Existe diferença na eficácia).
+
+2.  **Nível de Significância:**
+    * $\alpha = 0.05$.
+
+3.  **Cálculo do p-valor:**
+    * Sob $H_0$, a média da diferença é $\mu_D=0$. O erro padrão da diferença é:
+      $s_D = \sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}} = \sqrt{\frac{4.1^2}{40} + \frac{3.9^2}{45}} = \sqrt{0.42025 + 0.338} \approx 0.8708$ min.
+    * A diferença observada na amostra foi de $\bar{D} = 15.2 - 14.1 = 1.1$ min.
+    * Como o teste é bilateral, o p-valor é o dobro da probabilidade de se observar uma diferença de ao menos 1.1 min em qualquer direção. Calculamos $2 \times P(D \ge 1.1)$ na distribuição Normal com média 0 e desvio padrão 0.8708.
+    * Realizando o teste, encontramos: **p-valor $\approx 0.207$**.
+
+4.  **Decisão e Conclusão:**
+    * Como $0.207 > 0.05$, **não rejeitamos a hipótese nula**. A diferença de 1.1 min observada nas amostras não é estatisticamente significativa. Não temos evidências para afirmar que uma formulação seja diferente da outra em seu tempo médio de alívio da dor.
+
+![Teste de Diferença de Médias](exemplo2.png)
+
+
+## Conclusão Final
+
+Parabéns! Ao longo das últimas aulas, construímos uma base sólida de estatística inferencial. Começamos com distribuições de probabilidade, aprendemos a estimar parâmetros populacionais com intervalos de confiança e, finalmente, investigamos a lógica do teste de hipóteses para tomar decisões baseadas em dados — tanto para uma única população quanto para a comparação entre duas.
