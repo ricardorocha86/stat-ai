@@ -1,7 +1,12 @@
 import streamlit as st 
 from paginas.funcoes import inicializar_firebase, obter_perfil_usuario, atualizar_perfil_usuario, login_usuario, registrar_acao_usuario
-import os # Importar os
+import os
 
+# Modo prova: defina como True para desativar aulas, corretor AI, professor AI e avaliação AI
+MODO_PROVA = False
+if MODO_PROVA:
+    st.sidebar.badge("MODO PROVA ATIVADO", icon=":material/warning:", color = 'blue')
+    st.sidebar.caption("Isso significa que a maioria das funcionalidades estão desativadas temporariamente.")
 # Inicializa o Firebase
 inicializar_firebase() 
 
@@ -134,28 +139,51 @@ else:
     elif perfil: # Primeiro acesso concluído ou perfil carregado corretamente
         # --- Navegação Principal do App ---
         
-        # Define a estrutura COMPLETA das páginas, incluindo Admin
-        paginas = {
-            "Área do Aluno": [
-                st.Page("paginas/inicial.py", title="Início", icon='🏠', default=True), 
-                st.Page("paginas/aulas.py", title="Aulas", icon='📚'), 
-                st.Page("paginas/exercicios.py", title="Corretor AI", icon='✍️'),
-                st.Page("paginas/chatbot.py", title="Professor AI", icon='👨🏽‍🏫'),
-                st.Page("paginas/prova.py", title="Avaliação AI", icon='📝'),
-                st.Page("paginas/forum.py", title="Fórum", icon='💬'),
-                st.Page("paginas/listas.py", title="Listas de Exercícios", icon='📚'),
-                st.Page("paginas/calculadora_normal.py", title="Calculadora da Normal", icon='🧮'),
-                st.Page("paginas/guided_learning.py", title="Guided Learning Experience", icon='🔮'),
-            ],
-            "Minha Conta": [ 
-                st.Page("paginas/perfil.py", title="Meu Perfil", icon='👤'), 
-                st.Page("paginas/termos.py", title="Termos e Privacidade", icon='📜'), 
-            ],
-            # Admin incluído por padrão, será removido se não for admin
-            "Admin": [ 
-                st.Page("paginas/admin.py", title="Painel Admin", icon='⚙️')
-            ] 
-        }
+        # Define a estrutura das páginas
+        if MODO_PROVA:
+            paginas = {
+                "Área do Aluno": [
+                    #st.Page("paginas/inicial.py", title="Início", icon='🏠', default=True), 
+                    #st.Page("paginas/aulas.py", title="Aulas", icon='📚'), 
+                    #st.Page("paginas/exercicios.py", title="Corretor AI", icon='✍️'),
+                    #st.Page("paginas/chatbot.py", title="Professor AI", icon='👨🏽‍🏫'),
+                    #st.Page("paginas/prova.py", title="Avaliação AI", icon='📝'),
+                    #st.Page("paginas/forum.py", title="Fórum", icon='💬'),
+                    #st.Page("paginas/listas.py", title="Listas de Exercícios", icon='📚'),
+                    st.Page("paginas/calculadora_normal.py", title="Calculadora da Normal", icon='🧮', default=True),
+                    #st.Page("paginas/guided_learning.py", title="Guided Learning Experience", icon='🔮'),
+                ],
+                "Minha Conta": [ 
+                    st.Page("paginas/perfil.py", title="Meu Perfil", icon='👤'), 
+                    st.Page("paginas/termos.py", title="Termos e Privacidade", icon='📜'), 
+                ],
+                "Admin": [ 
+                    st.Page("paginas/admin.py", title="Painel Admin", icon='⚙️')
+                ] 
+            }
+
+        # Adiciona páginas se não estiver em modo prova
+        if not MODO_PROVA:
+            paginas = {
+                "Área do Aluno": [
+                    st.Page("paginas/inicial.py", title="Início", icon='🏠', default=True), 
+                    st.Page("paginas/aulas.py", title="Aulas", icon='📚'), 
+                    st.Page("paginas/exercicios.py", title="Corretor AI", icon='✍️'),
+                    st.Page("paginas/chatbot.py", title="Professor AI", icon='👨🏽‍🏫'),
+                    st.Page("paginas/prova.py", title="Avaliação AI", icon='📝'),
+                    #st.Page("paginas/forum.py", title="Fórum", icon='💬'),
+                    st.Page("paginas/listas.py", title="Listas de Exercícios", icon='📚'),
+                    st.Page("paginas/calculadora_normal.py", title="Calculadora da Normal", icon='🧮'),
+                    #st.Page("paginas/guided_learning.py", title="Guided Learning Experience", icon='🔮'),
+                ],
+                "Minha Conta": [ 
+                    st.Page("paginas/perfil.py", title="Meu Perfil", icon='👤'), 
+                    st.Page("paginas/termos.py", title="Termos e Privacidade", icon='📜'), 
+                ],
+                "Admin": [ 
+                    st.Page("paginas/admin.py", title="Painel Admin", icon='⚙️')
+                ] 
+            }
 
         # --- DEBUGGING ADMIN CHECK REMOVIDO ---
         # st.sidebar.write("--- DEBUG INFO ---")
@@ -200,4 +228,4 @@ else:
 
     else: # Caso o perfil não possa ser carregado após o login
         st.error("Não foi possível carregar as informações do seu perfil. Tente recarregar a página ou contate o suporte.")
- 
+
