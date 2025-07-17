@@ -2,16 +2,16 @@ import streamlit as st
 from paginas.funcoes import inicializar_firebase, obter_perfil_usuario, atualizar_perfil_usuario, login_usuario, registrar_acao_usuario
 import os
 
-
-# Inicializa o Firebase
-inicializar_firebase() 
-
 st.set_page_config(
     page_title="Portal de Estatística",  # Novo Título
     page_icon="arquivos/avatar_assistente.jpg", # Alterado para usar o avatar do assistente
     layout='wide',                       # Melhor aproveitamento do espaço
     initial_sidebar_state="expanded"
 )
+
+# Inicializa o Firebase
+inicializar_firebase() 
+
 
 # Modo prova: defina como True para desativar aulas, corretor AI, professor AI e avaliação AI
 MODO_PROVA = True
