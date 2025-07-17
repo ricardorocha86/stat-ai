@@ -3,7 +3,7 @@ from paginas.funcoes import inicializar_firebase, obter_perfil_usuario, atualiza
 import os
 
 # Modo prova: defina como True para desativar aulas, corretor AI, professor AI e avaliação AI
-MODO_PROVA = False
+MODO_PROVA = True
 if MODO_PROVA:
     st.sidebar.badge("MODO PROVA ATIVADO", icon=":material/warning:", color = 'blue')
     st.sidebar.caption("Isso significa que a maioria das funcionalidades estão desativadas temporariamente.")
