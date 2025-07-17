@@ -2,11 +2,7 @@ import streamlit as st
 from paginas.funcoes import inicializar_firebase, obter_perfil_usuario, atualizar_perfil_usuario, login_usuario, registrar_acao_usuario
 import os
 
-# Modo prova: defina como True para desativar aulas, corretor AI, professor AI e avaliação AI
-MODO_PROVA = True
-if MODO_PROVA:
-    st.sidebar.badge("MODO PROVA ATIVADO", icon=":material/warning:", color = 'blue')
-    st.sidebar.caption("Isso significa que a maioria das funcionalidades estão desativadas temporariamente.")
+
 # Inicializa o Firebase
 inicializar_firebase() 
 
@@ -16,7 +12,14 @@ st.set_page_config(
     layout='wide',                       # Melhor aproveitamento do espaço
     initial_sidebar_state="expanded"
 )
- 
+
+# Modo prova: defina como True para desativar aulas, corretor AI, professor AI e avaliação AI
+MODO_PROVA = True
+if MODO_PROVA:
+    st.sidebar.badge("MODO PROVA ATIVADO", icon=":material/warning:", color = 'blue')
+    st.sidebar.caption("Isso significa que a maioria das funcionalidades estão desativadas temporariamente.")
+
+
 # Estilo CSS personalizado
 st.markdown("""
 <style>
