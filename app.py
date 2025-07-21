@@ -14,7 +14,7 @@ inicializar_firebase()
 
 
 # Modo prova: defina como True para desativar aulas, corretor AI, professor AI e avaliação AI
-MODO_PROVA = False
+MODO_PROVA = True
 
 if MODO_PROVA:
     st.sidebar.badge("MODO PROVA ATIVADO", icon=":material/warning:", color = 'blue')
