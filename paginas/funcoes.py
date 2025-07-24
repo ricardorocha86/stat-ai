@@ -63,7 +63,7 @@ def login_usuario():
             # Controle e Metadados
             "data_cadastro": datetime.now(),
             "ultimo_acesso": datetime.now(),
-            "primeiro_acesso_concluido": True # Flag para o formulário inicial
+            "primeiro_acesso_concluido": False # Flag para o formulário inicial
         }
         doc_ref.set(dados_usuario)
         # Define um flag para mostrar a mensagem de boas-vindas (opcional agora)
