@@ -7,7 +7,7 @@ import os # Necessário para as funções abaixo
 import re  # Necessário para as funções abaixo
 
 # Nome da coleção principal de usuários definida como variável global
-COLECAO_USUARIOS = "alunos-mata44-mat027-2025.1"
+COLECAO_USUARIOS = "alunos-mat027-2025.2"
 
 def inicializar_firebase():
     # Verifica se estamos em produção (Streamlit Cloud) ou desenvolvimento local
