@@ -11,7 +11,7 @@ from paginas.funcoes import (
     registrar_acao_usuario
 )
 # Importa apenas a função de gerar prova do llms
-from paginas.llms import gerar_prova_simulada 
+from paginas.llms import gerar_prova_simulada
 
 st.title("📝 Avaliação AI")
 st.info("Selecione um módulo para gerar uma prova simulada sobre os tópicos abordados.")

@@ -8,33 +8,22 @@ from paginas.funcoes import (
     obter_chats, 
     obter_chat, 
     excluir_chat,
-    login_usuario, 
     inicializar_firebase
 )
 from paginas.llms import gerar_titulo_chat
 from datetime import datetime
 
- 
 # Inicializa o Firebase
 inicializar_firebase() 
-
-# Verifica se o usuário está logado
-if not hasattr(st.experimental_user, 'is_logged_in') or not st.experimental_user.is_logged_in:
-    st.warning("Você precisa fazer login para acessar o chatbot.")
-    st.stop()
-
-# Realiza o login do usuário (atualiza último acesso)
-login_usuario() 
-
-# Registra a ação de login apenas na primeira vez que a página é carregada na sessão
-if 'login_registrado' not in st.session_state:
-    registrar_acao_usuario("Login", "Página Inicial")
-    st.session_state['login_registrado'] = True
 
 # Obtém o perfil e define o nome do usuário ANTES de usar no popover
 perfil = obter_perfil_usuario()
 # Usa o primeiro nome para a saudação, com fallback para o given_name do login ou 'Usuário'
-nome_usuario = perfil.get("primeiro_nome", getattr(st.experimental_user, 'given_name', 'Usuário'))
+nome_usuario = (
+    perfil.get("primeiro_nome")
+    or perfil.get("primeiro_nome_google")
+    or getattr(st.user, 'given_name', 'Usuário')
+)
 
 # Verifica e exibe a mensagem de boas-vindas no primeiro login
 if st.session_state.get('show_welcome_message', False):
@@ -50,7 +39,7 @@ openai_api_key = st.secrets["OPENAI_API_KEY"]
 client = OpenAI(api_key=openai_api_key)
 
 # Define o avatar do usuário: usa a foto do perfil se for uma URL válida, senão usa o avatar padrão
-user_picture = getattr(st.experimental_user, 'picture', None)
+user_picture = getattr(st.user, 'picture', None)
 if user_picture and isinstance(user_picture, str) and user_picture.startswith(('http://', 'https://')):
     avatar_user = user_picture
 else:

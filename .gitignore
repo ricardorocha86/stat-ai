@@ -1,0 +1,34 @@
+# Dependências
+node_modules/
+venv/
+.venv/
+env/
+__pycache__/
+*.py[cod]
+
+# Arquivos de ambiente
+.env
+.streamlit/secrets.toml
+.streamlit/secrets*.toml
+firebase-key.json
+stat-ai-firebase.json
+
+# Arquivos de build
+/build/
+/dist/
+
+# Logs
+*.log
+
+# Arquivos do sistema operacional
+.DS_Store
+Thumbs.db
+
+# Arquivos de IDE
+.idea/
+.vscode/
+
+# Arquivos temporários
+tmp/
+*.csv
+*.pdf 

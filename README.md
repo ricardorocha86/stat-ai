@@ -8,7 +8,7 @@ Este é um sistema completo de chatbot construído com Streamlit, oferecendo uma
 
 ### 1. Sistema de Autenticação
 - Login seguro através de contas Google
-- Autenticação gerenciada pelo Streamlit (`st.experimental_user`)
+- Autenticação gerenciada pelo Streamlit (`st.user`)
 - Proteção de rotas e conteúdo baseado em autenticação
 - Registro automático de novos usuários
 
@@ -63,6 +63,9 @@ Este é um sistema completo de chatbot construído com Streamlit, oferecendo uma
 - Guias de uso para usuários
 - Instruções de configuração
 - Exemplos práticos
+
+### 9. Modo Prova
+- Para desativar aulas, corretor AI, professor AI e avaliação AI, altere `MODO_PROVA = True` no app.py
 
 ## 🛠️ Configuração do Ambiente
 
@@ -192,6 +195,72 @@ streamlit run app.py
 - Sugestões de melhorias são bem-vindas
 - Siga as diretrizes de contribuição
 - Mantenha o código documentado
+
+## 🤖 Funcionalidades e Usos de Inteligência Artificial
+
+### Visão Geral das Tecnologias de IA Implementadas
+
+O **Stat-AI** é uma plataforma educacional avançada que integra múltiplas tecnologias de Inteligência Artificial para criar uma experiência de aprendizado personalizada e interativa. Abaixo está um relatório completo das funcionalidades e usos de IA implementados:
+
+### 🤖 **Professor AI (Chatbot Inteligente)**
+- **Modelo**: OpenAI GPT-4o-mini
+- **Técnicas**: RAG (Retrieval Augmented Generation), Engenharia de Prompt
+- **Descrição**: Chat conversacional inteligente que acessa automaticamente o conteúdo das aulas para fornecer respostas contextualizadas com referências às fontes, suporte a formatação matemática e histórico persistente.
+
+### ✍️ **Corretor AI (Avaliação de Exercícios)**
+- **Modelo**: OpenAI GPT-4o-mini
+- **Técnicas**: Engenharia de Prompt
+- **Descrição**: Sistema de avaliação construtiva que analisa respostas de exercícios fornecendo feedback personalizado, identificando pontos positivos e áreas de melhoria sem revelar respostas completas.
+
+### 📚 **Gerador de Exercícios AI**
+- **Modelo**: OpenAI GPT-4o-mini
+- **Técnicas**: Engenharia de Prompt, Streaming API
+- **Descrição**: Cria automaticamente 3 exercícios abertos baseados no conteúdo das aulas, incluindo resoluções detalhadas focadas em raciocínio e aplicação prática.
+
+### 💡 **Gerador de Insights AI**
+- **Modelo**: OpenAI GPT-4o-mini
+- **Técnicas**: Engenharia de Prompt, Streaming API
+- **Descrição**: Extrai automaticamente 10 insights principais de cada lição, formatando-os em bullet points concisos com destaque para conceitos importantes.
+
+### ❓ **Quiz AI Interativo**
+- **Modelo**: OpenAI GPT-4o-mini
+- **Técnicas**: Output Estruturado (JSON Mode)
+- **Descrição**: Gera automaticamente quizzes de 5 questões de múltipla escolha com sistema de correção automática, cálculo de pontuação e feedback personalizado.
+
+### 📇 **Flashcards AI**
+- **Modelo**: OpenAI GPT-4o-mini
+- **Técnicas**: Output Estruturado (JSON Mode)
+- **Descrição**: Cria 5-7 flashcards interativos por lição com interface 3D, navegação entre cards e formato frente/verso otimizado para estudo.
+
+### 📝 **Avaliação AI (Prova Simulada)**
+- **Modelo**: OpenAI GPT-4o-mini
+- **Técnicas**: Output Estruturado (JSON Mode)
+- **Descrição**: Gera provas simuladas de 5 questões por módulo com análise completa do conteúdo, questões variadas e métricas de desempenho automáticas.
+
+
+### 📋 Resumo das Tecnologias de IA Utilizadas
+
+| Tecnologia | Aplicação | Status |
+|------------|-----------|--------|
+| OpenAI GPT-4o-mini | Chatbot, Avaliação, Geração de Conteúdo | ✅ Implementado |
+| RAG (File Search) | Busca semântica em aulas | ✅ Implementado |
+| Output Estruturado | Quizzes, Flashcards, Provas | ✅ Implementado |
+| Streaming API | Respostas em tempo real | ✅ Implementado |
+| Firebase AI | Persistência e Analytics | ✅ Implementado |
+| Personalização IA | Adaptação por usuário | ✅ Implementado |
+| Analytics IA | Métricas e monitoramento | ✅ Implementado |
+
+### 🎯 Impacto Educacional
+
+O **Stat-AI** representa uma implementação completa de tecnologias de IA para educação, oferecendo:
+
+- **Aprendizado Personalizado**: IA adapta conteúdo e feedback
+- **Avaliação Inteligente**: Correção automática com feedback construtivo
+- **Geração de Conteúdo**: Criação automática de exercícios e materiais
+- **Analytics Avançado**: Monitoramento de progresso e engajamento
+- **Experiência Interativa**: Chat, quizzes, flashcards e provas dinâmicas
+
+---
 
 ## 📄 Licença
 

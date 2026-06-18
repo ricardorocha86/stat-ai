@@ -7,7 +7,21 @@ import os # Necessário para as funções abaixo
 import re  # Necessário para as funções abaixo
 
 # Nome da coleção principal de usuários definida como variável global
-COLECAO_USUARIOS = "alunos-mat027-2025.2"
+COLECAO_USUARIOS = "alunos-mata44-mat027-2025.1"
+
+def _perfil_local():
+    if "perfil_local" not in st.session_state:
+        st.session_state["perfil_local"] = {
+            "email": "local@localhost",
+            "foto": "",
+            "nome_completo": "Aluno(a)",
+            "matricula": "",
+            "curso": "",
+            "primeiro_acesso_concluido": True,
+            "nome_google": "",
+            "primeiro_nome_google": "Aluno(a)",
+        }
+    return st.session_state["perfil_local"]
 
 def inicializar_firebase():
     # Verifica se estamos em produção (Streamlit Cloud) ou desenvolvimento local
@@ -35,50 +49,6 @@ def inicializar_firebase():
     except ValueError:
         firebase_admin.initialize_app(cred)
 
-def login_usuario():
-    """
-    Registra ou atualiza dados do usuário no Firestore.
-    Cria um novo registro se o usuário não existir, ou atualiza o último acesso se já existir.
-    Retorna True se for o primeiro login, False caso contrário.
-    """
-    if not hasattr(st.experimental_user, 'email'):
-        return False # Se não houver email, não tenta registrar o usuário
-        
-    db = firestore.client()
-    doc_ref = db.collection(COLECAO_USUARIOS).document(st.experimental_user.email)
-    doc = doc_ref.get()
-
-    if not doc.exists:
-        dados_usuario = {
-            # Dados do Google Login
-            "email": st.experimental_user.email,
-            "nome_google": getattr(st.experimental_user, 'name', ''),
-            "primeiro_nome_google": getattr(st.experimental_user, 'given_name', ''),
-            "ultimo_nome_google": getattr(st.experimental_user, 'family_name', ''),
-            "foto": getattr(st.experimental_user, 'picture', None),
-            # Dados específicos do App (coletados no primeiro acesso)
-            "nome_completo": "", 
-            "matricula": "",
-            "curso": "", # Farmácia ou Nutrição
-            # Controle e Metadados
-            "data_cadastro": datetime.now(),
-            "ultimo_acesso": datetime.now(),
-            "primeiro_acesso_concluido": False # Flag para o formulário inicial
-        }
-        doc_ref.set(dados_usuario)
-        # Define um flag para mostrar a mensagem de boas-vindas (opcional agora)
-        # st.session_state['show_welcome_message'] = True 
-        registrar_acao_usuario("Cadastro", "Novo usuário registrado")
-        if 'login_registrado' not in st.session_state:
-             st.session_state['login_registrado'] = True # Marca como registrado para evitar loop
-        return True # Indica que é o primeiro login
-    else:
-        doc_ref.update({"ultimo_acesso": datetime.now()})
-        if 'login_registrado' not in st.session_state:
-            registrar_acao_usuario("Login", "Usuário fez login")
-            st.session_state['login_registrado'] = True
-        return False # Indica que não é o primeiro login
-
 def registrar_acao_usuario(acao: str, detalhes: str = ""):
     """
     Registra uma ação do usuário no Firestore.
@@ -87,11 +57,11 @@ def registrar_acao_usuario(acao: str, detalhes: str = ""):
         acao: Nome da ação realizada
         detalhes: Detalhes adicionais da ação (opcional)
     """
-    if not hasattr(st.experimental_user, 'email'):
+    if not st.user.is_logged_in:
         return  # Se não houver email, não registra a ação
         
     db = firestore.client()
-    logs_ref = db.collection(COLECAO_USUARIOS).document(st.experimental_user.email).collection("logs")
+    logs_ref = db.collection(COLECAO_USUARIOS).document(st.user.email).collection("logs")
     
     dados_log = {
         "acao": acao,
@@ -114,11 +84,11 @@ def registrar_atividade_academica(tipo: str, modulo: str, detalhes: dict):
             - Para exercícios: {"questoes_total": 10, "acertos": 8}
             - Para avaliações: {"nota": 9.5, "tempo_prova": "minutos"}
     """
-    if not hasattr(st.experimental_user, 'email'):
+    if not st.user.is_logged_in:
         return
         
     db = firestore.client()
-    atividades_ref = db.collection(COLECAO_USUARIOS).document(st.experimental_user.email).collection("atividades_academicas")
+    atividades_ref = db.collection(COLECAO_USUARIOS).document(st.user.email).collection("atividades_academicas")
     
     dados_atividade = {
         "tipo": tipo,
@@ -152,11 +122,11 @@ def obter_perfil_usuario():
     Returns:
         dict: Dicionário com os dados do perfil do usuário ou None se não encontrado/erro.
     """
-    if not hasattr(st.experimental_user, 'email'):
-        return None
+    if not st.user.is_logged_in:
+        return _perfil_local()
         
     db = firestore.client()
-    doc_ref = db.collection(COLECAO_USUARIOS).document(st.experimental_user.email)
+    doc_ref = db.collection(COLECAO_USUARIOS).document(st.user.email)
     try:
         doc = doc_ref.get()
         if doc.exists:
@@ -180,7 +150,7 @@ def obter_perfil_usuario():
             st.error("Seu registro não foi encontrado no banco de dados. Contate o suporte.")
             return None 
     except Exception as e:
-        print(f"Erro ao obter perfil para {st.experimental_user.email}: {e}")
+        print(f"Erro ao obter perfil para {st.user.email}: {e}")
         st.warning("Não foi possível carregar os dados do seu perfil.")
         return None
 
@@ -194,16 +164,17 @@ def atualizar_perfil_usuario(dados_perfil):
     Returns:
         bool: True se a atualização foi bem-sucedida, False caso contrário
     """
-    if not hasattr(st.experimental_user, 'email'):
-        return False  # Retorna False se não houver email
+    if not st.user.is_logged_in:
+        _perfil_local().update(dados_perfil)
+        return True
         
     db = firestore.client()
-    doc_ref = db.collection(COLECAO_USUARIOS).document(st.experimental_user.email)
+    doc_ref = db.collection(COLECAO_USUARIOS).document(st.user.email)
     try:
         doc_ref.update(dados_perfil)
         return True
     except Exception as e:
-        print(f"Erro ao atualizar perfil para {st.experimental_user.email}: {e}")
+        print(f"Erro ao atualizar perfil para {st.user.email}: {e}")
         st.error("Ocorreu um erro ao salvar suas informações. Tente novamente.")
         return False
 
@@ -219,11 +190,11 @@ def salvar_chat(nome_chat, mensagens):
     Returns:
         str: ID do chat salvo ou None em caso de erro
     """
-    if not hasattr(st.experimental_user, 'email'):
+    if not st.user.is_logged_in:
         return None  # Retorna None se não houver email
         
     db = firestore.client()
-    chat_ref = db.collection(COLECAO_USUARIOS).document(st.experimental_user.email).collection("chats")
+    chat_ref = db.collection(COLECAO_USUARIOS).document(st.user.email).collection("chats")
     
     # Se não tiver nome, usa a data/hora como nome
     if not nome_chat:
@@ -253,7 +224,7 @@ def salvar_chat(nome_chat, mensagens):
             doc_ref = chat_ref.add(novo_chat)
             return doc_ref[1].id
     except Exception as e:
-        print(f"Erro ao salvar chat para {st.experimental_user.email}: {e}")
+        print(f"Erro ao salvar chat para {st.user.email}: {e}")
         st.error("Não foi possível salvar o chat. Verifique sua conexão.")
         return None
 
@@ -264,11 +235,11 @@ def obter_chats():
     Returns:
         list: Lista de dicionários, cada um representando um chat
     """
-    if not hasattr(st.experimental_user, 'email'):
+    if not st.user.is_logged_in:
         return []  # Retorna lista vazia se não houver email
         
     db = firestore.client()
-    chats_ref = db.collection(COLECAO_USUARIOS).document(st.experimental_user.email).collection("chats")
+    chats_ref = db.collection(COLECAO_USUARIOS).document(st.user.email).collection("chats")
     try:
         docs = chats_ref.order_by("ultima_atualizacao", direction=firestore.Query.DESCENDING).stream()
         
@@ -279,7 +250,7 @@ def obter_chats():
             resultado.append(chat_data)
         return resultado
     except Exception as e:
-        print(f"Erro ao obter chats para {st.experimental_user.email}: {e}")
+        print(f"Erro ao obter chats para {st.user.email}: {e}")
         st.warning("Não foi possível carregar o histórico de chats.")
         return []
 
@@ -293,11 +264,11 @@ def obter_chat(chat_id):
     Returns:
         dict: Dicionário com os dados do chat ou None em caso de erro
     """
-    if not hasattr(st.experimental_user, 'email'):
+    if not st.user.is_logged_in:
         return None  # Retorna None se não houver email
         
     db = firestore.client()
-    chat_ref = db.collection(COLECAO_USUARIOS).document(st.experimental_user.email).collection("chats").document(chat_id)
+    chat_ref = db.collection(COLECAO_USUARIOS).document(st.user.email).collection("chats").document(chat_id)
     try:
         chat = chat_ref.get()
         if chat.exists:
@@ -308,7 +279,7 @@ def obter_chat(chat_id):
             st.warning("Chat não encontrado.")
             return None
     except Exception as e:
-        print(f"Erro ao obter chat {chat_id} para {st.experimental_user.email}: {e}")
+        print(f"Erro ao obter chat {chat_id} para {st.user.email}: {e}")
         st.warning("Não foi possível carregar os dados deste chat.")
         return None
 
@@ -322,11 +293,11 @@ def excluir_chat(chat_id):
     Returns:
         bool: True se a exclusão foi bem-sucedida, False caso contrário
     """
-    if not hasattr(st.experimental_user, 'email'):
+    if not st.user.is_logged_in:
         return False  # Retorna False se não houver email
         
     db = firestore.client()
-    chat_ref = db.collection(COLECAO_USUARIOS).document(st.experimental_user.email).collection("chats").document(chat_id)
+    chat_ref = db.collection(COLECAO_USUARIOS).document(st.user.email).collection("chats").document(chat_id)
     try:
         chat = chat_ref.get()
         if chat.exists:
@@ -336,7 +307,7 @@ def excluir_chat(chat_id):
             # Não precisa de mensagem, a UI já vai atualizar
             return False
     except Exception as e:
-        print(f"Erro ao excluir chat {chat_id} para {st.experimental_user.email}: {e}")
+        print(f"Erro ao excluir chat {chat_id} para {st.user.email}: {e}")
         st.error("Não foi possível excluir o chat.")
         return False
 
@@ -414,9 +385,6 @@ def formatar_nome_licao(nome_arquivo):
     return nome_arquivo[:-4] if nome_arquivo.endswith('.txt') else nome_arquivo
 
 # --- Fim Funções Auxiliares de Navegação ---
-
-
-
 
 
 

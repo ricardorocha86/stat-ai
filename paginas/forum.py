@@ -134,7 +134,7 @@ def criar_post(texto, imagem=None):
     db = firestore.client()
     post_data = {
         "texto": texto,
-        "autor_email": st.experimental_user.email,
+        "autor_email": getattr(st.user, "email", "local@localhost"),
         "autor_nome": perfil.get("nome_completo") or perfil.get("nome_google", "Usuário"),
         "autor_foto": perfil.get("foto", ""),
         "data_criacao": datetime.datetime.now(),
@@ -198,7 +198,7 @@ def alternar_like(post_id):
         
         post_data = post.to_dict()
         usuarios_like = post_data.get("usuarios_like", [])
-        email_usuario = st.experimental_user.email
+        email_usuario = getattr(st.user, "email", "local@localhost")
         
         # Alternar o like
         if email_usuario in usuarios_like:
@@ -276,7 +276,7 @@ else:
                 post_id = post["id"]
                 
                 # Verificar se o usuário atual deu like neste post
-                usuario_deu_like = st.experimental_user.email in post.get("usuarios_like", [])
+                usuario_deu_like = getattr(st.user, "email", "local@localhost") in post.get("usuarios_like", [])
                 
                 # Preparar a URL da foto do autor - usar serviço externo como fallback garantido
                 autor_nome = post.get('autor_nome', 'Usuário')
