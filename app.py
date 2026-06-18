@@ -155,32 +155,7 @@ if ACESSO_LOCAL_SEM_LOGIN or st.user.is_logged_in:
                 ] 
             }
 
-        # --- DEBUGGING ADMIN CHECK REMOVIDO ---
-        # st.sidebar.write("--- DEBUG INFO ---")
-        usuario_email = getattr(st.user, 'email', None)
-        # st.sidebar.write(f"Email Logado: {usuario_email}")
-        is_admin = False # Default para não admin
-        try:
-            admin_emails = st.secrets.get("admin_config", {}).get("admin_emails", [])
-            # st.sidebar.write(f"Admin Emails (Secrets): {admin_emails}")
-            if usuario_email and admin_emails: # Verifica se ambos existem
-                is_admin = usuario_email in admin_emails
-            # st.sidebar.write(f"É Admin? {is_admin}")
-        except Exception as e:
-            # st.sidebar.write(f"Erro ao ler secrets/verificar admin: {e}")
-            pass # Continua silenciosamente se houver erro ao verificar admin
-        # st.sidebar.write("--------------------")
-        # --- FIM DEBUGGING ---
-
-        # Remove a seção Admin se o usuário NÃO for admin
-        if not is_admin:
-            if "Admin" in paginas:
-                del paginas["Admin"]
-                # st.sidebar.write("(Debug: Seção Admin REMOVIDA)") 
-        # else:
-             # st.sidebar.write("(Debug: Seção Admin MANTIDA)") 
-
-        # Usa a estrutura de páginas final (com ou sem Admin)
+        # Exibe a página Admin; a própria página solicita a senha.
         pg = st.navigation(paginas)
         pg.run()
 

@@ -9,6 +9,24 @@ import plotly.graph_objects as go
 from firebase_admin import firestore
 from paginas.funcoes import registrar_acao_usuario, COLECAO_USUARIOS
 
+SENHA_ADMIN = "eita"
+
+def autenticar_admin():
+    if st.session_state.get("admin_senha_input") == SENHA_ADMIN:
+        st.session_state["admin_autenticado"] = True
+        st.session_state.pop("admin_senha_incorreta", None)
+    else:
+        st.session_state["admin_senha_incorreta"] = True
+
+
+if not st.session_state.get("admin_autenticado", False):
+    st.title("🔐 Acesso Administrativo")
+    st.text_input("Senha", type="password", key="admin_senha_input")
+    st.button("Entrar", type="primary", on_click=autenticar_admin)
+    if st.session_state.get("admin_senha_incorreta"):
+        st.error("Senha incorreta.")
+    st.stop()
+
 st.title("🔐 Painel Administrativo")
 
 st.write("Aplicativo desenvolvido por [@ricardorocha86](https://www.linkedin.com/in/ricardorocha86/)")
@@ -17,77 +35,130 @@ st.write('Versão 0.0.3')
 # Inicializar o cliente Firestore
 db = firestore.client()
 
-# Criar guias para organizar o dashboard
-tab1, tab2, tab3, tab4 = st.tabs(["📊 Visão Geral", "👥 Usuários", "🔍 Dados Detalhados", "📥 Exportar Dados"])
+@st.cache_data(ttl=300, show_spinner=False)
+def carregar_usuarios_basicos():
+    dados_usuarios = []
+    for usuario in db.collection(COLECAO_USUARIOS).get():
+        dados = usuario.to_dict() or {}
+        dados_usuarios.append({
+            "Nome": dados.get("nome_completo") or dados.get("nome_google") or dados.get("nome", ""),
+            "Email": dados.get("email", usuario.id),
+            "Primeiro Nome": dados.get("primeiro_nome_google") or dados.get("primeiro_nome", ""),
+            "Data Cadastro": dados.get("data_cadastro", "").strftime("%d/%m/%Y %H:%M:%S") if dados.get("data_cadastro") else "",
+            "Último Acesso": dados.get("ultimo_acesso", "").strftime("%d/%m/%Y %H:%M:%S") if dados.get("ultimo_acesso") else "",
+        })
+    return dados_usuarios
 
-with tab1:
-    st.header("Visão Geral do Sistema")
-    
-    # Obter dados gerais para o dashboard
+
+@st.cache_data(ttl=300, show_spinner=False)
+def carregar_visao_geral():
     usuarios = db.collection(COLECAO_USUARIOS).get()
     dados_usuarios = []
     total_acoes = 0
     total_atividades_academicas = 0
     usuarios_ativos_7dias = 0
-    hoje = datetime.now(timezone.utc)
-    data_7dias_atras = hoje - timedelta(days=7)
-    
-    # Dados para gráficos
+    data_7dias_atras = datetime.now(timezone.utc) - timedelta(days=7)
     acoes_por_dia = {}
     acoes_por_tipo = {}
     atividades_por_modulo = {}
     atividades_por_tipo = {}
-    
+
     for usuario in usuarios:
-        dados = usuario.to_dict()
-        email = dados.get("email", "")
-        ultimo_acesso = dados.get("ultimo_acesso", None)
-        
-        # Contar usuários ativos nos últimos 7 dias
+        dados = usuario.to_dict() or {}
+        email = dados.get("email", usuario.id)
+        ultimo_acesso = dados.get("ultimo_acesso")
+
         if ultimo_acesso and ultimo_acesso > data_7dias_atras:
             usuarios_ativos_7dias += 1
-        
-        # Obter logs do usuário
-        logs = db.collection(COLECAO_USUARIOS).document(email).collection("logs").get()
-        acoes_usuario = len(logs)
-        total_acoes += acoes_usuario
-        
-        # Obter atividades acadêmicas do usuário
-        atividades = db.collection(COLECAO_USUARIOS).document(email).collection("atividades_academicas").get()
-        atividades_usuario = len(atividades)
-        total_atividades_academicas += atividades_usuario
-        
-        # Processar logs para estatísticas
+
+        logs = db.collection(COLECAO_USUARIOS).document(email).collection("logs").select(["acao", "data_hora"]).get()
+        atividades = (
+            db.collection(COLECAO_USUARIOS)
+            .document(email)
+            .collection("atividades_academicas")
+            .select(["tipo", "modulo"])
+            .get()
+        )
+        total_acoes += len(logs)
+        total_atividades_academicas += len(atividades)
+
         for log in logs:
-            log_data = log.to_dict()
-            data_hora = log_data.get('data_hora', None)
-            tipo_acao = log_data.get('acao', 'Desconhecida')
-            
+            log_data = log.to_dict() or {}
+            data_hora = log_data.get("data_hora")
+            tipo_acao = log_data.get("acao", "Desconhecida")
             if data_hora:
-                data_str = data_hora.strftime('%d/%m/%Y')
+                data_str = data_hora.strftime("%d/%m/%Y")
                 acoes_por_dia[data_str] = acoes_por_dia.get(data_str, 0) + 1
-            
             acoes_por_tipo[tipo_acao] = acoes_por_tipo.get(tipo_acao, 0) + 1
-        
-        # Processar atividades acadêmicas para estatísticas
+
         for atividade in atividades:
-            atividade_data = atividade.to_dict()
-            modulo = atividade_data.get('modulo', 'Desconhecido')
-            tipo = atividade_data.get('tipo', 'Desconhecido')
-            
+            atividade_data = atividade.to_dict() or {}
+            modulo = atividade_data.get("modulo", "Desconhecido")
+            tipo = atividade_data.get("tipo", "Desconhecido")
             atividades_por_modulo[modulo] = atividades_por_modulo.get(modulo, 0) + 1
             atividades_por_tipo[tipo] = atividades_por_tipo.get(tipo, 0) + 1
-        
-        # Adicionar usuário à lista
+
         dados_usuarios.append({
-            "Nome": dados.get("nome", ""),
+            "Nome": dados.get("nome_completo") or dados.get("nome_google") or dados.get("nome", ""),
             "Email": email,
-            "Primeiro Nome": dados.get("primeiro_nome", ""),
+            "Primeiro Nome": dados.get("primeiro_nome_google") or dados.get("primeiro_nome", ""),
             "Data Cadastro": dados.get("data_cadastro", "").strftime("%d/%m/%Y %H:%M:%S") if dados.get("data_cadastro") else "",
-            "Último Acesso": dados.get("ultimo_acesso", "").strftime("%d/%m/%Y %H:%M:%S") if dados.get("ultimo_acesso") else "",
-            "Ações Totais": acoes_usuario,
-            "Atividades Acadêmicas": atividades_usuario,
+            "Último Acesso": ultimo_acesso.strftime("%d/%m/%Y %H:%M:%S") if ultimo_acesso else "",
+            "Ações Totais": len(logs),
+            "Atividades Acadêmicas": len(atividades),
         })
+
+    return {
+        "dados_usuarios": dados_usuarios,
+        "total_acoes": total_acoes,
+        "total_atividades_academicas": total_atividades_academicas,
+        "usuarios_ativos_7dias": usuarios_ativos_7dias,
+        "acoes_por_dia": acoes_por_dia,
+        "acoes_por_tipo": acoes_por_tipo,
+        "atividades_por_modulo": atividades_por_modulo,
+        "atividades_por_tipo": atividades_por_tipo,
+    }
+
+
+secao = st.radio(
+    "Seção",
+    ["📊 Visão Geral", "👥 Usuários", "🔍 Dados Detalhados", "📥 Exportar Dados"],
+    horizontal=True,
+    label_visibility="collapsed",
+)
+
+if secao == "📊 Visão Geral":
+    st.header("Visão Geral do Sistema")
+
+    col_carregar, col_atualizar = st.columns([3, 1])
+    with col_carregar:
+        carregar = st.button("Carregar visão geral", type="primary", use_container_width=True)
+    with col_atualizar:
+        atualizar = st.button("Atualizar cache", use_container_width=True)
+
+    if atualizar:
+        carregar_visao_geral.clear()
+        carregar_usuarios_basicos.clear()
+        st.session_state["admin_visao_carregada"] = True
+
+    if carregar:
+        st.session_state["admin_visao_carregada"] = True
+
+    if not st.session_state.get("admin_visao_carregada", False):
+        st.info("Clique em **Carregar visão geral** para consultar o Firestore.")
+        st.stop()
+
+    with st.spinner("Carregando métricas..."):
+        resumo = carregar_visao_geral()
+
+    dados_usuarios = resumo["dados_usuarios"]
+    total_acoes = resumo["total_acoes"]
+    total_atividades_academicas = resumo["total_atividades_academicas"]
+    usuarios_ativos_7dias = resumo["usuarios_ativos_7dias"]
+    acoes_por_dia = resumo["acoes_por_dia"]
+    acoes_por_tipo = resumo["acoes_por_tipo"]
+    atividades_por_modulo = resumo["atividades_por_modulo"]
+    atividades_por_tipo = resumo["atividades_por_tipo"]
     
     # Métricas principais
     col1, col2, col3, col4 = st.columns(4)
@@ -159,11 +230,12 @@ with tab1:
         else:
             st.info("Não há dados suficientes para gerar o gráfico de tipos de atividade.")
 
-with tab2:
+elif secao == "👥 Usuários":
     st.header("Gerenciamento de Usuários")
     
     # Criar DataFrame com dados de usuários
-    df_usuarios = pd.DataFrame(dados_usuarios)
+    with st.spinner("Carregando usuários..."):
+        df_usuarios = pd.DataFrame(carregar_usuarios_basicos())
     
     # Filtros para usuários
     col1, col2 = st.columns(2)
@@ -190,7 +262,13 @@ with tab2:
     st.write("### Detalhes do Usuário")
     if not df_usuarios.empty:
         usuarios_emails = df_usuarios['Email'].tolist()
-        usuario_selecionado = st.selectbox("Selecione um usuário para ver detalhes:", usuarios_emails, key="admin_select_user_details")
+        usuario_selecionado = st.selectbox(
+            "Selecione um usuário para ver detalhes:",
+            usuarios_emails,
+            index=None,
+            placeholder="Selecione um usuário",
+            key="admin_select_user_details",
+        )
         
         if usuario_selecionado:
             # Criar tabs para diferentes tipos de informação
@@ -314,11 +392,12 @@ with tab2:
     else:
         st.info("Nenhum usuário encontrado ou o DataFrame de usuários está vazio.")
 
-with tab3:
+elif secao == "🔍 Dados Detalhados":
     st.header("Dados Detalhados")
     st.write("Em desenvolvimento...")
 
     # Funcionalidade de download de dados (exemplo)
+    df_usuarios = pd.DataFrame(carregar_usuarios_basicos())
     if not df_usuarios.empty:
         csv = df_usuarios.to_csv(index=False).encode('utf-8')
         st.download_button(
@@ -330,7 +409,7 @@ with tab3:
     else:
         st.info("Não há dados de usuários para baixar.")
 
-with tab4:
+elif secao == "📥 Exportar Dados":
     st.header("Exportar Dados (Excel)")
     st.caption("Nada é executado automaticamente: clique para iniciar a coleta e gerar o arquivo.")
 
